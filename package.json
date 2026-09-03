@@ -1,0 +1,14 @@
+{
+  "name": "nepali-patro-node",
+  "version": "0.1.0",
+  "description": "Nepali Patro calendar app - Node.js/Express foundation with a self-made calendar API (weather/goldsilver/fuel-rate APIs to follow the same pattern).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
