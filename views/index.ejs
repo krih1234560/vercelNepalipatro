@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ne">
+<%- include('partials/head') %>
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="wrap">
+  <header class="head">
+    <div class="top">
+      <button class="btn nav-btn" id="prev">‹</button>
+      <div class="title">
+        <h1 id="title">नेपाली पात्रो २०८३</h1>
+        <div class="sub" id="sub">Nepali Calendar · तिथि · चाडपर्व · बिदा</div>
+      </div>
+      <button class="btn nav-btn" id="next">›</button>
+    </div>
+    <button class="btn today-btn" id="today">आज</button>
+  </header>
+
+  <!-- Main layout: calendar + right sidebar -->
+  <div class="main-layout">
+    <section class="cal">
+      <div class="week">
+        <div>आइतबार</div><div>सोमबार</div><div>मंगलबार</div>
+        <div>बुधबार</div><div>बिहिबार</div><div>शुक्रबार</div><div>शनिबार</div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar">
+      <!-- Selected Date Card -->
+      <div class="sidebar-card" id="selectedDateCard">
+        <div class="kicker">SELECTED DATE</div>
+        <div class="selected-title" id="selectedTitle">—</div>
+        <div class="selected-ad" id="selectedAd">Click a day</div>
+        <div class="selected-events" id="selectedEvents"></div>
+        <div class="moon-box">
+          <span class="moon-icon" id="selectedMoonIcon">◐</span>
+          <div class="moon-info">
+            <strong id="selectedMoon">Moon phase</strong>
+            <small id="selectedMoonAge">—</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="sidebar-card">
+        <div class="kicker">QUICK LINKS</div>
+        <div class="quick-links">
+          <a href="#festivalsSection"><span>🎉 पर्वहरू</span><span class="arrow">→</span></a>
+          <a href="#saitharuSection"><span>🪷 साइतहरू</span><span class="arrow">→</span></a>
+          <a href="#holidaysSection"><span>📅 आगामी बिदा</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Panels (now below the calendar) -->
+  <div class="panels" id="panelsContainer">
+    <section class="panel" id="festivalsSection">
+      <h2>पर्वहरू <span class="holiday-count" id="holidayCount">0</span></h2>
+      <div id="fest"></div>
+    </section>
+    <section class="panel" id="saitharuSection">
+      <h2>साइतहरू</h2>
+      <div id="saitharu"></div>
+    </section>
+    <section class="panel" id="holidaysSection">
+      <h2>आगामी बिदा</h2>
+      <div id="hol"></div>
+    </section>
+  </div>
+  <div class="disclaimer">* चलायमान पर्वहरू (दशैं, तिहार आदि) २०८३ सालको लागि अनुमानित मिति हुन्।</div>
+</div>
+
+<%- include('partials/footer') %>
+
+<script src="/js/bsdate.js"></script>
+<script src="/js/calendar.js"></script>
+</body>
+</html>
