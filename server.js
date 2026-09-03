@@ -5,7 +5,6 @@ const pagesRouter = require('./routes/pages');
 const apiRouter = require('./routes/api');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +19,4 @@ app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
-app.listen(PORT, () => {
-  console.log(`Nepali Patro server running at http://localhost:${PORT}`);
-});
+module.exports = app;
