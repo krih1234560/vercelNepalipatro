@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="ne">
+<head>
+
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+  
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nepali Patro">
+<meta name="theme-color" content="#123b6d">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- PWA Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Kundali – Janam Kundali Generator | नेपाली पात्रो</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Free Janam Kundali Generator. Enter your date, time, and place of birth to get your Rashi, Lagna, Nakshatra and complete birth chart. Free online kundali.">
+  <meta name="keywords" content="kundali, janam kundali, birth chart, rashi, lagna, nakshatra, free kundali, Nepali kundali, astrology, horoscope">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Free Kundali – Janam Kundali Generator">
+  <meta property="og:description" content="Enter your date, time, and place of birth to get your Rashi, Lagna, Nakshatra and complete birth chart.">
+  <meta property="og:type" content="website">
+  
+<link rel="canonical" href="https://nepalipatro.app/kundali-generator.html">
+  <!-- html2pdf for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e4e9f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 4px 8px 4px 4px;
+      transition: background 0.15s;
+    }
+    .brand:hover {
+      background: #eef4fb;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: #f4aa2a;
+      color: #123b6d;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+      transition: transform 0.2s;
+    }
+    .brand:hover .brand-icon {
+      transform: scale(1.05);
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .brand-nepali {
+      font-size: 20px;
+      font-weight: 800;
+      color: #123b6d;
+      letter-spacing: 0.3px;
+    }
+    .brand-english {
+      font-size: 12px;
+      font-weight: 600;
+      color: #627083;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .brand-english span {
+      color: #c62828;
+      font-weight: 700;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      padding: 8px 6px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover {
+      background: #eef4fb;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3.5px;
+      background: #172033;
+      border-radius: 4px;
+      transition: 0.25s ease;
+    }
+    .menu-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .menu a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #172033;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .menu a:hover {
+      background: #eef4fb;
+      color: #123b6d;
+    }
+    .menu a.active {
+      background: #eef4fb;
+      color: #123b6d;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown>a:after {
+      content: "▾";
+      font-size: 11px;
+      margin-left: 6px;
+      opacity: 0.6;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 210px;
+      padding: 8px;
+      margin: 6px 0 0;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    .dropdown-menu a:hover {
+      background: #f0f4fa;
+    }
+
+    @media (max-width: 820px) {
+      .hamburger {
+        display: flex;
+      }
+      .menu-wrapper {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        background: #fff;
+        padding: 16px 0 20px;
+        border-top: 1px solid #e4e9f0;
+        margin-top: 4px;
+      }
+      .menu-wrapper.open {
+        display: flex;
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .menu {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 2px;
+      }
+      .menu a {
+        padding: 14px 16px;
+        font-size: 16px;
+        border-radius: 10px;
+        white-space: normal;
+      }
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: 0;
+        padding-left: 20px;
+        display: none;
+        background: transparent;
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+      .dropdown>a:after {
+        content: "▾";
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #123b6d, #1c5b9b);
+      color: #fff;
+      padding: 40px 20px 35px;
+      text-align: center;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: auto;
+    }
+    .hero .pill {
+      display: inline-block;
+      padding: 5px 14px;
+      border: 1px solid #ffffff40;
+      border-radius: 99px;
+      background: #ffffff14;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      margin: 14px 0 10px;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      color: #ffffffdf;
+      font-size: 17px;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    /* ===== FORM CARD ===== */
+    .card {
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 18px;
+      padding: 24px 28px;
+      box-shadow: 0 7px 25px #0000000a;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #123b6d;
+      margin: 0 0 4px;
+    }
+    .card-sub {
+      color: #627083;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #172033;
+    }
+    .form-group input,
+    .form-group select {
+      padding: 9px 12px;
+      border: 1px solid #d0d7e2;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #4b83b8;
+      box-shadow: 0 0 0 3px #123b6d12;
+    }
+    .form-group .hint {
+      font-size: 11px;
+      color: #999;
+      margin-top: 2px;
+    }
+
+    .btn-generate {
+      margin-top: 18px;
+      padding: 13px 28px;
+      background: #c62828;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      width: 100%;
+    }
+    .btn-generate:hover {
+      background: #a02020;
+      transform: scale(1.01);
+    }
+
+    /* ===== KUNDALI RESULT ===== */
+    #result {
+      display: none;
+      margin-top: 25px;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== CHART WRAPPER ===== */
+    .chart-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .chart-container {
+      background: #fffbf0;
+      border: 2px solid #d4a843;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    .chart-container h3 {
+      text-align: center;
+      margin: 0 0 10px;
+      color: #123b6d;
+      font-size: 17px;
+    }
+
+    /* North Indian Kundali Chart using CSS Grid */
+    .kundali-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      aspect-ratio: 1 / 1;
+      gap: 2px;
+      background: #d4a843;
+      border: 2px solid #d4a843;
+      border-radius: 4px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .kundali-cell {
+      background: #fffbf0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      min-height: 40px;
+      font-size: 12px;
+      text-align: center;
+      position: relative;
+    }
+    .kundali-cell .house-num {
+      font-size: 9px;
+      color: #999;
+      font-weight: 700;
+      position: absolute;
+      top: 1px;
+      left: 3px;
+    }
+    .kundali-cell .planet {
+      font-weight: 700;
+      font-size: 12px;
+      color: #123b6d;
+    }
+    .kundali-cell .rashi {
+      font-size: 18px;
+      font-weight: 800;
+      color: #c62828;
+    }
+    .kundali-cell .rashi-small {
+      font-size: 10px;
+      color: #627083;
+      line-height: 1.2;
+    }
+    .kundali-cell .lagna-mark {
+      font-size: 8px;
+      color: #c62828;
+      font-weight: 800;
+    }
+    .cell-lagna {
+      background: #fff5e6;
+      border: 2px solid #c62828;
+    }
+
+    .house-1 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .house-2 {
+      grid-column: 3;
+      grid-row: 2;
+    }
+    .house-3 {
+      grid-column: 4;
+      grid-row: 2;
+    }
+    .house-4 {
+      grid-column: 4;
+      grid-row: 3;
+    }
+    .house-5 {
+      grid-column: 4;
+      grid-row: 4;
+    }
+    .house-6 {
+      grid-column: 3;
+      grid-row: 4;
+    }
+    .house-7 {
+      grid-column: 2;
+      grid-row: 4;
+    }
+    .house-8 {
+      grid-column: 1;
+      grid-row: 4;
+    }
+    .house-9 {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .house-10 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .house-11 {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .house-12 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .house-center {
+      grid-column: 2 / 4;
+      grid-row: 2 / 4;
+      background: #f5ede0;
+      font-size: 12px;
+      color: #123b6d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .house-center .lagna-label {
+      color: #c62828;
+      font-size: 13px;
+    }
+
+    /* ===== DETAILS PANEL ===== */
+    .details-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .detail-card {
+      background: #f8faff;
+      border: 1px solid #e4e9f0;
+      border-radius: 11px;
+      padding: 12px 16px;
+    }
+    .detail-card .label {
+      font-size: 11px;
+      color: #627083;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+    }
+    .detail-card .value {
+      font-size: 20px;
+      font-weight: 800;
+      color: #123b6d;
+      margin-top: 1px;
+    }
+    .detail-card .sub-value {
+      font-size: 13px;
+      color: #627083;
+    }
+
+    .planet-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+      margin-top: 4px;
+    }
+    .planet-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 1px solid #eef2f8;
+      font-size: 13px;
+    }
+    .planet-item .pname {
+      font-weight: 600;
+      color: #172033;
+    }
+    .planet-item .psign {
+      color: #627083;
+    }
+
+    /* ===== PLANET TABLE ===== */
+    .planet-table-wrap {
+      overflow-x: auto;
+      margin-top: 6px;
+    }
+    .planet-table-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .planet-table-wrap th {
+      background: #eef4fb;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 2px solid #d0d7e2;
+      font-weight: 700;
+    }
+    .planet-table-wrap td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #eef2f8;
+    }
+    .planet-table-wrap tr:hover {
+      background: #f8faff;
+    }
+
+    /* ===== BUTTONS ===== */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .btn-pdf {
+      padding: 11px 24px;
+      background: #123b6d;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-pdf:hover {
+      background: #0a2a4f;
+      transform: scale(1.02);
+    }
+    .btn-pdf:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-pdf .icon {
+      font-size: 18px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 820px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .chart-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .kundali-grid {
+        max-width: 100%;
+      }
+      .container {
+        padding: 0 10px;
+      }
+      .card {
+        padding: 16px;
+      }
+      .planet-list {
+        grid-template-columns: 1fr;
+      }
+      .action-buttons {
+        flex-direction: column;
+      }
+      .btn-pdf {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 500px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 24px;
+      }
+      .detail-card .value {
+        font-size: 17px;
+      }
+      .kundali-cell .rashi {
+        font-size: 15px;
+      }
+      .kundali-cell .planet {
+        font-size: 10px;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #092746;
+      color: #dbe5ef;
+      padding: 30px 20px;
+      margin-top: 35px;
+    }
+    .footer {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer a {
+      color: #fff;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+    .mt-10 {
+      margin-top: 10px;
+    }
+    .mt-20 {
+      margin-top: 20px;
+    }
+    .text-muted {
+      color: #888;
+      font-size: 12px;
+      font-style: italic;
+    }
+  </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-icon">वि</span>
+        <span class="brand-text">
+          <span class="brand-nepali">नेपाली पात्रो</span>
+          <span class="brand-english">Nepali Patro · <span>Kundali</span></span>
+        </span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+        <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="#">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="unicode.html">Nepali Unicode</a></li>
+            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="date-difference.html">Date Difference</a></li>
+            <li><a href="age-calculator.html">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href=" nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="rashifal.html">राशिफल</a></li>
+        <li><a href="weather.html">मौसम</a></li>
+        <li><a href="goldsilver.html">सुनचादी</a></li>
+        <li class="dropdown">
+          <a href="#">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+             <li><a href="event-remainder.html">Event Remainder</a></li>
+            <li><a href="quiz-scheduler.html" class="active">Quiz Scheduler</a></li>
+            <li><a href="exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="pill">✨ Janam Kundali</span>
+      <h1>Free Kundali Generator</h1>
+      <p>Enter your birth details to generate your Rashi, Lagna, Nakshatra and complete birth chart.</p>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <div class="container">
+
+    <!-- Input Form -->
+    <div class="card">
+      <h2 class="card-title">🔮 Enter Birth Details</h2>
+      <p class="card-sub">Fill in your date, time, and place of birth to generate your kundali.</p>
+
+      <form id="kundaliForm" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="birthDate">Date of Birth</label>
+            <input type="date" id="birthDate" value="2000-01-01" required>
+          </div>
+          <div class="form-group">
+            <label for="birthTime">Time of Birth</label>
+            <input type="time" id="birthTime" value="12:00" step="60" required>
+            <span class="hint">24-hour format (e.g. 14:30)</span>
+          </div>
+          <div class="form-group">
+            <label for="birthPlace">Place of Birth</label>
+            <input type="text" id="birthPlace" value="Kathmandu" placeholder="e.g. Kathmandu, Nepal">
+          </div>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="number" id="latitude" value="27.7172" step="0.0001" placeholder="27.7172">
+            <span class="hint">North +, South -</span>
+          </div>
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="number" id="longitude" value="85.3240" step="0.0001" placeholder="85.3240">
+            <span class="hint">East +, West -</span>
+          </div>
+          <div class="form-group">
+            <label for="timezone">Timezone (UTC offset)</label>
+            <input type="number" id="timezone" value="5.75" step="0.25" placeholder="5.75">
+            <span class="hint">e.g. 5.75 for Nepal</span>
+          </div>
+        </div>
+        <button type="submit" class="btn-generate">✨ Generate Kundali</button>
+      </form>
+    </div>
+
+    <!-- Result Area -->
+    <div id="result">
+
+      <!-- PDF download button -->
+      <div class="action-buttons" id="pdfButtonContainer" style="display:none;">
+        <button class="btn-pdf" id="downloadPdfBtn">
+          <span class="icon">📄</span> Download PDF
+        </button>
+      </div>
+
+      <!-- Kundali content to be captured for PDF -->
+      <div id="pdfContent">
+        <!-- Chart + Details -->
+        <div class="chart-wrapper">
+          <!-- Chart -->
+          <div class="chart-container">
+            <h3>🪐 Janam Kundali (North Indian)</h3>
+            <div class="kundali-grid" id="kundaliChart"></div>
+            <div style="margin-top:8px;font-size:11px;color:#999;text-align:center;">
+              <span>🟢 Lagna (Ascendant) highlighted</span> &nbsp;·&nbsp; <span>House numbers top-left</span>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="details-panel" id="detailsPanel"></div>
+        </div>
+
+        <!-- Planet positions table -->
+        <div class="card" style="margin-top:20px;">
+          <h3 style="color:#123b6d;margin:0 0 6px;font-size:18px;">🌞 Planetary Positions</h3>
+          <div class="planet-table-wrap" id="planetTable"></div>
+        </div>
+
+        <!-- Additional info -->
+        <div class="card" style="margin-top:16px;background:#fafbff;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;font-size:14px;" id="extraInfo">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;font-size:12px;color:#999;text-align:center;font-style:italic;">
+        * This is a simplified kundali generator for reference. For professional astrological advice, consult an expert.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer">
+      <div><strong>नेपाली पात्रो</strong><br>Nepali Calendar &amp; Date Tools</div>
+      <div>
+        <a href="#">Calendar</a> ·
+        <a href="#">Kundali</a> ·
+        <a href="#">Festivals</a> ·
+        <a href="#">Holidays</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ================================================================
+    //  KUNDALI GENERATOR ENGINE — Improved & Workable
+    // ================================================================
+
+    // ---- CONSTANTS ----
+    const RASHI_NAMES = [
+      'Aries', 'Taurus', 'Gemini', 'Cancer',
+      'Leo', 'Virgo', 'Libra', 'Scorpio',
+      'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+    ];
+    const RASHI_NAMES_NE = [
+      'मेष', 'वृष', 'मिथुन', 'कर्कट',
+      'सिंह', 'कन्या', 'तुला', 'वृश्चिक',
+      'धनु', 'मकर', 'कुम्भ', 'मीन'
+    ];
+    const RASHI_SYMBOLS = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
+    const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+    const PLANET_NAMES_NE = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+    const PLANET_SPEEDS = [0.9856, 13.176, 0.524, 1.383, 0.083, 0.616, 0.033, -0.052, 0.052];
+    const PLANET_OFFSETS = [280, 180, 80, 150, 210, 300, 350, 120, 300];
+
+    const NAKSHATRA_NAMES = [
+      'अश्विनी', 'भरणी', 'कृत्तिका', 'रोहिणी', 'मृगशिरा', 'आर्द्रा',
+      'पुनर्वसु', 'पुष्य', 'आश्लेषा', 'मघा', 'पूर्वाफाल्गुनी', 'उत्तराफाल्गुनी',
+      'हस्त', 'चित्रा', 'स्वाती', 'विशाखा', 'अनुराधा', 'ज्येष्ठा',
+      'मूल', 'पूर्वाषाढा', 'उत्तराषाढा', 'श्रवण', 'धनिष्ठा', 'शतभिषा',
+      'पूर्वाभाद्रपदा', 'उत्तराभाद्रपदा', 'रेवती'
+    ];
+    const NAKSHATRA_LORDS = ['Ket', 'Ven', 'Sun', 'Moon', 'Mar', 'Rah', 'Jup', 'Sat', 'Mer',
+      'Ket', 'Ven', 'Sun', 'Moon', 'Mar', 'Rah', 'Jup', 'Sat', 'Mer',
+      'Ket', 'Ven', 'Sun', 'Moon', 'Mar', 'Rah', 'Jup', 'Sat', 'Mer'
+    ];
+
+    // ---- Helpers ----
+    function toRad(deg) { return deg * Math.PI / 180; }
+
+    function toDeg(rad) { return rad * 180 / Math.PI; }
+
+    function norm360(deg) { deg = deg % 360; if (deg < 0) deg += 360; return deg; }
+
+    function getRashi(deg) { return Math.floor(norm360(deg) / 30); }
+
+    function getRashiName(deg) { return RASHI_NAMES[getRashi(deg)]; }
+
+    function getRashiNameNe(deg) { return RASHI_NAMES_NE[getRashi(deg)]; }
+
+    function getRashiSymbol(deg) { return RASHI_SYMBOLS[getRashi(deg)]; }
+
+    function getNakshatra(deg) { return Math.floor(norm360(deg) / 13.333333); }
+
+    function getNakshatraName(deg) { return NAKSHATRA_NAMES[getNakshatra(deg)] || 'N/A'; }
+
+    function getNakshatraPada(deg) { return Math.floor((norm360(deg) % 13.333333) / 3.333333) + 1; }
+
+    function getNakshatraLord(deg) { return NAKSHATRA_LORDS[getNakshatra(deg)] || 'N/A'; }
+
+    // ---- Julian Day Number ----
+    function julianDay(year, month, day) {
+      if (month <= 2) { year--;
+        month += 12; }
+      const A = Math.floor(year / 100);
+      const B = 2 - A + Math.floor(A / 4);
+      return Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + B - 1524.5;
+    }
+
+    // ---- Calculate planetary positions using improved approximations ----
+    function calcPlanetPositions(date, time, tz) {
+      const dt = new Date(date + 'T' + time + ':00');
+      const year = dt.getFullYear();
+      const month = dt.getMonth() + 1;
+      const day = dt.getDate();
+      const hours = dt.getHours() + dt.getMinutes() / 60;
+      const ut = hours - tz;
+
+      // Julian Day Number
+      const jd = julianDay(year, month, day) + ut / 24;
+      const d = jd - 2451545.0; // days since J2000
+
+      // Sun: use more accurate formula
+      const g = norm360(357.529 + 0.98560028 * d);
+      const q = norm360(280.459 + 0.98564736 * d);
+      const L = q + 1.915 * Math.sin(toRad(g)) + 0.020 * Math.sin(toRad(2 * g));
+      const sunDeg = norm360(L);
+
+      // Moon: improved mean longitude
+      const Lm = norm360(218.316 + 13.176396 * d);
+      const Mm = norm360(134.963 + 13.064993 * d);
+      const moonDeg = norm360(Lm + 6.289 * Math.sin(toRad(Mm)));
+
+      // Other planets: simple mean motion with corrections
+      const planets = [];
+      for (let i = 0; i < 9; i++) {
+        let deg = norm360(PLANET_OFFSETS[i] + PLANET_SPEEDS[i] * d);
+        // Add some perturbation for better accuracy
+        if (i === 2) deg += 0.8 * Math.sin(toRad(2 * g)); // Mars
+        if (i === 3) deg += 1.2 * Math.sin(toRad(3 * g)); // Mercury
+        if (i === 4) deg += 0.6 * Math.sin(toRad(g)); // Jupiter
+        if (i === 5) deg += 0.9 * Math.sin(toRad(2 * g)); // Venus
+        if (i === 6) deg += 0.5 * Math.sin(toRad(g)); // Saturn
+        planets.push(norm360(deg));
+      }
+      // Replace Sun and Moon with more accurate values
+      planets[0] = sunDeg;
+      planets[1] = moonDeg;
+
+      return {
+        sun: planets[0],
+        moon: planets[1],
+        mars: planets[2],
+        mercury: planets[3],
+        jupiter: planets[4],
+        venus: planets[5],
+        saturn: planets[6],
+        rahu: planets[7],
+        ketu: norm360(planets[7] + 180),
+        all: planets
+      };
+    }
+
+    // ---- Calculate Lagna (Ascendant) ----
+    function calcLagna(date, time, lat, lon, tz) {
+      const dt = new Date(date + 'T' + time + ':00');
+      const year = dt.getFullYear();
+      const month = dt.getMonth() + 1;
+      const day = dt.getDate();
+      const hours = dt.getHours() + dt.getMinutes() / 60;
+      const ut = hours - tz;
+
+      const jd = julianDay(year, month, day) + ut / 24;
+      const d = jd - 2451545.0;
+
+      // GMST
+      const gmst = norm360(280.46061837 + 360.98564736629 * d);
+      const lst = norm360(gmst + lon);
+
+      // Ascendant: using formula for northern hemisphere
+      const eps = 23.439291 - 0.00000036 * d; // obliquity
+      const epsRad = toRad(eps);
+      const latRad = toRad(lat);
+      const lstRad = toRad(lst);
+
+      // Calculate ascendant using formula
+      const a = Math.atan2(-Math.sin(lstRad), Math.cos(lstRad) * Math.sin(epsRad) + Math.tan(latRad) * Math.cos(epsRad));
+      let asc = norm360(toDeg(a) + 180);
+
+      return asc;
+    }
+
+    // ---- Generate full Kundali data ----
+    function generateKundali(dateStr, timeStr, place, lat, lon, tz) {
+      const pos = calcPlanetPositions(dateStr, timeStr, parseFloat(tz));
+      const lagnaDeg = calcLagna(dateStr, timeStr, parseFloat(lat), parseFloat(lon), parseFloat(tz));
+
+      const allPlanets = [
+        { name: 'Sun', nameNe: 'सूर्य', deg: pos.sun },
+        { name: 'Moon', nameNe: 'चन्द्र', deg: pos.moon },
+        { name: 'Mars', nameNe: 'मंगल', deg: pos.mars },
+        { name: 'Mercury', nameNe: 'बुध', deg: pos.mercury },
+        { name: 'Jupiter', nameNe: 'बृहस्पति', deg: pos.jupiter },
+        { name: 'Venus', nameNe: 'शुक्र', deg: pos.venus },
+        { name: 'Saturn', nameNe: 'शनि', deg: pos.saturn },
+        { name: 'Rahu', nameNe: 'राहु', deg: pos.rahu },
+        { name: 'Ketu', nameNe: 'केतु', deg: pos.ketu }
+      ];
+
+      // Houses: equal house system
+      const houses = [];
+      for (let i = 0; i < 12; i++) {
+        const deg = norm360(lagnaDeg + i * 30);
+        houses.push({
+          house: i + 1,
+          deg: deg,
+          rashi: getRashi(deg),
+          rashiName: RASHI_NAMES[getRashi(deg)],
+          rashiNameNe: RASHI_NAMES_NE[getRashi(deg)],
+          rashiSymbol: RASHI_SYMBOLS[getRashi(deg)]
+        });
+      }
+
+      // Place planets in houses
+      const planetHouseMap = allPlanets.map(p => {
+        const rashi = getRashi(p.deg);
+        let houseNum = 1;
+        for (let i = 0; i < 12; i++) {
+          if (houses[i].rashi === rashi) { houseNum = i + 1; break; }
+        }
+        return {
+          ...p,
+          rashi: rashi,
+          rashiName: RASHI_NAMES[rashi],
+          rashiNameNe: RASHI_NAMES_NE[rashi],
+          rashiSymbol: RASHI_SYMBOLS[rashi],
+          house: houseNum,
+          deg: p.deg
+        };
+      });
+
+      // Moon details
+      const moonRashi = getRashi(pos.moon);
+      const nakshatraIdx = getNakshatra(pos.moon);
+      const nakshatraName = NAKSHATRA_NAMES[nakshatraIdx] || 'N/A';
+      const nakshatraPada = getNakshatraPada(pos.moon);
+      const nakshatraLord = NAKSHATRA_LORDS[nakshatraIdx] || 'N/A';
+
+      // Tithi (lunar day) - simplified
+      const tithi = Math.floor((pos.moon - pos.sun) / 12) % 30 + 1;
+
+      return {
+        date: dateStr,
+        time: timeStr,
+        place: place,
+        lat: lat,
+        lon: lon,
+        tz: tz,
+        lagna: {
+          deg: lagnaDeg,
+          rashi: getRashi(lagnaDeg),
+          rashiName: RASHI_NAMES[getRashi(lagnaDeg)],
+          rashiNameNe: RASHI_NAMES_NE[getRashi(lagnaDeg)],
+          rashiSymbol: RASHI_SYMBOLS[getRashi(lagnaDeg)]
+        },
+        moon: {
+          deg: pos.moon,
+          rashi: moonRashi,
+          rashiName: RASHI_NAMES[moonRashi],
+          rashiNameNe: RASHI_NAMES_NE[moonRashi],
+          rashiSymbol: RASHI_SYMBOLS[moonRashi],
+          nakshatra: nakshatraName,
+          pada: nakshatraPada,
+          lord: nakshatraLord
+        },
+        sun: {
+          deg: pos.sun,
+          rashi: getRashi(pos.sun),
+          rashiName: RASHI_NAMES[getRashi(pos.sun)],
+          rashiNameNe: RASHI_NAMES_NE[getRashi(pos.sun)],
+          rashiSymbol: RASHI_SYMBOLS[getRashi(pos.sun)]
+        },
+        houses: houses,
+        planets: planetHouseMap,
+        tithi: tithi,
+        allPlanets: pos
+      };
+    }
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderChart(data) {
+      const grid = document.getElementById('kundaliChart');
+
+      const houseMap = {
+        1: 'house-1',
+        2: 'house-2',
+        3: 'house-3',
+        4: 'house-4',
+        5: 'house-5',
+        6: 'house-6',
+        7: 'house-7',
+        8: 'house-8',
+        9: 'house-9',
+        10: 'house-10',
+        11: 'house-11',
+        12: 'house-12'
+      };
+
+      let html =
+        `<div class="kundali-cell house-center">
+            <div style="font-size:20px;">🪐</div>
+            <div class="lagna-label">Lagna</div>
+            <div style="font-size:14px;font-weight:800;">${data.lagna.rashiSymbol}</div>
+            <div style="font-size:11px;">${data.lagna.rashiNameNe}</div>
+          </div>`;
+
+      for (let h = 1; h <= 12; h++) {
+        const house = data.houses[h - 1];
+        const planetsInHouse = data.planets.filter(p => p.house === h);
+        const planetText = planetsInHouse.length ? planetsInHouse.map(p => p.nameNe).join(' ') : '—';
+        const isLagna = (h === 1);
+        const lagnaClass = isLagna ? 'cell-lagna' : '';
+
+        html += `
+            <div class="kundali-cell ${houseMap[h]} ${lagnaClass}">
+              <span class="house-num">${h}</span>
+              <div class="rashi">${house.rashiSymbol}</div>
+              <div class="rashi-small">${house.rashiNameNe}</div>
+              <div class="planet">${planetText}</div>
+              ${isLagna ? '<div class="lagna-mark">⬆ Asc</div>' : ''}
+            </div>
+          `;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function renderDetails(data) {
+      const panel = document.getElementById('detailsPanel');
+
+      const lagnaText = `${data.lagna.rashiSymbol} ${data.lagna.rashiNameNe} (${data.lagna.rashiName})`;
+      const moonText = `${data.moon.rashiSymbol} ${data.moon.rashiNameNe} (${data.moon.rashiName})`;
+      const sunText = `${data.sun.rashiSymbol} ${data.sun.rashiNameNe} (${data.sun.rashiName})`;
+
+      panel.innerHTML = `
+          <div class="detail-card">
+            <div class="label">🌅 Lagna (Ascendant)</div>
+            <div class="value">${lagnaText}</div>
+            <div class="sub-value">${data.lagna.deg.toFixed(1)}°</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">🌙 Rashi (Moon Sign)</div>
+            <div class="value">${moonText}</div>
+            <div class="sub-value">${data.moon.deg.toFixed(1)}°</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">⭐ Nakshatra (Birth Star)</div>
+            <div class="value">${data.moon.nakshatra}</div>
+            <div class="sub-value">Pada ${data.moon.pada} · Lord ${data.moon.lord}</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">☀️ Sun Sign</div>
+            <div class="value">${sunText}</div>
+            <div class="sub-value">${data.sun.deg.toFixed(1)}°</div>
+          </div>
+          <div class="detail-card">
+            <div class="label">📍 Birth Details</div>
+            <div class="value" style="font-size:15px;">${data.place || 'Unknown'}</div>
+            <div class="sub-value">${data.date} · ${data.time} · Lat ${data.lat}° Lon ${data.lon}°</div>
+          </div>
+          <div class="detail-card" style="background:#f0f5ff;">
+            <div class="label">📅 Tithi (Lunar Day)</div>
+            <div class="value">${data.tithi}</div>
+            <div class="sub-value">${data.tithi <= 15 ? 'Shukla Paksha' : 'Krishna Paksha'}</div>
+          </div>
+        `;
+    }
+
+    function renderPlanetTable(data) {
+      const container = document.getElementById('planetTable');
+      let html = `
+          <table>
+            <thead>
+              <tr>
+                <th>Planet</th>
+                <th>नेपाली</th>
+                <th>Degree</th>
+                <th>Rashi</th>
+                <th>House</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+      data.planets.forEach(p => {
+        html += `
+            <tr>
+              <td><strong>${p.name}</strong></td>
+              <td>${p.nameNe}</td>
+              <td>${p.deg.toFixed(1)}°</td>
+              <td>${p.rashiSymbol} ${p.rashiNameNe}</td>
+              <td>${p.house}</td>
+            </tr>
+          `;
+      });
+
+      html += `</tbody></table>`;
+      container.innerHTML = html;
+    }
+
+    function renderExtraInfo(data) {
+      const container = document.getElementById('extraInfo');
+      // Calculate some additional astrological parameters
+      const moonRashi = getRashi(data.moon.deg);
+
+      // Varna, Vashya, Yoni, Gana, Nadi - simplified based on Moon rashi
+      const varnaList = ['Brahmin', 'Kshatriya', 'Vaishya', 'Shudra'];
+      const varna = varnaList[moonRashi % 4];
+
+      const ganaList = ['Dev', 'Manushya', 'Rakshasa'];
+      const gana = ganaList[moonRashi % 3];
+
+      const yoniList = ['Ashwa', 'Gaja', 'Mesha', 'Sarpa', 'Shwan', 'Marjara', 'Mooshak', 'Go', 'Mahisha', 'Vyaghra',
+        'Mriga', 'Vanara'
+      ];
+      const yoni = yoniList[moonRashi % 12];
+
+      container.innerHTML = `
+          <div style="background:#f8faff;border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:11px;color:#888;">Varna</div>
+            <div style="font-weight:800;font-size:16px;color:#123b6d;">${varna}</div>
+          </div>
+          <div style="background:#f8faff;border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:11px;color:#888;">Gana</div>
+            <div style="font-weight:800;font-size:16px;color:#123b6d;">${gana}</div>
+          </div>
+          <div style="background:#f8faff;border-radius:10px;padding:12px;text-align:center;">
+            <div style="font-size:11px;color:#888;">Yoni</div>
+            <div style="font-weight:800;font-size:16px;color:#123b6d;">${yoni}</div>
+          </div>
+        `;
+    }
+
+    // ================================================================
+    //  PDF DOWNLOAD
+    // ================================================================
+
+    function downloadPDF() {
+      const btn = document.getElementById('downloadPdfBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="icon">⏳</span> Generating PDF...';
+
+      const element = document.getElementById('pdfContent');
+
+      // Add a small header for PDF
+      const header = document.createElement('div');
+      header.style.textAlign = 'center';
+      header.style.marginBottom = '15px';
+      header.style.fontSize = '18px';
+      header.style.fontWeight = 'bold';
+      header.style.color = '#123b6d';
+      header.innerHTML = '🪐 Janam Kundali · नेपाली पात्रो';
+      element.prepend(header);
+
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: `kundali_${document.getElementById('birthDate').value}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          letterRendering: true,
+          width: element.scrollWidth,
+          height: element.scrollHeight
+        },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      html2pdf().set(opt).from(element).save().then(function() {
+        // Remove the added header
+        header.remove();
+        btn.disabled = false;
+        btn.innerHTML = '<span class="icon">📄</span> Download PDF';
+      }).catch(function(err) {
+        console.error(err);
+        header.remove();
+        btn.disabled = false;
+        btn.innerHTML = '<span class="icon">📄</span> Download PDF';
+        alert('Failed to generate PDF. Please try again.');
+      });
+    }
+
+    // ================================================================
+    //  FORM HANDLER
+    // ================================================================
+
+    document.getElementById('kundaliForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const date = document.getElementById('birthDate').value;
+      const time = document.getElementById('birthTime').value;
+      const place = document.getElementById('birthPlace').value || 'Unknown';
+      const lat = parseFloat(document.getElementById('latitude').value) || 27.7172;
+      const lon = parseFloat(document.getElementById('longitude').value) || 85.3240;
+      const tz = parseFloat(document.getElementById('timezone').value) || 5.75;
+
+      if (!date || !time) {
+        alert('Please enter both date and time of birth.');
+        return;
+      }
+
+      // Generate kundali
+      const data = generateKundali(date, time, place, lat, lon, tz);
+
+      // Render
+      renderChart(data);
+      renderDetails(data);
+      renderPlanetTable(data);
+      renderExtraInfo(data);
+
+      // Show result
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('pdfButtonContainer').style.display = 'flex';
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ---- PDF button ----
+    document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
+
+    // ---- Hamburger toggle ----
+    document.getElementById('hamburgerBtn').addEventListener('click', function() {
+      document.getElementById('menuWrapper').classList.toggle('open');
+    });
+
+    // ---- Auto-generate on load ----
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.getElementById('kundaliForm').dispatchEvent(new Event('submit'));
+      }, 300);
+    });
+  </script>
+<!-- PWA Installation Script -->
+<script src="/pwa-install.js"></script>
+
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

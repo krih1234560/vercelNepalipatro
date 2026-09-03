@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+
+
+  
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nepali Patro">
+<meta name="theme-color" content="#123b6d">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- PWA Meta Tags -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Age Calculator in Nepal – AD &amp; BS (Bikram Sambat)</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Free age calculator for Nepal. Calculate your exact age in years, months and days using a Gregorian AD date or Nepali BS (Bikram Sambat) date.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://nepalipatro.app/age-calculator.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Age Calculator in Nepal – AD &amp; BS (Bikram Sambat)">
+  <meta property="og:description" content="Calculate your exact age in years, months and days from AD or Nepali BS (Bikram Sambat) dates.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nepalipatro.app/age-calculator.html">
+  <meta property="og:site_name" content="Nepali Patro">
+
+  <!-- X / Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Age Calculator in Nepal – AD &amp; BS">
+  <meta name="twitter:description" content="Free AD and BS age calculator for calculating years, months and days.">
+
+  <!-- Structured data: helps search engines understand this page as a web application and its place in the site -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://nepalipatro.app/age-calculator.html#app",
+        "name": "Nepali Patro Age Calculator",
+        "url": "https://nepalipatro.app/age-calculator.html",
+        "description": "Free age calculator for calculating age in years, months and days from AD or Nepali BS dates.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://nepalipatro.app/age-calculator.html#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nepalipatro.app/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Age Calculator",
+            "item": "https://nepalipatro.app/age-calculator.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ---------- reused from main calendar ---------- */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #172033;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* --- NAVBAR (identical to calendar page) --- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e4e9f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 4px 8px 4px 4px;
+      transition: background 0.15s;
+    }
+    .brand:hover { background: #eef4fb; }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: #f4aa2a;
+      color: #123b6d;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+      transition: transform 0.2s;
+    }
+    .brand:hover .brand-icon { transform: scale(1.05); }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .brand-nepali {
+      font-size: 20px;
+      font-weight: 800;
+      color: #123b6d;
+      letter-spacing: 0.3px;
+    }
+    .brand-english {
+      font-size: 12px;
+      font-weight: 600;
+      color: #627083;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .brand-english span { color: #c62828; font-weight: 700; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      padding: 8px 6px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover { background: #eef4fb; }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3.5px;
+      background: #172033;
+      border-radius: 4px;
+      transition: 0.25s ease;
+    }
+
+    /* menu */
+    .menu-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .menu a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #172033;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .menu a:hover { background: #eef4fb; color: #123b6d; }
+    .menu a.active { background: #eef4fb; color: #123b6d; }
+
+    .dropdown { position: relative; }
+    .dropdown > a:after {
+      content: "▾";
+      font-size: 11px;
+      margin-left: 6px;
+      opacity: 0.6;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 210px;
+      padding: 8px;
+      margin: 6px 0 0;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    .dropdown-menu a:hover { background: #f0f4fa; }
+
+    /* responsive */
+    @media (max-width: 820px) {
+      .hamburger { display: flex; }
+      .menu-wrapper {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        background: #fff;
+        padding: 16px 0 20px;
+        border-top: 1px solid #e4e9f0;
+        margin-top: 4px;
+      }
+      .menu-wrapper.open {
+        display: flex;
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .menu {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 2px;
+      }
+      .menu a {
+        padding: 14px 16px;
+        font-size: 16px;
+        border-radius: 10px;
+        white-space: normal;
+      }
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: 0;
+        padding-left: 20px;
+        display: none;
+        background: transparent;
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+    }
+
+    /* ---------- age calculator specific ---------- */
+    :root{--blue:#123b6d;--dark:#092746;--gold:#f4aa2a;--bg:#f5f7fb;--text:#172033;--muted:#627083;--white:#fff;--border:#e4e9f0}
+    .hero{background:linear-gradient(135deg,#123b6d,#1c5b9b);color:#fff;padding:58px 20px}
+    .hero-inner{max-width:900px;margin:auto;text-align:center}
+    .hero h1{font-size:clamp(32px,5vw,48px);line-height:1.1;margin:0 0 12px}
+    .hero p{max-width:680px;margin:auto;color:#ffffffdf;font-size:17px}
+
+    .section{max-width:850px;margin:auto;padding:55px 20px}
+    .calculator{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 10px 30px #123b6d12}
+    .calculator h2{margin-top:0}
+    .format-toggle{display:flex;gap:20px;margin-bottom:20px;align-items:center}
+    .format-toggle label{font-weight:600;display:flex;align-items:center;gap:6px;cursor:pointer}
+    .format-toggle input[type="radio"]{width:auto;margin-right:4px}
+    .date-group{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .date-group .sub-group{border:1px solid #e4e9f0;border-radius:10px;padding:15px}
+    .date-group .sub-group h4{margin:0 0 10px;color:#123b6d}
+    .bs-date-row{display:flex;gap:8px;flex-wrap:wrap}
+    .bs-date-row label{flex:1;min-width:60px}
+    .bs-date-row input{width:100%;padding:10px 8px;border:1px solid #ccd4df;border-radius:6px;font:inherit}
+    .ad-inputs .date-picker{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .ad-inputs .date-picker label{display:block;font-weight:700;margin-bottom:5px}
+    .ad-inputs .date-picker input{width:100%;padding:12px 13px;border:1px solid #ccd4df;border-radius:8px;font:inherit}
+    .bs-inputs{display:block}
+    .bs-inputs .bs-group{margin-bottom:12px}
+    .bs-inputs .bs-group label{display:block;font-weight:700;margin-bottom:5px}
+    .bs-inputs .bs-group .bs-date-row{display:flex;gap:8px}
+    .bs-inputs .bs-group .bs-date-row > div{flex:1}
+    .bs-inputs .bs-group .bs-date-row input{width:100%;padding:10px 8px;border:1px solid #ccd4df;border-radius:6px;font:inherit}
+    .hidden{display:none !important}
+
+    button.calc-btn{margin-top:20px;width:100%;padding:13px 18px;border:0;border-radius:9px;background:var(--gold);color:#222;font:inherit;font-weight:800;cursor:pointer}
+    button.calc-btn:hover{filter:brightness(.96)}
+    .result{display:none;margin-top:24px;padding:20px;border-radius:12px;background:#eef4fb;border:1px solid #d5e3f2}
+    .result strong{color:var(--blue)}
+    .error{display:none;margin-top:15px;padding:12px;border-radius:8px;background:#ffebee;color:#b71c1c;font-weight:600;border-left:4px solid #c62828}
+    .info{margin-top:28px;color:var(--muted)}
+    .info h2{color:var(--text)}
+
+    footer{background:var(--dark);color:#dbe5ef;padding:35px 20px}
+    .footer{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer a{color:#fff}
+
+
+    .breadcrumbs{background:#fff;border-bottom:1px solid var(--border)}
+    .breadcrumbs-inner{max-width:1180px;margin:auto;padding:12px 20px;display:flex;gap:9px;align-items:center;font-size:14px;color:var(--muted)}
+    .breadcrumbs a{color:var(--blue);font-weight:700}
+    .content-link{color:var(--blue);text-decoration:underline;text-underline-offset:2px;font-weight:600}
+    .related-tools{margin-top:34px}
+    .related-tools h2{color:var(--text);margin-bottom:16px}
+    .related-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .related-card{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:17px;color:var(--text);transition:transform .15s,box-shadow .15s,border-color .15s}
+    .related-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px #123b6d12;border-color:#c9d7e8}
+    .related-card strong{color:var(--blue)}
+    .related-card span{color:var(--muted);font-size:14px}
+    .info ol{padding-left:22px}
+    .faq{display:grid;gap:10px}
+    .faq details{background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 15px}
+    .faq summary{cursor:pointer;font-weight:700;color:var(--text)}
+    .faq p{margin:10px 0 0;color:var(--muted)}
+
+    @media(max-width:800px){
+      .date-group{grid-template-columns:1fr}
+      .ad-inputs .date-picker{grid-template-columns:1fr}
+      .bs-inputs .bs-group .bs-date-row{flex-direction:column}
+      .format-toggle{flex-wrap:wrap}
+      .related-grid{grid-template-columns:1fr}
+    }
+  </style>
+    <link rel="stylesheet" href="dark-mode.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I calculate age using a Nepali BS date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Select BS (Nepali), enter the birth date and the as-of date in BS year, month and day, then calculate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator show years, months and days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The result is displayed as a combination of completed years, months and days between the selected dates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate age as of a past or future date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, as long as the dates are valid and the birth date is not later than the calculation date."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<header class="navbar">
+  <nav class="nav">
+    <a class="brand" href="/index.html" aria-label="Nepali Patro home">
+      <span class="brand-icon">वि</span>
+      <span class="brand-text">
+        <span class="brand-nepali">नेपाली पात्रो</span>
+        <span class="brand-english">Nepali Patro · <span>Calendar 2083</span></span>
+      </span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-controls="menuWrapper" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="/index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+        <li><a href="/nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="#">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="/unicode.html">Nepali Unicode</a></li>
+            <li><a href="/dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="/date-difference.html">Date Difference</a></li>
+            <li><a href="/age-calculator.html" class="active" aria-current="page">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href="/nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="/nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="/rashifal.html">राशिफल</a></li>
+        <li><a href="/weather.html">मौसम</a></li>
+        <li><a href="/goldsilver.html">सुनचादी</a></li>
+
+        <li class="dropdown">
+          <a href="#">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="/kundali-generator.html">जन्म कुण्डली</a></li>
+             <li><a href="/event-remainder.html">Event Remainder</a></li>
+            <li><a href="/quiz-scheduler.html">Quiz Scheduler</a></li>
+            <li><a href="/exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="/nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ========== PAGE CONTENT ========== -->
+<main>
+
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="breadcrumbs-inner">
+      <a href="/index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Age Calculator</span>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Age Calculator – AD &amp; BS (Nepali Date)</h1>
+      <p>Calculate your exact age in years, months and days using a Gregorian <strong>AD</strong> date or a Nepali <strong>BS (Bikram Sambat)</strong> date.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="calculator">
+      <h2>Calculate Your Age</h2>
+
+      <!-- Format toggle -->
+      <div class="format-toggle">
+        <label><input type="radio" name="dateFormat" value="ad" checked> AD (English)</label>
+        <label><input type="radio" name="dateFormat" value="bs"> BS (Nepali)</label>
+      </div>
+
+      <!-- AD inputs -->
+      <div id="adInputs" class="ad-inputs">
+        <div class="date-picker">
+          <div>
+            <label for="dob">Date of Birth (AD)</label>
+            <input id="dob" type="date" autocomplete="bday">
+          </div>
+          <div>
+            <label for="today">Calculate As Of (AD)</label>
+            <input id="today" type="date">
+          </div>
+        </div>
+      </div>
+
+      <!-- BS inputs -->
+      <div id="bsInputs" class="bs-inputs hidden">
+        <div class="bs-group">
+          <label>Date of Birth (BS)</label>
+          <div class="bs-date-row">
+            <div>
+              <label>Year</label>
+              <input type="number" id="dobBsYear" min="1975" max="2100" placeholder="e.g. 2079">
+            </div>
+            <div>
+              <label>Month (1-12)</label>
+              <input type="number" id="dobBsMonth" min="1" max="12" placeholder="1">
+            </div>
+            <div>
+              <label>Day</label>
+              <input type="number" id="dobBsDay" min="1" max="32" placeholder="1">
+            </div>
+          </div>
+        </div>
+
+        <div class="bs-group">
+          <label>Calculate As Of (BS)</label>
+          <div class="bs-date-row">
+            <div>
+              <label>Year</label>
+              <input type="number" id="todayBsYear" min="1975" max="2100" placeholder="2083">
+            </div>
+            <div>
+              <label>Month (1-12)</label>
+              <input type="number" id="todayBsMonth" min="1" max="12" placeholder="1">
+            </div>
+            <div>
+              <label>Day</label>
+              <input type="number" id="todayBsDay" min="1" max="32" placeholder="1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="error" class="error"></div>
+      <button type="button" class="calc-btn" id="calculate">Calculate Age</button>
+
+      <div id="result" class="result" aria-live="polite"></div>
+    </div>
+
+
+    <section class="related-tools" aria-labelledby="related-tools-heading">
+      <h2 id="related-tools-heading">More Nepali Calendar &amp; Date Tools</h2>
+      <div class="related-grid">
+        <a class="related-card" href="/dateconverter.html">
+          <strong>BS ↔ AD Date Converter</strong>
+          <span>Convert Nepali BS dates to Gregorian AD and back.</span>
+        </a>
+        <a class="related-card" href="/date-difference.html">
+          <strong>Date Difference Calculator</strong>
+          <span>Find the exact difference between two dates.</span>
+        </a>
+        <a class="related-card" href="/index.html">
+          <strong>Nepali Calendar</strong>
+          <span>Browse Nepali dates, months, festivals and calendar information.</span>
+        </a>
+        <a class="related-card" href="/nepalsambat.html">
+          <strong>Nepal Sambat</strong>
+          <span>Learn about Nepal Sambat and related calendar information.</span>
+        </a>
+      </div>
+    </section>
+    <div class="info">
+      <h2>About This Age Calculator</h2>
+      <p>
+        Use this free online age calculator to find your age in <strong>years, months and days</strong>.
+        You can enter dates in the Gregorian <strong>AD</strong> calendar or in Nepal's commonly used
+        <strong>BS (Bikram Sambat)</strong> calendar. For BS input, the calculator converts the date to AD
+        internally before calculating the difference between the birth date and the selected “as of” date.
+      </p>
+
+      <h2>How to Calculate Your Age</h2>
+      <ol>
+        <li>Select <strong>AD (English)</strong> or <strong>BS (Nepali)</strong>.</li>
+        <li>Enter your date of birth.</li>
+        <li>Choose the date you want to calculate your age as of.</li>
+        <li>Click <strong>Calculate Age</strong> to see the result in years, months and days.</li>
+      </ol>
+
+      <h2>AD vs BS Age Calculation</h2>
+      <p>
+        AD refers to the Gregorian calendar, while BS refers to Bikram Sambat, the calendar system widely used
+        for dates in Nepal. If you have a Nepali birth date but need your age based on a Gregorian date, use the
+        BS option here rather than manually estimating the year difference.
+      </p>
+
+      <h2>Related Nepali Date Tools</h2>
+      <p>
+        Need to convert a date instead? Use our
+        <a class="content-link" href="/dateconverter.html"><strong>BS to AD date converter</strong></a>.
+        You can also compare two dates with the
+        <a class="content-link" href="/date-difference.html"><strong>date difference calculator</strong></a>,
+        explore the <a class="content-link" href="/index.html"><strong>Nepali calendar</strong></a>,
+        or check <a class="content-link" href="/nepali-holidays.html"><strong>Nepali holidays</strong></a>.
+      </p>
+
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Can I calculate age using a Nepali BS date?</summary>
+          <p>Yes. Select BS (Nepali), enter the birth date and the “as of” date in BS year, month and day, then calculate.</p>
+        </details>
+        <details>
+          <summary>Does the calculator show years, months and days?</summary>
+          <p>Yes. The result is displayed as a combination of completed years, months and days between the selected dates.</p>
+        </details>
+        <details>
+          <summary>Can I calculate age as of a past or future date?</summary>
+          <p>Yes, as long as the dates are valid and the birth date is not later than the calculation date.</p>
+        </details>
+      </div>
+
+      <h2>Calendar References</h2>
+      <p>
+        For an independent public reference for BS/AD calendar dates, see the
+        <a class="content-link" href="https://kathmandu.gov.np/en/calendar" target="_blank" rel="noopener noreferrer">Kathmandu Metropolitan City BS/AD calendar</a>.
+        You can also compare public holiday dates published by the
+        <a class="content-link" href="https://bh.nepalembassy.gov.np/content/29/public-holidays-of-vikram-samvat-2083/" target="_blank" rel="noopener noreferrer">Embassy of Nepal</a>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer">
+    <div><strong>नेपाली पात्रो</strong><br>Nepali Calendar &amp; Date Tools</div>
+    <div>
+      <a href="/calendar-2083.html">Calendar</a> ·
+      <a href="/converter.html">Converter</a> ·
+      <a href="/nepali-festivals.html">Festivals</a> ·
+      <a href="/nepali-holidays.html">Holidays</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  //  BS ↔ AD CONVERSION ENGINE (same as main calendar)
+  // ============================================================
+  (function() {
+    const normalMonths = [31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 30];
+    const leapMonths   = [31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 30, 30];
+
+    function isLeap(bsYear) {
+      return (bsYear % 4 === 0) && (bsYear % 100 !== 0 || bsYear % 400 === 0);
+    }
+
+    function getMonthDays(bsYear) {
+      return isLeap(bsYear) ? leapMonths : normalMonths;
+    }
+
+    const REF_BS_YEAR = 2000;
+    const REF_AD = new Date(1943, 3, 14); // 14 April 1943
+
+    function bsToAd(bsYear, bsMonth, bsDay) {
+      let days = 0;
+      for (let y = REF_BS_YEAR; y < bsYear; y++) {
+        const mds = getMonthDays(y);
+        for (let m = 0; m < 12; m++) days += mds[m];
+      }
+      const targetMds = getMonthDays(bsYear);
+      for (let m = 0; m < bsMonth; m++) days += targetMds[m];
+      days += (bsDay - 1);
+      const result = new Date(REF_AD);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+
+    function adToBs(adDate) {
+      let daysDiff = Math.floor((adDate - REF_AD) / (24 * 60 * 60 * 1000));
+      let bsYear = REF_BS_YEAR;
+      let remaining = daysDiff;
+      while (true) {
+        const mds = getMonthDays(bsYear);
+        const total = mds.reduce((a,b) => a + b, 0);
+        if (remaining < total) break;
+        remaining -= total;
+        bsYear++;
+      }
+      const mds = getMonthDays(bsYear);
+      let bsMonth = 0;
+      while (remaining >= mds[bsMonth]) {
+        remaining -= mds[bsMonth];
+        bsMonth++;
+        if (bsMonth >= 12) { bsMonth = 0; bsYear++; break; }
+      }
+      return { year: bsYear, month: bsMonth, day: remaining + 1 };
+    }
+
+    window.BSDate = {
+      toAD: bsToAd,
+      fromAD: adToBs,
+      getMonthDays: getMonthDays,
+      isLeap: isLeap
+    };
+  })();
+
+  // ============================================================
+  //  AGE CALCULATOR LOGIC
+  // ============================================================
+  document.addEventListener('DOMContentLoaded', function() {
+    const dobInput = document.getElementById('dob');
+    const todayInput = document.getElementById('today');
+    const resultDiv = document.getElementById('result');
+    const errorDiv = document.getElementById('error');
+
+    // BS elements
+    const dobBsYear = document.getElementById('dobBsYear');
+    const dobBsMonth = document.getElementById('dobBsMonth');
+    const dobBsDay = document.getElementById('dobBsDay');
+    const todayBsYear = document.getElementById('todayBsYear');
+    const todayBsMonth = document.getElementById('todayBsMonth');
+    const todayBsDay = document.getElementById('todayBsDay');
+
+    const formatRadios = document.querySelectorAll('input[name="dateFormat"]');
+    const adInputs = document.getElementById('adInputs');
+    const bsInputs = document.getElementById('bsInputs');
+
+    // ---- toggle visibility ----
+    formatRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'ad') {
+          adInputs.classList.remove('hidden');
+          bsInputs.classList.add('hidden');
+        } else {
+          adInputs.classList.add('hidden');
+          bsInputs.classList.remove('hidden');
+          // Set default BS today for "as of" if empty
+          if (!todayBsYear.value || !todayBsMonth.value || !todayBsDay.value) {
+            setBsToday();
+          }
+          // Optionally set a default birth date (30 years ago from today)
+          if (!dobBsYear.value || !dobBsMonth.value || !dobBsDay.value) {
+            setDefaultBirthBs();
+          }
+        }
+        // Clear any previous error/result when switching
+        errorDiv.style.display = 'none';
+        resultDiv.style.display = 'none';
+      });
+    });
+
+    // ---- set today in AD ----
+    const now = new Date();
+    const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+      .toISOString().split('T')[0];
+    todayInput.value = localToday;
+    todayInput.max = localToday;
+
+    // ---- set today in BS ----
+    function setBsToday() {
+      const bs = window.BSDate.fromAD(new Date());
+      todayBsYear.value = bs.year;
+      todayBsMonth.value = bs.month + 1;
+      todayBsDay.value = bs.day;
+    }
+    setBsToday();
+
+    // ---- set default birth date (30 years ago) in BS ----
+    function setDefaultBirthBs() {
+      const today = new Date();
+      const past = new Date(today);
+      past.setFullYear(today.getFullYear() - 30);
+      const bs = window.BSDate.fromAD(past);
+      dobBsYear.value = bs.year;
+      dobBsMonth.value = bs.month + 1;
+      dobBsDay.value = bs.day;
+    }
+    setDefaultBirthBs();
+
+    // ---- validate BS date with detailed error ----
+    function validateBsDateFields(yearField, monthField, dayField) {
+      const year = yearField.value.trim();
+      const month = monthField.value.trim();
+      const day = dayField.value.trim();
+
+      if (!year || !month || !day) {
+        return { valid: false, msg: 'Please fill in all three fields (year, month, day).' };
+      }
+
+      const y = parseInt(year);
+      const m = parseInt(month);
+      const d = parseInt(day);
+
+      if (isNaN(y) || isNaN(m) || isNaN(d)) {
+        return { valid: false, msg: 'Please enter valid numbers for year, month, and day.' };
+      }
+
+      if (y < 1975 || y > 2100) {
+        return { valid: false, msg: 'Year must be between 1975 and 2100.' };
+      }
+
+      if (m < 1 || m > 12) {
+        return { valid: false, msg: 'Month must be between 1 and 12.' };
+      }
+
+      const monthIndex = m - 1;
+      const maxDay = window.BSDate.getMonthDays(y)[monthIndex];
+      if (d < 1 || d > maxDay) {
+        return { valid: false, msg: `Day must be between 1 and ${maxDay} for month ${m} in year ${y}.` };
+      }
+
+      return { valid: true, year: y, month: monthIndex, day: d };
+    }
+
+    // ---- calculate ----
+    document.getElementById('calculate').addEventListener('click', function() {
+      errorDiv.style.display = 'none';
+      resultDiv.style.display = 'none';
+
+      const format = document.querySelector('input[name="dateFormat"]:checked').value;
+      let birthDate, endDate;
+
+      if (format === 'ad') {
+        // AD inputs
+        if (!dobInput.value || !todayInput.value) {
+          errorDiv.textContent = 'Please select both AD dates.';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        birthDate = new Date(dobInput.value + 'T00:00:00');
+        endDate = new Date(todayInput.value + 'T00:00:00');
+        if (isNaN(birthDate) || isNaN(endDate)) {
+          errorDiv.textContent = 'Invalid AD date(s). Please use the date picker.';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        if (birthDate > endDate) {
+          errorDiv.textContent = 'Date of birth cannot be after the calculation date.';
+          errorDiv.style.display = 'block';
+          return;
+        }
+      } else {
+        // BS inputs
+        const dobValid = validateBsDateFields(dobBsYear, dobBsMonth, dobBsDay);
+        if (!dobValid.valid) {
+          errorDiv.textContent = 'Birth date: ' + dobValid.msg;
+          errorDiv.style.display = 'block';
+          return;
+        }
+        const todayValid = validateBsDateFields(todayBsYear, todayBsMonth, todayBsDay);
+        if (!todayValid.valid) {
+          errorDiv.textContent = '"As of" date: ' + todayValid.msg;
+          errorDiv.style.display = 'block';
+          return;
+        }
+
+        birthDate = window.BSDate.toAD(dobValid.year, dobValid.month, dobValid.day);
+        endDate = window.BSDate.toAD(todayValid.year, todayValid.month, todayValid.day);
+
+        if (birthDate > endDate) {
+          errorDiv.textContent = 'Date of birth cannot be after the calculation date.';
+          errorDiv.style.display = 'block';
+          return;
+        }
+      }
+
+      // Compute age difference
+      let years = endDate.getFullYear() - birthDate.getFullYear();
+      let months = endDate.getMonth() - birthDate.getMonth();
+      let days = endDate.getDate() - birthDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const daysInPreviousMonth = new Date(
+          endDate.getFullYear(),
+          endDate.getMonth(),
+          0
+        ).getDate();
+        days += daysInPreviousMonth;
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      resultDiv.innerHTML =
+        'Your age is <strong>' + years + '</strong> year' +
+        (years !== 1 ? 's' : '') + ', <strong>' + months +
+        '</strong> month' + (months !== 1 ? 's' : '') +
+        ' and <strong>' + days + '</strong> day' +
+        (days !== 1 ? 's' : '') + '.';
+
+      resultDiv.style.display = 'block';
+    });
+
+    // ---- clear error on input change ----
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', function() {
+        errorDiv.style.display = 'none';
+        resultDiv.style.display = 'none';
+      });
+    });
+
+    // ---- hamburger toggle ----
+    const hamburger = document.getElementById('hamburgerBtn');
+    const menuWrapper = document.getElementById('menuWrapper');
+    hamburger.addEventListener('click', function() {
+      menuWrapper.classList.toggle('open');
+       hamburger.setAttribute('aria-expanded', menuWrapper.classList.contains('open') ? 'true' : 'false');
+    });
+    document.querySelectorAll('.menu a, .dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => menuWrapper.classList.remove('open'));
+    });
+  });
+</script>
+<!-- PWA Installation Script -->
+<script src="/pwa-install.js"></script>
+
+
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

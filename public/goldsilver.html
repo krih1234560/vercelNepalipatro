@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold & Silver Rates Nepal · सुन–चाँदी दर | GoldMandu</title>
+
+    <!-- === SEO: Focus Keyword & Description === -->
+    <meta name="focus-keyword" content="gold price nepal, silver rate nepal">
+    <meta name="description" content="Real-time gold and silver prices in Nepal. Live rates for Fine Gold (24K), Tejabi Gold (22K), and Silver with weekly price charts and market insights.">
+    <meta name="keywords" content="gold price nepal, silver price nepal, gold rate today, silver rate today, nepali gold price, सुनको मूल्य, चाँदीको मूल्य">
+    <link rel="canonical" href="https://nepalipatro.app/goldsilver.html">
+
+    <!-- PWA Meta -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Nepali Patro">
+    <meta name="theme-color" content="#f5f7fb">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js">
+    </script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Archivo+Narrow:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── RESET & BASE ── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f5f7fb;
+            color: #172033;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans Devanagari', system-ui, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #0b1a2e;
+            color: #e8edf5;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e4e9f0;
+        }
+        body.dark-mode ::-webkit-scrollbar-track {
+            background: #132a44;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f4aa2a;
+            border-radius: 8px;
+        }
+
+        /* ── NAVBAR (LIGHT THEME — matches index.html) ── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e4e9f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        body.dark-mode .navbar {
+            background: rgba(11, 26, 46, 0.92);
+            border-bottom: 1px solid #1e3753;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        }
+        .nav {
+            max-width: 1240px;
+            margin: auto;
+            min-height: 72px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 4px 8px 4px 4px;
+            transition: background 0.15s;
+        }
+        .brand:hover {
+            background: #eef4fb;
+        }
+        body.dark-mode .brand:hover {
+            background: #1e3753;
+        }
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: #f4aa2a;
+            color: #123b6d;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 22px;
+            box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+            transition: transform 0.2s;
+        }
+        .brand:hover .brand-icon {
+            transform: scale(1.05);
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .brand-nepali {
+            font-size: 20px;
+            font-weight: 800;
+            color: #123b6d;
+            letter-spacing: 0.3px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .brand-nepali {
+            color: #f0f4fa;
+        }
+        .brand-english {
+            font-size: 12px;
+            font-weight: 600;
+            color: #627083;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: color 0.3s;
+        }
+        body.dark-mode .brand-english {
+            color: #8aa3c0;
+        }
+        .brand-english span {
+            color: #c62828;
+            font-weight: 700;
+        }
+        body.dark-mode .brand-english span {
+            color: #f4aa2a;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            padding: 8px 6px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .hamburger:hover {
+            background: #eef4fb;
+        }
+        body.dark-mode .hamburger:hover {
+            background: #1e3753;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3.5px;
+            background: #172033;
+            border-radius: 4px;
+            transition: 0.25s ease, background 0.3s;
+        }
+        body.dark-mode .hamburger span {
+            background: #e8edf5;
+        }
+
+        .menu-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #172033;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        body.dark-mode .menu a {
+            color: #b0c8e0;
+        }
+        .menu a:hover {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        body.dark-mode .menu a:hover {
+            background: #1e3753;
+            color: #f4aa2a;
+        }
+        .menu a.active {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        body.dark-mode .menu a.active {
+            background: #1e3753;
+            color: #f4aa2a;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown>a:after {
+            content: "▾";
+            font-size: 11px;
+            margin-left: 6px;
+            opacity: 0.6;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 210px;
+            padding: 8px;
+            margin: 6px 0 0;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        body.dark-mode .dropdown-menu {
+            background: #132a44;
+            border: 1px solid #1e3753;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+        body.dark-mode .dropdown-menu a {
+            color: #b0c8e0;
+        }
+        .dropdown-menu a:hover {
+            background: #f0f4fa;
+        }
+        body.dark-mode .dropdown-menu a:hover {
+            background: #1e3753;
+            color: #f4aa2a;
+        }
+
+        .year-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 4px;
+        }
+        .year-selector label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #172033;
+            transition: color 0.3s;
+        }
+        body.dark-mode .year-selector label {
+            color: #8aa3c0;
+        }
+        .year-selector select {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #d0d7e2;
+            font-size: 14px;
+            font-weight: 600;
+            background: #fff;
+            cursor: pointer;
+            color: #123b6d;
+            transition: border 0.2s, background 0.3s, color 0.3s;
+        }
+        body.dark-mode .year-selector select {
+            background: #0b1a2e;
+            border: 1px solid #1e3753;
+            color: #f4aa2a;
+        }
+        .year-selector select:focus {
+            outline: none;
+            border-color: #f4aa2a;
+            box-shadow: 0 0 0 3px rgba(244, 170, 42, 0.2);
+        }
+
+        @media (max-width: 820px) {
+            .hamburger {
+                display: flex;
+            }
+            .menu-wrapper {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                background: #fff;
+                padding: 16px 0 20px;
+                border-top: 1px solid #e4e9f0;
+                margin-top: 4px;
+            }
+            body.dark-mode .menu-wrapper {
+                background: #0b1a2e;
+                border-top: 1px solid #1e3753;
+            }
+            .menu-wrapper.open {
+                display: flex;
+                max-height: calc(100vh - 72px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .menu {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 2px;
+            }
+            .menu a {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 10px;
+                white-space: normal;
+            }
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: 0;
+                padding-left: 20px;
+                display: none;
+                background: transparent;
+            }
+            body.dark-mode .dropdown-menu {
+                background: transparent;
+            }
+            .dropdown:hover .dropdown-menu,
+            .dropdown:focus-within .dropdown-menu {
+                display: block;
+            }
+            .dropdown>a:after {
+                content: "▾";
+            }
+            .year-selector {
+                margin-left: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 8px 0 4px;
+                border-top: 1px solid #eee;
+                margin-top: 8px;
+                gap: 10px;
+            }
+            body.dark-mode .year-selector {
+                border-top: 1px solid #1e3753;
+            }
+            .year-selector select {
+                padding: 8px 14px;
+                font-size: 15px;
+                flex: 1;
+                min-width: 100px;
+            }
+        }
+
+        /* ── DASHBOARD CONTAINER ── */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+        }
+
+        /* ── HEADER ── */
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e4e9f0;
+            transition: border-color 0.3s;
+        }
+        body.dark-mode .dashboard-header {
+            border-bottom: 1px solid #1e3753;
+        }
+        .dashboard-title-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+        .dashboard-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #c62828;
+            letter-spacing: 0.5px;
+            font-family: 'Khand', 'Segoe UI', sans-serif;
+            line-height: 1.2;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-title {
+            color: #f4aa2a;
+        }
+        .dashboard-title small {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #627083;
+        }
+        body.dark-mode .dashboard-title small {
+            color: #8aa3c0;
+        }
+        .dashboard-subtitle {
+            font-size: 0.95rem;
+            color: #627083;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-subtitle {
+            color: #8aa3c0;
+        }
+        .dashboard-subtitle span {
+            color: #c62828;
+            font-weight: 600;
+        }
+        body.dark-mode .dashboard-subtitle span {
+            color: #f4aa2a;
+        }
+
+        .dashboard-theme-toggle {
+            background: #eef4fb;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+        body.dark-mode .dashboard-theme-toggle {
+            background: #1e3753;
+        }
+        .dashboard-theme-toggle:hover {
+            background: #dce5f0;
+            transform: scale(1.05);
+        }
+        body.dark-mode .dashboard-theme-toggle:hover {
+            background: #2a4a6a;
+        }
+        .dashboard-theme-toggle img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ── PRICE CARDS ── */
+        .price-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .dashboard-price-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px 24px 26px;
+            border: 1px solid #e4e9f0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .dashboard-price-card {
+            background: #132a44;
+            border: 1px solid #1e3753;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+        }
+        .dashboard-price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode .dashboard-price-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        .dashboard-price-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 20px 20px 0 0;
+        }
+        .dashboard-price-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #172033;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-price-card h3 {
+            color: #b0c8e0;
+        }
+        .dashboard-price-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #172033;
+            font-family: 'Archivo Narrow', 'Khand', sans-serif;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-price-card .price {
+            color: #f0f4fa;
+        }
+        .dashboard-price-card .price .currency {
+            font-size: 1.2rem;
+            color: #627083;
+            font-weight: 500;
+            margin-right: 4px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-price-card .price .currency {
+            color: #8aa3c0;
+        }
+        .dashboard-price-card .price-sub {
+            font-size: 1rem;
+            color: #627083;
+            margin-top: 4px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-price-card .price-sub {
+            color: #8aa3c0;
+        }
+        .dashboard-price-card .price-sub .num {
+            color: #172033;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        body.dark-mode .dashboard-price-card .price-sub .num {
+            color: #e8edf5;
+        }
+
+        .fine-gold-card::after {
+            background: #f9a825;
+        }
+        .tejabi-gold-card::after {
+            background: #ffb74d;
+        }
+        .silver-card::after {
+            background: #bdbdbd;
+        }
+
+        .price-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 8px;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+        .price-change.positive {
+            color: #2e7d32;
+            background: rgba(46, 125, 50, 0.12);
+        }
+        body.dark-mode .price-change.positive {
+            color: #81c784;
+            background: rgba(129, 199, 132, 0.12);
+        }
+        .price-change.negative {
+            color: #c62828;
+            background: rgba(198, 40, 40, 0.12);
+        }
+        body.dark-mode .price-change.negative {
+            color: #ef9a9a;
+            background: rgba(239, 154, 154, 0.12);
+        }
+        .price-change.neutral {
+            color: #627083;
+            background: rgba(98, 112, 131, 0.08);
+        }
+        body.dark-mode .price-change.neutral {
+            color: #b0c8e0;
+            background: rgba(176, 200, 224, 0.08);
+        }
+
+        /* ── INSIGHTS ── */
+        .insights-section {
+            margin-bottom: 32px;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #172033;
+            margin-bottom: 16px;
+            font-family: 'Khand', 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .section-title {
+            color: #f0f4fa;
+        }
+        .section-title small {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #627083;
+        }
+        body.dark-mode .section-title small {
+            color: #8aa3c0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .insight-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px 20px;
+            border: 1px solid #e4e9f0;
+            transition: background 0.2s, border-color 0.3s, background 0.3s;
+        }
+        body.dark-mode .insight-card {
+            background: #132a44;
+            border: 1px solid #1e3753;
+        }
+        .insight-card:hover {
+            background: #f5f7fb;
+        }
+        body.dark-mode .insight-card:hover {
+            background: #1a3452;
+        }
+        .insight-card .insight-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #627083;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .insight-card .insight-label {
+            color: #8aa3c0;
+        }
+        .insight-card .insight-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #172033;
+            font-family: 'Archivo Narrow', 'Khand', sans-serif;
+            margin-top: 4px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .insight-card .insight-value {
+            color: #f0f4fa;
+        }
+        .insight-card .insight-value .small {
+            font-size: 0.9rem;
+            color: #627083;
+            font-weight: 400;
+        }
+        body.dark-mode .insight-card .insight-value .small {
+            color: #8aa3c0;
+        }
+
+        /* ── CHARTS ── */
+        .charts-shell {
+            margin-top: 8px;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .chart-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 20px 16px;
+            border: 1px solid #e4e9f0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        body.dark-mode .chart-container {
+            background: #132a44;
+            border: 1px solid #1e3753;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        }
+        .chart-container .chart-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .chart-container .chart-header h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #172033;
+            font-family: 'Khand', 'Segoe UI', sans-serif;
+            transition: color 0.3s;
+        }
+        body.dark-mode .chart-container .chart-header h3 {
+            color: #f0f4fa;
+        }
+        .chart-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+        }
+        .chart-controls .chart-range-btn {
+            background: transparent;
+            border: 1px solid #d0d7e2;
+            color: #627083;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Khand', 'Segoe UI', sans-serif;
+        }
+        body.dark-mode .chart-controls .chart-range-btn {
+            border: 1px solid #1e3753;
+            color: #8aa3c0;
+        }
+        .chart-controls .chart-range-btn:hover {
+            background: #eef4fb;
+            color: #172033;
+        }
+        body.dark-mode .chart-controls .chart-range-btn:hover {
+            background: #1e3753;
+            color: #f0f4fa;
+        }
+        .chart-controls .chart-range-btn.active {
+            background: #c62828;
+            color: #fff;
+            border-color: #c62828;
+        }
+        body.dark-mode .chart-controls .chart-range-btn.active {
+            background: #f4aa2a;
+            color: #0b1a2e;
+            border-color: #f4aa2a;
+        }
+        .chart-custom-inline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 4px;
+        }
+        .chart-custom-inline select {
+            background: #fff;
+            border: 1px solid #d0d7e2;
+            color: #172033;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+        body.dark-mode .chart-custom-inline select {
+            background: #0b1a2e;
+            border: 1px solid #1e3753;
+            color: #e8edf5;
+        }
+        .chart-custom-inline select:focus {
+            outline: none;
+            border-color: #f4aa2a;
+        }
+        .chart-custom-inline .custom-apply-btn {
+            background: #c62828;
+            border: none;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        body.dark-mode .chart-custom-inline .custom-apply-btn {
+            background: #f4aa2a;
+            color: #0b1a2e;
+        }
+        .chart-custom-inline .custom-apply-btn:hover {
+            background: #a11f1f;
+        }
+        body.dark-mode .chart-custom-inline .custom-apply-btn:hover {
+            background: #d4951f;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+        }
+        .canvas-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ── TABLE (weekly data) ── */
+        .data-table-wrap {
+            margin-top: 28px;
+            overflow-x: auto;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #e4e9f0;
+            padding: 16px 18px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        body.dark-mode .data-table-wrap {
+            background: #132a44;
+            border: 1px solid #1e3753;
+        }
+        .data-table-wrap h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #172033;
+            margin-bottom: 12px;
+            font-family: 'Khand', 'Segoe UI', sans-serif;
+            transition: color 0.3s;
+        }
+        body.dark-mode .data-table-wrap h3 {
+            color: #f0f4fa;
+        }
+        .data-table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .data-table-wrap th {
+            text-align: left;
+            padding: 10px 12px;
+            color: #627083;
+            font-weight: 600;
+            border-bottom: 2px solid #e4e9f0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        body.dark-mode .data-table-wrap th {
+            color: #b0c8e0;
+            border-bottom: 2px solid #1e3753;
+        }
+        .data-table-wrap td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f4fa;
+            color: #172033;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        body.dark-mode .data-table-wrap td {
+            border-bottom: 1px solid #1a3452;
+            color: #e8edf5;
+        }
+        .data-table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table-wrap tr:hover td {
+            background: #f5f7fb;
+        }
+        body.dark-mode .data-table-wrap tr:hover td {
+            background: #1a3452;
+        }
+        .data-table-wrap .highlight {
+            color: #c62828;
+            font-weight: 600;
+        }
+        body.dark-mode .data-table-wrap .highlight {
+            color: #f4aa2a;
+        }
+
+        /* ── DISCLAIMER ── */
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #8899b0;
+            text-align: center;
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: #f5f7fb;
+            border-radius: 16px;
+            border: 1px solid #e4e9f0;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+        body.dark-mode .disclaimer {
+            color: #5a7a9a;
+            background: #0e1f35;
+            border: 1px solid #1a3452;
+        }
+        .disclaimer strong {
+            color: #627083;
+        }
+        body.dark-mode .disclaimer strong {
+            color: #8aa3c0;
+        }
+
+        /* ── LOADER ── */
+        .loader-overlay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: #627083;
+            gap: 12px;
+            transition: color 0.3s;
+        }
+        body.dark-mode .loader-overlay {
+            color: #8aa3c0;
+        }
+        .loader-overlay .spinner {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #e4e9f0;
+            border-top-color: #c62828;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        body.dark-mode .loader-overlay .spinner {
+            border: 3px solid #1e3753;
+            border-top-color: #f4aa2a;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #092746;
+            color: #dbe5ef;
+            padding: 35px 20px;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        body.dark-mode footer {
+            background: #061220;
+        }
+        .footer {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer a {
+            color: #fff;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .price-cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .price-cards-grid .silver-card {
+                grid-column: span 2;
+            }
+        }
+        @media (max-width: 600px) {
+            .price-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .price-cards-grid .silver-card {
+                grid-column: span 1;
+            }
+            .dashboard-title {
+                font-size: 1.6rem;
+            }
+            .dashboard-price-card .price {
+                font-size: 1.6rem;
+            }
+            .insights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .chart-container .chart-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .chart-controls {
+                justify-content: center;
+            }
+            .canvas-wrapper {
+                height: 180px;
+            }
+        }
+        @media (max-width: 400px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .dashboard-theme-toggle {
+                align-self: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+
+<body class="native-dark-page">
+
+    <!-- ===== NAVBAR (LIGHT THEME — matches index.html) ===== -->
+    <header class="navbar">
+        <nav class="nav">
+            <a class="brand" id="brandLink" href="#">
+                <span class="brand-icon">सु</span>
+                <span class="brand-text">
+                    <span class="brand-nepali">नेपाली पात्रो</span>
+                    <span class="brand-english">Nepali Patro · <span>Gold &amp; Silver</span></span>
+                </span>
+            </a>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="menu-wrapper" id="menuWrapper">
+                <ul class="menu">
+                    <li><a href="index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+                    <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+                    <li class="dropdown">
+                        <a href="#">Converter</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="unicode.html">Nepali Unicode</a></li>
+                            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+                            <li><a href="date-difference.html">Date Difference</a></li>
+                            <li><a href="age-calculator.html">Age Calculator</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=" nepali-festivals.html">चाडपर्वहरु</a></li>
+                    <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+                    <li><a href="rashifal.html">राशिफल</a></li>
+                    <li><a href="weather.html">मौसम</a></li>
+                    <li><a href="goldsilver.html" class="active">सुनचादी</a></li>
+                    <li class="dropdown">
+                        <a href="#">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+                            <li><a href="event-remainder.html">Event Remainder</a></li>
+                            <li><a href="quiz-scheduler.html">Quiz Scheduler</a></li>
+                            <li><a href="exchange-rate.html">Currency Exchange</a></li>
+                            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="year-selector">
+                    <label for="yearSelect">वर्ष:</label>
+                    <select id="yearSelect">
+                        <option value="2083" selected>२०८३</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+            <div style="width:44px;"></div>
+            <!-- spacer -->
+            <div class="dashboard-title-group">
+                <h1 class="dashboard-title">
+                    💰 सुन–चाँदी दर
+                    <small>· Gold &amp; Silver</small>
+                </h1>
+                <div class="dashboard-subtitle">
+                    नेपाली बजारको वास्तविक मूल्य &nbsp;·&nbsp;
+                    <span id="lastUpdatedDisplay">पछिल्लो अपडेट: लोड हुँदै...</span>
+                </div>
+            </div>
+            <div style="width:44px;"></div>
+        </header>
+
+        <!-- PRICE CARDS -->
+        <section class="price-cards-grid" id="priceCards">
+            <!-- Fine Gold -->
+            <div class="dashboard-price-card fine-gold-card">
+                <h3>🏆 Fine Gold (24K)</h3>
+                <div class="price"><span class="currency">रु</span><span id="fineGoldTola">—</span></div>
+                <div class="price-sub">प्रति तोला (11.66g)</div>
+                <div class="price-sub">प्रति १०g: <span class="num" id="fineGold10g">—</span></div>
+                <div class="price-change" id="fineGoldChange">—</div>
+            </div>
+            <!-- Tejabi Gold -->
+            <div class="dashboard-price-card tejabi-gold-card">
+                <h3>🔥 Tejabi Gold (22K)</h3>
+                <div class="price"><span class="currency">रु</span><span id="tejabiGoldTola">—</span></div>
+                <div class="price-sub">प्रति तोला (11.66g)</div>
+                <div class="price-sub">प्रति १०g: <span class="num" id="tejabiGold10g">—</span></div>
+                <div class="price-change" id="tejabiGoldChange">—</div>
+            </div>
+            <!-- Silver -->
+            <div class="dashboard-price-card silver-card">
+                <h3>🥈 Silver</h3>
+                <div class="price"><span class="currency">रु</span><span id="silverTola">—</span></div>
+                <div class="price-sub">प्रति तोला (11.66g)</div>
+                <div class="price-sub">प्रति १०g: <span class="num" id="silver10g">—</span></div>
+                <div class="price-change" id="silverChange">—</div>
+            </div>
+        </section>
+
+        <!-- INSIGHTS -->
+        <section class="insights-section">
+            <h2 class="section-title">📊 Market Insights <small>· बजार अन्तर्दृष्टि</small></h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-label">Daily Change (Fine Gold)</div>
+                    <div class="insight-value" id="insightChange">—</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">7-Day Avg (Fine Gold)</div>
+                    <div class="insight-value" id="insightMA7">—</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">Week High</div>
+                    <div class="insight-value" id="insightWeekHigh">—</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">Week Low</div>
+                    <div class="insight-value" id="insightWeekLow">—</div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-label">Gold / Silver Ratio</div>
+                    <div class="insight-value" id="insightRatio">—</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHARTS -->
+        <section class="charts-shell">
+            <h2 class="section-title">📈 Price History <small>· मूल्य इतिहास</small></h2>
+            <div class="charts-grid">
+                <!-- Gold Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Fine Gold (per Tola)</h3>
+                        <div class="chart-controls" id="goldControls">
+                            <button class="chart-range-btn active" data-chart="gold" data-range="1W">1W</button>
+                            <button class="chart-range-btn" data-chart="gold" data-range="2W">2W</button>
+                            <button class="chart-range-btn" data-chart="gold" data-range="ALL">ALL</button>
+                            <button class="chart-range-btn" data-chart="gold" data-range="CUSTOM">Custom</button>
+                            <div class="chart-custom-inline" id="goldCustomControls" hidden>
+                                <select id="goldRangeFrom" aria-label="Custom start"></select>
+                                <select id="goldRangeTo" aria-label="Custom end"></select>
+                                <button class="custom-apply-btn" id="goldApplyBtn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="goldChart"></canvas>
+                    </div>
+                </div>
+                <!-- Silver Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Silver (per Tola)</h3>
+                        <div class="chart-controls" id="silverControls">
+                            <button class="chart-range-btn active" data-chart="silver" data-range="1W">1W</button>
+                            <button class="chart-range-btn" data-chart="silver" data-range="2W">2W</button>
+                            <button class="chart-range-btn" data-chart="silver" data-range="ALL">ALL</button>
+                            <button class="chart-range-btn" data-chart="silver" data-range="CUSTOM">Custom</button>
+                            <div class="chart-custom-inline" id="silverCustomControls" hidden>
+                                <select id="silverRangeFrom" aria-label="Custom start"></select>
+                                <select id="silverRangeTo" aria-label="Custom end"></select>
+                                <button class="custom-apply-btn" id="silverApplyBtn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="silverChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA TABLE -->
+        <div class="data-table-wrap" id="dataTableWrap">
+            <h3>📋 Weekly Price Data · साप्ताहिक मूल्य तालिका</h3>
+            <div id="tableLoader" class="loader-overlay">
+                <div class="spinner"></div>
+                <span>तालिका लोड हुँदै...</span>
+            </div>
+            <table id="priceTable" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Date (BS)</th>
+                        <th>Day</th>
+                        <th>Gold (per Tola)</th>
+                        <th>Silver (per Tola)</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="disclaimer">
+            <strong>⚠️ सूचना:</strong> दरहरू अन्तर्राष्ट्रिय सुन/चाँदी स्पट मूल्य (XAU/XAG) लाई लाइभ USD-NPR दरमा रूपान्तरण गरी निकालिएको हो।
+            यो FENEGOSIDA को आधिकारिक स्थानीय डिलर दर होइन (स्थानीय भन्सार/मार्जिनका कारण फरक हुन सक्छ)।
+            स्रोत: Exchange-API · दरहरू दैनिक अपडेट हुन्छन्।
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer">
+            <div><strong>नेपाली पात्रो</strong><br>Nepali Calendar &amp; Gold/Silver Rates</div>
+            <div><a href="#">About</a> · <a href="#">API</a> · <a href="#">Contact</a></div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 1.  WEEKLY DATA — embedded JSON for easy replacement
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            const WEEKLY_DATA = [{
+                "date": "2083-04-17",
+                "day": "Sunday",
+                "goldPerTola": 283200,
+                "silverPerTola": 4315
+            }, {
+                "date": "2083-04-18",
+                "day": "Monday",
+                "goldPerTola": 284000,
+                "silverPerTola": 4350
+            }, {
+                "date": "2083-04-19",
+                "day": "Tuesday",
+                "goldPerTola": 283800,
+                "silverPerTola": 4380
+            }, {
+                "date": "2083-04-20",
+                "day": "Wednesday",
+                "goldPerTola": 288000,
+                "silverPerTola": 4475
+            }, {
+                "date": "2083-04-21",
+                "day": "Thursday",
+                "goldPerTola": 296000,
+                "silverPerTola": 4570
+            }, {
+                "date": "2083-04-22",
+                "day": "Friday",
+                "goldPerTola": 296900,
+                "silverPerTola": 4580
+            }, {
+                "date": "2083-04-24",
+                "day": "Sunday",
+                "goldPerTola": 301700,
+                "silverPerTola": 4645
+            }, {
+                "date": "2083-04-25",
+                "day": "Monday",
+                "goldPerTola": 301500,
+                "silverPerTola": 4670
+            }, {
+                "date": "2083-04-26",
+                "day": "Tuesday",
+                "goldPerTola": 307900,
+                "silverPerTola": 4780
+            }, {
+                "date": "2083-04-27",
+                "day": "Wednesday",
+                "goldPerTola": 306700,
+                "silverPerTola": 4745
+            }, {
+                "date": "2083-04-28",
+                "day": "Thursday",
+                "goldPerTola": 306200,
+                "silverPerTola": 4750
+            }, {
+                "date": "2083-04-29",
+                "day": "Friday",
+                "goldPerTola": 301600,
+                "silverPerTola": 4660
+            }];
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 2.  CURRENT RATES
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            const CURRENT = {
+                goldPerTola: 318500,
+                goldPer10g: 273060,
+                silverPer10g: 4965,
+                tejabiRatio: 22 / 24,
+                goldChangePct: 0.75,
+                silverChangePct: 0.00
+            };
+
+            CURRENT.silverPerTola = CURRENT.silverPer10g / 10 * 11.6638;
+            CURRENT.tejabiPerTola = CURRENT.goldPerTola * CURRENT.tejabiRatio;
+            CURRENT.tejabiPer10g = CURRENT.goldPer10g * CURRENT.tejabiRatio;
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 3.  DOM REFS
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            const $ = id => document.getElementById(id);
+            const fineGoldTola = $('fineGoldTola');
+            const fineGold10g = $('fineGold10g');
+            const tejabiGoldTola = $('tejabiGoldTola');
+            const tejabiGold10g = $('tejabiGold10g');
+            const silverTola = $('silverTola');
+            const silver10g = $('silver10g');
+            const fineGoldChange = $('fineGoldChange');
+            const tejabiGoldChange = $('tejabiGoldChange');
+            const silverChange = $('silverChange');
+            const insightChange = $('insightChange');
+            const insightMA7 = $('insightMA7');
+            const insightWeekHigh = $('insightWeekHigh');
+            const insightWeekLow = $('insightWeekLow');
+            const insightRatio = $('insightRatio');
+            const lastUpdatedDisplay = $('lastUpdatedDisplay');
+            const tableBody = $('tableBody');
+            const tableLoader = $('tableLoader');
+            const priceTable = $('priceTable');
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 4.  FORMAT HELPERS
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            function fmt(n) {
+                if (n === undefined || n === null || isNaN(n)) return '—';
+                return Number(n).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            function fmtChange(val) {
+                if (val === undefined || val === null || isNaN(val)) return '—';
+                const sign = val > 0 ? '+' : '';
+                return `${sign}${val.toFixed(2)}%`;
+            }
+
+            function getChangeClass(val) {
+                if (val === undefined || val === null || isNaN(val)) return 'neutral';
+                if (val > 0.1) return 'positive';
+                if (val < -0.1) return 'negative';
+                return 'neutral';
+            }
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 5.  RENDER PRICE CARDS & INSIGHTS
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            function renderPrices() {
+                fineGoldTola.textContent = fmt(CURRENT.goldPerTola);
+                fineGold10g.textContent = fmt(CURRENT.goldPer10g);
+                tejabiGoldTola.textContent = fmt(CURRENT.tejabiPerTola);
+                tejabiGold10g.textContent = fmt(CURRENT.tejabiPer10g);
+                silverTola.textContent = fmt(CURRENT.silverPerTola);
+                silver10g.textContent = fmt(CURRENT.silverPer10g);
+
+                const gCls = getChangeClass(CURRENT.goldChangePct);
+                const sCls = getChangeClass(CURRENT.silverChangePct);
+
+                fineGoldChange.textContent = fmtChange(CURRENT.goldChangePct);
+                fineGoldChange.className = 'price-change ' + gCls;
+
+                tejabiGoldChange.textContent = fmtChange(CURRENT.goldChangePct);
+                tejabiGoldChange.className = 'price-change ' + gCls;
+
+                silverChange.textContent = fmtChange(CURRENT.silverChangePct);
+                silverChange.className = 'price-change ' + sCls;
+
+                const changeVal = CURRENT.goldChangePct;
+                insightChange.textContent = fmtChange(changeVal);
+                insightChange.style.color = changeVal > 0.1 ? '#2e7d32' : changeVal < -0.1 ? '#c62828' : '#627083';
+                if (document.body.classList.contains('dark-mode')) {
+                    insightChange.style.color = changeVal > 0.1 ? '#81c784' : changeVal < -0.1 ? '#ef9a9a' : '#b0c8e0';
+                }
+
+                const goldValues = WEEKLY_DATA.map(d => d.goldPerTola);
+                const avg = goldValues.reduce((a, b) => a + b, 0) / goldValues.length;
+                insightMA7.textContent = 'रु ' + fmt(avg);
+
+                const maxGold = Math.max(...goldValues);
+                const minGold = Math.min(...goldValues);
+                insightWeekHigh.textContent = 'रु ' + fmt(maxGold);
+                insightWeekLow.textContent = 'रु ' + fmt(minGold);
+
+                const latest = WEEKLY_DATA[WEEKLY_DATA.length - 1];
+                if (latest && latest.silverPerTola > 0) {
+                    const ratio = latest.goldPerTola / latest.silverPerTola;
+                    insightRatio.textContent = ratio.toFixed(2) + ' : 1';
+                } else {
+                    insightRatio.textContent = '—';
+                }
+
+                const now = new Date();
+                const opts = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                lastUpdatedDisplay.textContent = now.toLocaleDateString('ne-NP', opts) + ' (लाइभ)';
+            }
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 6.  RENDER TABLE
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            function renderTable() {
+                const rows = WEEKLY_DATA.map(d => {
+                    const gold = fmt(d.goldPerTola);
+                    const silver = fmt(d.silverPerTola);
+                    return `<tr>
+                        <td><strong>${d.date}</strong></td>
+                        <td>${d.day}</td>
+                        <td class="highlight">रु ${gold}</td>
+                        <td>रु ${silver}</td>
+                    </tr>`;
+                }).join('');
+                tableBody.innerHTML = rows;
+                tableLoader.style.display = 'none';
+                priceTable.style.display = 'table';
+            }
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 7.  CHARTS (Chart.js)
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            let goldChartInstance = null;
+            let silverChartInstance = null;
+
+            function getFilteredData(chartType, range) {
+                let data = [...WEEKLY_DATA];
+                const len = data.length;
+                if (range === '1W') {
+                    data = data.slice(Math.max(0, len - 7));
+                } else if (range === '2W') {
+                    data = data.slice(Math.max(0, len - 14));
+                } else if (range === 'ALL') {
+                    // all
+                } else if (range === 'CUSTOM') {
+                    // handled separately
+                }
+                return data;
+            }
+
+            function buildChart(ctx, chartType, range) {
+                let data = getFilteredData(chartType, range);
+
+                if (range === 'CUSTOM') {
+                    const fromSelect = chartType === 'gold' ? $('goldRangeFrom') : $('silverRangeFrom');
+                    const toSelect = chartType === 'gold' ? $('goldRangeTo') : $('silverRangeTo');
+                    const fromIdx = parseInt(fromSelect.value);
+                    const toIdx = parseInt(toSelect.value);
+                    if (!isNaN(fromIdx) && !isNaN(toIdx) && fromIdx >= 0 && toIdx < WEEKLY_DATA.length && fromIdx <= toIdx) {
+                        data = WEEKLY_DATA.slice(fromIdx, toIdx + 1);
+                    } else {
+                        data = WEEKLY_DATA;
+                    }
+                }
+
+                if (data.length < 2) {
+                    data = WEEKLY_DATA;
+                }
+
+                const labels = data.map(d => d.date);
+                const goldValues = data.map(d => d.goldPerTola);
+                const silverValues = data.map(d => d.silverPerTola);
+
+                const isGold = chartType === 'gold';
+                const dataset = isGold ? goldValues : silverValues;
+                const label = isGold ? 'Gold (per Tola)' : 'Silver (per Tola)';
+                const color = isGold ? '#f9a825' : '#bdbdbd';
+                const bgColor = isGold ? 'rgba(249,168,37,0.12)' : 'rgba(189,189,189,0.12)';
+
+                // Detect dark mode for chart styling
+                const isDark = document.body.classList.contains('dark-mode');
+                const gridColor = isDark ? 'rgba(30,55,83,0.4)' : 'rgba(200,200,210,0.3)';
+                const textColor = isDark ? '#8aa3c0' : '#627083';
+
+                const config = {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label,
+                            data: dataset,
+                            borderColor: color,
+                            backgroundColor: bgColor,
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: color,
+                            pointBorderColor: isDark ? '#0b1a2e' : '#fff',
+                            pointBorderWidth: 1.5,
+                            pointRadius: 3.5,
+                            borderWidth: 2.5,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: isDark ? '#132a44' : '#fff',
+                                titleColor: isDark ? '#f0f4fa' : '#172033',
+                                bodyColor: isDark ? '#f4aa2a' : '#c62828',
+                                borderColor: isDark ? '#1e3753' : '#e4e9f0',
+                                borderWidth: 1,
+                                cornerRadius: 8,
+                                padding: 10,
+                                callbacks: {
+                                    label: function(ctx) {
+                                        return 'रु ' + fmt(ctx.parsed.y);
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: { color: gridColor, drawBorder: false },
+                                ticks: { color: textColor, font: { size: 10 } },
+                                offset: true,
+                            },
+                            y: {
+                                grid: { color: gridColor, drawBorder: false },
+                                ticks: {
+                                    color: textColor,
+                                    font: { size: 10 },
+                                    callback: function(val) { return 'रु ' + fmt(val); }
+                                },
+                                beginAtZero: false,
+                            }
+                        },
+                        interaction: {
+                            intersect: false,
+                            mode: 'index',
+                        },
+                        animation: {
+                            duration: 500,
+                        },
+                    }
+                };
+
+                return config;
+            }
+
+            function renderCharts() {
+                const goldCtx = document.getElementById('goldChart').getContext('2d');
+                if (goldChartInstance) {
+                    goldChartInstance.destroy();
+                }
+                const goldConfig = buildChart(goldCtx, 'gold', '1W');
+                goldChartInstance = new Chart(goldCtx, goldConfig);
+
+                const silverCtx = document.getElementById('silverChart').getContext('2d');
+                if (silverChartInstance) {
+                    silverChartInstance.destroy();
+                }
+                const silverConfig = buildChart(silverCtx, 'silver', '1W');
+                silverChartInstance = new Chart(silverCtx, silverConfig);
+            }
+
+            function updateChart(chartType, range) {
+                if (chartType === 'gold' && goldChartInstance) {
+                    const data = getFilteredData('gold', range);
+                    if (data.length < 2) return;
+                    goldChartInstance.data.labels = data.map(d => d.date);
+                    goldChartInstance.data.datasets[0].data = data.map(d => d.goldPerTola);
+                    goldChartInstance.update();
+                } else if (chartType === 'silver' && silverChartInstance) {
+                    const data = getFilteredData('silver', range);
+                    if (data.length < 2) return;
+                    silverChartInstance.data.labels = data.map(d => d.date);
+                    silverChartInstance.data.datasets[0].data = data.map(d => d.silverPerTola);
+                    silverChartInstance.update();
+                }
+            }
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 8.  CHART CONTROLS
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            function setupChartControls() {
+                // Gold controls
+                const goldBtns = document.querySelectorAll('#goldControls .chart-range-btn');
+                goldBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        goldBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        const range = this.dataset.range;
+                        if (range === 'CUSTOM') {
+                            $('goldCustomControls').hidden = false;
+                            populateCustomSelects('gold');
+                            const allData = getFilteredData('gold', 'ALL');
+                            if (goldChartInstance) {
+                                goldChartInstance.data.labels = allData.map(d => d.date);
+                                goldChartInstance.data.datasets[0].data = allData.map(d => d.goldPerTola);
+                                goldChartInstance.update();
+                            }
+                            return;
+                        }
+                        $('goldCustomControls').hidden = true;
+                        updateChart('gold', range);
+                    });
+                });
+
+                // Silver controls
+                const silverBtns = document.querySelectorAll('#silverControls .chart-range-btn');
+                silverBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        silverBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        const range = this.dataset.range;
+                        if (range === 'CUSTOM') {
+                            $('silverCustomControls').hidden = false;
+                            populateCustomSelects('silver');
+                            const allData = getFilteredData('silver', 'ALL');
+                            if (silverChartInstance) {
+                                silverChartInstance.data.labels = allData.map(d => d.date);
+                                silverChartInstance.data.datasets[0].data = allData.map(d => d.silverPerTola);
+                                silverChartInstance.update();
+                            }
+                            return;
+                        }
+                        $('silverCustomControls').hidden = true;
+                        updateChart('silver', range);
+                    });
+                });
+
+                $('goldApplyBtn').addEventListener('click', function() {
+                    const from = parseInt($('goldRangeFrom').value);
+                    const to = parseInt($('goldRangeTo').value);
+                    if (!isNaN(from) && !isNaN(to) && from >= 0 && to < WEEKLY_DATA.length && from <= to) {
+                        const data = WEEKLY_DATA.slice(from, to + 1);
+                        if (goldChartInstance && data.length > 0) {
+                            goldChartInstance.data.labels = data.map(d => d.date);
+                            goldChartInstance.data.datasets[0].data = data.map(d => d.goldPerTola);
+                            goldChartInstance.update();
+                        }
+                    }
+                });
+
+                $('silverApplyBtn').addEventListener('click', function() {
+                    const from = parseInt($('silverRangeFrom').value);
+                    const to = parseInt($('silverRangeTo').value);
+                    if (!isNaN(from) && !isNaN(to) && from >= 0 && to < WEEKLY_DATA.length && from <= to) {
+                        const data = WEEKLY_DATA.slice(from, to + 1);
+                        if (silverChartInstance && data.length > 0) {
+                            silverChartInstance.data.labels = data.map(d => d.date);
+                            silverChartInstance.data.datasets[0].data = data.map(d => d.silverPerTola);
+                            silverChartInstance.update();
+                        }
+                    }
+                });
+            }
+
+            function populateCustomSelects(chartType) {
+                const fromSelect = chartType === 'gold' ? $('goldRangeFrom') : $('silverRangeFrom');
+                const toSelect = chartType === 'gold' ? $('goldRangeTo') : $('silverRangeTo');
+                fromSelect.innerHTML = '';
+                toSelect.innerHTML = '';
+                WEEKLY_DATA.forEach((d, i) => {
+                    const opt1 = document.createElement('option');
+                    opt1.value = i;
+                    opt1.textContent = d.date;
+                    fromSelect.appendChild(opt1);
+                    const opt2 = document.createElement('option');
+                    opt2.value = i;
+                    opt2.textContent = d.date;
+                    toSelect.appendChild(opt2);
+                });
+                if (WEEKLY_DATA.length > 0) {
+                    fromSelect.value = 0;
+                    toSelect.value = WEEKLY_DATA.length - 1;
+                }
+            }
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 9.  NAVBAR HAMBURGER
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            const hamburger = $('hamburgerBtn');
+            const menuWrapper = $('menuWrapper');
+            hamburger.addEventListener('click', function() {
+                menuWrapper.classList.toggle('open');
+            });
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 10. DARK MODE (shared navbar control)
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            document.addEventListener('themechange', function() {
+                renderCharts();
+                const activeGold = document.querySelector('#goldControls .chart-range-btn.active');
+                if (activeGold && activeGold.dataset.range !== 'CUSTOM') updateChart('gold', activeGold.dataset.range);
+                const activeSilver = document.querySelector('#silverControls .chart-range-btn.active');
+                if (activeSilver && activeSilver.dataset.range !== 'CUSTOM') updateChart('silver', activeSilver.dataset.range);
+                renderPrices();
+            });
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            const darkBtn = $('darkModeBtn');
+            const darkIcon = $('darkModeIcon');
+            let darkMode = false;
+
+            // Check localStorage for saved preference
+            try {
+                const saved = localStorage.getItem('goldsilver-darkmode');
+                if (saved === 'true') {
+                    darkMode = true;
+                    document.body.classList.add('dark-mode');
+                    darkIcon.src =
+                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f4aa2a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E";
+                }
+            } catch (_) {}
+
+            darkBtn.addEventListener('click', function() {
+                darkMode = !darkMode;
+                document.body.classList.toggle('dark-mode', darkMode);
+                try {
+                    localStorage.setItem('goldsilver-darkmode', String(darkMode));
+                } catch (_) {}
+
+                darkIcon.src = darkMode ?
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f4aa2a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E" :
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23172033' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E";
+
+                // Redraw charts with new theme
+                renderCharts();
+                // Re-apply active range
+                const activeGold = document.querySelector('#goldControls .chart-range-btn.active');
+                if (activeGold) {
+                    const range = activeGold.dataset.range;
+                    if (range !== 'CUSTOM') {
+                        updateChart('gold', range);
+                    }
+                }
+                const activeSilver = document.querySelector('#silverControls .chart-range-btn.active');
+                if (activeSilver) {
+                    const range = activeSilver.dataset.range;
+                    if (range !== 'CUSTOM') {
+                        updateChart('silver', range);
+                    }
+                }
+                // Re-render insights colors
+                renderPrices();
+            });
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // 11. INIT
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            renderPrices();
+            renderTable();
+            requestAnimationFrame(() => {
+                renderCharts();
+                setupChartControls();
+                populateCustomSelects('gold');
+                populateCustomSelects('silver');
+            });
+
+            // auto-refresh every 10 min
+            setInterval(() => {
+                renderPrices();
+            }, 600000);
+
+            window.__goldData = { WEEKLY_DATA, CURRENT };
+
+        })();
+    </script>
+
+    <!-- PWA Install -->
+    <script src="/pwa-install.js"></script>
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+
+  <!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nepali Patro">
+<meta name="theme-color" content="#123b6d">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- PWA Meta Tags -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BS to AD Converter & AD to BS Converter | Nepali Date Converter</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Free BS to AD and AD to BS date converter for Nepali dates. Convert Bikram Sambat (BS) dates to Gregorian (AD) and Gregorian dates to Nepali dates quickly and easily.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Nepali Patro">
+  <meta name="application-name" content="Nepali Patro">
+  <meta name="theme-color" content="#123b6d">
+  <link rel="canonical" href="https://nepalipatro.app/dateconverter.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nepali Patro">
+  <meta property="og:title" content="BS to AD Converter & AD to BS Converter">
+  <meta property="og:description" content="Convert Bikram Sambat (BS) dates to Gregorian (AD) and Gregorian dates to Nepali dates with this free online Nepali date converter.">
+  <meta property="og:url" content="https://nepalipatro.app/dateconverter.html">
+  <meta property="og:locale" content="ne_NP">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter / social sharing -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BS to AD Converter & AD to BS Converter">
+  <meta name="twitter:description" content="Free online Nepali date converter for BS ↔ AD date conversion.">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BS to AD Converter & AD to BS Converter",
+    "alternateName": "Nepali Date Converter",
+    "url": "https://nepalipatro.app/dateconverter.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "description": "Free online converter for converting Bikram Sambat (BS) dates to Gregorian (AD) dates and Gregorian (AD) dates to Bikram Sambat (BS).",
+    "inLanguage": ["ne", "en"],
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "NPR"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nepali Patro",
+      "url": "https://nepalipatro.app/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Nepali Patro",
+        "item": "https://nepalipatro.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "BS-AD Date Converter",
+        "item": "https://nepalipatro.app/dateconverter.html"
+      }
+    ]
+  }
+  </script>
+  
+  <style>
+    /* ----- RESET & BASE ----- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #f5f7fb;
+      color: #172033;
+      font-family: 'Segoe UI', 'Roboto', 'Noto Sans Devanagari', system-ui, sans-serif;
+      line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ----- NAVBAR (same as before) ----- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e4e9f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .nav {
+      max-width: 1240px;
+      margin: auto;
+      min-height: 72px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 4px 8px 4px 4px;
+      transition: background 0.15s;
+    }
+    .brand:hover { background: #eef4fb; }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: #f4aa2a;
+      color: #123b6d;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+      transition: transform 0.2s;
+    }
+    .brand:hover .brand-icon { transform: scale(1.05); }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .brand-nepali {
+      font-size: 20px;
+      font-weight: 800;
+      color: #123b6d;
+      letter-spacing: 0.3px;
+    }
+    .brand-english {
+      font-size: 12px;
+      font-weight: 600;
+      color: #627083;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    .brand-english span { color: #c62828; font-weight: 700; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      padding: 8px 6px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover { background: #eef4fb; }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3.5px;
+      background: #172033;
+      border-radius: 4px;
+      transition: 0.25s ease;
+    }
+
+    .menu-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .menu a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #172033;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .menu a:hover { background: #eef4fb; color: #123b6d; }
+    .menu a.active { background: #eef4fb; color: #123b6d; }
+    .dropdown { position: relative; }
+    .dropdown > a:after {
+      content: "▾";
+      font-size: 11px;
+      margin-left: 6px;
+      opacity: 0.6;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 210px;
+      padding: 8px;
+      margin: 6px 0 0;
+      list-style: none;
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-menu a {
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    .dropdown-menu a:hover { background: #f0f4fa; }
+
+    .year-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 4px;
+    }
+    .year-selector label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #172033;
+    }
+    .year-selector select {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #d0d7e2;
+      font-size: 14px;
+      font-weight: 600;
+      background: #fff;
+      cursor: pointer;
+      color: #123b6d;
+      transition: border 0.2s;
+    }
+    .year-selector select:focus {
+      outline: none;
+      border-color: #f4aa2a;
+      box-shadow: 0 0 0 3px rgba(244, 170, 42, 0.2);
+    }
+    .download-btn {
+      background: #123b6d;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .download-btn:hover {
+      background: #0a2a4f;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 820px) {
+      .hamburger { display: flex; }
+      .menu-wrapper {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        background: #fff;
+        padding: 16px 0 20px;
+        border-top: 1px solid #e4e9f0;
+        margin-top: 4px;
+      }
+      .menu-wrapper.open {
+        display: flex;
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .menu {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 2px;
+      }
+      .menu a {
+        padding: 14px 16px;
+        font-size: 16px;
+        border-radius: 10px;
+        white-space: normal;
+      }
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: 0;
+        padding-left: 20px;
+        display: none;
+        background: transparent;
+      }
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu {
+        display: block;
+      }
+      .dropdown > a:after { content: "▾"; }
+      .year-selector {
+        margin-left: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 8px 0 4px;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        gap: 10px;
+      }
+      .year-selector select {
+        padding: 8px 14px;
+        font-size: 15px;
+        flex: 1;
+        min-width: 100px;
+      }
+      .download-btn {
+        padding: 8px 18px;
+        font-size: 14px;
+      }
+    }
+
+    /* ----- MAIN CONTENT ----- */
+    .wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .page-header h1 {
+      color: #c62828;
+      font-size: 2.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .page-header h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #627083;
+    }
+    .page-header p {
+      color: #627083;
+      font-size: 1.05rem;
+      margin-top: 0.3rem;
+    }
+
+    .converter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .converter-card {
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 20px;
+      box-shadow: 0 7px 25px #0000000a;
+      padding: 2rem 1.8rem;
+      transition: box-shadow 0.2s;
+    }
+    .converter-card:hover {
+      box-shadow: 0 12px 35px #00000012;
+    }
+    .converter-card .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid #f0f4fa;
+    }
+    .converter-card .card-header .icon {
+      font-size: 2rem;
+    }
+    .converter-card .card-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #123b6d;
+    }
+    .converter-card .card-header h2 small {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #627083;
+      display: block;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+    .input-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #172033;
+    }
+    .input-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .input-row .input-group {
+      flex: 1;
+      min-width: 70px;
+    }
+    .input-group input,
+    .input-group select {
+      padding: 0.7rem 0.8rem;
+      border: 1px solid #d0d7e2;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .input-group input:focus,
+    .input-group select:focus {
+      outline: none;
+      border-color: #f4aa2a;
+      box-shadow: 0 0 0 3px rgba(244, 170, 42, 0.15);
+    }
+    .input-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .input-group input[type="number"]::-webkit-inner-spin-button,
+    .input-group input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .convert-btn {
+      background: #c62828;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+      margin-top: 0.8rem;
+    }
+    .convert-btn:hover {
+      background: #a11f1f;
+      transform: scale(1.01);
+    }
+
+    .result-box {
+      margin-top: 1rem;
+      padding: 1rem 1.2rem;
+      background: #f0f4fa;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+      color: #123b6d;
+      min-height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #c0cfe0;
+      word-break: break-word;
+    }
+    .result-box .label {
+      font-weight: 400;
+      color: #627083;
+      margin-right: 0.6rem;
+    }
+    .result-box .result-value {
+      color: #c62828;
+    }
+
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .quick-links a {
+      background: #eef4fb;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #123b6d;
+      transition: background 0.2s;
+    }
+    .quick-links a:hover {
+      background: #dce6f2;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #888;
+      margin-top: 30px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    footer {
+      background: #092746;
+      color: #dbe5ef;
+      padding: 35px 20px;
+      margin-top: 30px;
+    }
+    .footer {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer a { color: #fff; }
+
+    @media (max-width: 700px) {
+      .converter-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .converter-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .page-header h1 {
+        font-size: 1.6rem;
+      }
+      .input-row .input-group {
+        min-width: 60px;
+      }
+      .result-box {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* ----- SEO CONTENT ----- */
+    .seo-content {
+      margin-top: 3rem;
+      background: #fff;
+      border: 1px solid #e4e9f0;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 7px 25px #0000000a;
+    }
+    .seo-content h2 {
+      color: #123b6d;
+      font-size: 1.55rem;
+      margin: 1.8rem 0 .7rem;
+      line-height: 1.3;
+    }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content h3 {
+      color: #123b6d;
+      font-size: 1.15rem;
+      margin: 1.2rem 0 .45rem;
+    }
+    .seo-content p {
+      color: #3d4858;
+      margin: .65rem 0;
+    }
+    .seo-content ul {
+      padding-left: 1.35rem;
+      color: #3d4858;
+    }
+    .seo-content li { margin: .45rem 0; }
+    .related-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .8rem;
+      margin-top: 1rem;
+    }
+    .related-tools a {
+      display: block;
+      border: 1px solid #dce6f2;
+      background: #f7f9fc;
+      border-radius: 12px;
+      padding: .8rem 1rem;
+      color: #123b6d;
+      font-weight: 700;
+    }
+    .related-tools a:hover { background: #eef4fb; }
+    .faq-item {
+      border-top: 1px solid #e4e9f0;
+      padding: 1rem 0;
+    }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item h3 { margin-top: 0; }
+    @media (max-width: 700px) {
+      .seo-content { padding: 1.35rem 1.1rem; }
+      .related-tools { grid-template-columns: 1fr; }
+    }
+
+  </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body itemscope itemtype="https://schema.org/WebPage">
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <nav class="nav">
+    <a class="brand" id="brandLink" href="index.html" aria-label="Nepali Patro home">
+      <span class="brand-icon">वि</span>
+      <span class="brand-text">
+        <span class="brand-nepali">नेपाली पात्रो</span>
+        <span class="brand-english">Nepali Patro · <span>Converter</span></span>
+      </span>
+    </a>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+        <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="dateconverter.html">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="unicode.html">Nepali Unicode</a></li>
+            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="date-difference.html">Date Difference</a></li>
+            <li><a href="age-calculator.html">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href="nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="rashifal.html">राशिफल</a></li>
+        <li><a href="weather.html">मौसम</a></li>
+        <li><a href="goldsilver.html">सुनचादी</a></li>
+
+        <li class="dropdown">
+          <a href="index.html">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+             <li><a href="event-remainder.html">Event Remainder</a></li>
+            <li><a href="quiz-scheduler.html" class="active">Quiz Scheduler</a></li>
+            <li><a href="exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="year-selector">
+        <label for="yearSelect">वर्ष:</label>
+        <select id="yearSelect">
+          <option value="2083" selected>२०८३</option>
+        </select>
+        <!-- <button class="download-btn" id="downloadBtn">📥 JSON</button>  -->
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="wrap">
+  <header class="page-header">
+    <h1>BS to AD Converter <small>· AD to BS Nepali Date Converter</small></h1>
+    <p>नेपाली मिति (BS) र अंग्रेजी मिति (AD) बीच सजिलै र छिटो रुपान्तरण गर्नुहोस्।</p>
+  </header>
+
+  <section aria-labelledby="converter-title">
+    <h2 id="converter-title" class="visually-hidden">Nepali Date Converter</h2>
+
+    <div class="converter-grid">
+      <!-- BS to AD Card -->
+      <article class="converter-card">
+        <div class="card-header">
+          <span class="icon" aria-hidden="true">🇳🇵</span>
+          <h2>
+            BS → AD
+            <small>नेपाली → अंग्रेजी</small>
+          </h2>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label for="bsYear">वर्ष (BS)</label>
+            <input type="number" id="bsYear" value="2083" min="1975" max="2100" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label for="bsMonth">महिना</label>
+            <select id="bsMonth">
+              <option value="0">बैशाख</option>
+              <option value="1">जेठ</option>
+              <option value="2">असार</option>
+              <option value="3">साउन</option>
+              <option value="4">भदौ</option>
+              <option value="5">असोज</option>
+              <option value="6">कार्तिक</option>
+              <option value="7">मंसिर</option>
+              <option value="8">पौष</option>
+              <option value="9">माघ</option>
+              <option value="10">फागुन</option>
+              <option value="11">चैत्र</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="bsDay">दिन</label>
+            <input type="number" id="bsDay" value="1" min="1" max="32" inputmode="numeric">
+          </div>
+        </div>
+
+        <button type="button" class="convert-btn" id="bsToAdBtn">BS → AD रुपान्तरण गर्नुहोस्</button>
+
+        <div class="result-box" id="bsToAdResult" aria-live="polite">
+          <span class="label">AD मिति:</span>
+          <span class="result-value" id="bsToAdOutput">-</span>
+        </div>
+      </article>
+
+      <!-- AD to BS Card -->
+      <article class="converter-card">
+        <div class="card-header">
+          <span class="icon" aria-hidden="true">🌍</span>
+          <h2>
+            AD → BS
+            <small>अंग्रेजी → नेपाली</small>
+          </h2>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label for="adYear">वर्ष (AD)</label>
+            <input type="number" id="adYear" value="2026" min="1913" max="2043" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label for="adMonth">महिना</label>
+            <select id="adMonth">
+              <option value="0">Jan</option>
+              <option value="1">Feb</option>
+              <option value="2">Mar</option>
+              <option value="3">Apr</option>
+              <option value="4">May</option>
+              <option value="5">Jun</option>
+              <option value="6">Jul</option>
+              <option value="7">Aug</option>
+              <option value="8">Sep</option>
+              <option value="9">Oct</option>
+              <option value="10">Nov</option>
+              <option value="11">Dec</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="adDay">दिन</label>
+            <input type="number" id="adDay" value="1" min="1" max="31" inputmode="numeric">
+          </div>
+        </div>
+
+        <button type="button" class="convert-btn" id="adToBsBtn">AD → BS रुपान्तरण गर्नुहोस्</button>
+
+        <div class="result-box" id="adToBsResult" aria-live="polite">
+          <span class="label">BS मिति:</span>
+          <span class="result-value" id="adToBsOutput">-</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="quick-links" aria-label="Date converter quick actions">
+      <a href="#converter-title" onclick="setTodayAD(); return false;">📅 आजको मिति (AD)</a>
+      <a href="#converter-title" onclick="setTodayBS(); return false;">📅 आजको मिति (BS)</a>
+      <a href="#converter-title" onclick="resetConverters(); return false;">🔄 रिसेट गर्नुहोस्</a>
+    </div>
+
+    <p class="disclaimer">* BS-AD रुपान्तरण १९७५–२१०० BS (१९१८–२०४३ AD) सम्म मान्य छ।</p>
+  </section>
+
+  <!-- Crawlable, useful explanatory content -->
+  <section class="seo-content" aria-labelledby="about-converter">
+    <h2 id="about-converter">BS to AD and AD to BS Date Converter</h2>
+    <p>
+      यो <strong>Nepali Date Converter</strong> ले Bikram Sambat (BS) र Gregorian (AD)
+      बीच मिति रुपान्तरण गर्न मद्दत गर्छ। तपाईंले नेपाली मिति (BS) लाई अंग्रेजी मिति (AD)
+      मा वा अंग्रेजी मिति (AD) लाई नेपाली मिति (BS) मा परिवर्तन गर्न सक्नुहुन्छ।
+    </p>
+    <p>
+      यो पृष्ठमा दुईवटा conversion विकल्प छन्: <strong>BS to AD</strong> र
+      <strong>AD to BS</strong>। वर्ष, महिना र दिन छानेर conversion button थिच्नुहोस्।
+    </p>
+
+    <h2>How to Convert BS to AD</h2>
+    <ol>
+      <li>BS to AD converter मा नेपाली वर्ष छान्नुहोस्।</li>
+      <li>बैशाखदेखि चैत्रसम्म सम्बन्धित महिना छान्नुहोस्।</li>
+      <li>दिन प्रविष्ट गर्नुहोस्।</li>
+      <li><strong>BS → AD रुपान्तरण गर्नुहोस्</strong> थिच्नुहोस्।</li>
+    </ol>
+
+    <h2>How to Convert AD to BS</h2>
+    <ol>
+      <li>AD to BS converter मा Gregorian वर्ष छान्नुहोस्।</li>
+      <li>January देखि December सम्म सम्बन्धित महिना छान्नुहोस्।</li>
+      <li>दिन प्रविष्ट गर्नुहोस्।</li>
+      <li><strong>AD → BS रुपान्तरण गर्नुहोस्</strong> थिच्नुहोस्।</li>
+    </ol>
+
+    <h2>About the Nepali Date Converter</h2>
+    <p>
+      Bikram Sambat मिति प्रणाली प्रयोग गर्ने नेपाली मितिहरू र Gregorian calendar का
+      मितिहरूबीच conversion गर्दा वर्ष मात्र होइन, महिना र दिनको वास्तविक calendar
+      data पनि महत्वपूर्ण हुन्छ। यस converter को conversion engine ले page मा राखिएको
+      per-year BS month data प्रयोग गर्छ।
+    </p>
+    <p>
+      Converter को उपलब्ध range अहिले <strong>1975–2100 BS</strong> का लागि देखाइएको छ।
+      AD पक्षको validation conversion engine को configured range अनुसार काम गर्छ।
+    </p>
+
+    <h2>Nepali Calendar Months</h2>
+    <p>
+      BS calendar मा १२ महिना हुन्छन्: बैशाख, जेठ, असार, साउन, भदौ, असोज,
+      कार्तिक, मंसिर, पौष, माघ, फागुन र चैत्र। महिनाको दिन संख्या Gregorian
+      calendar जस्तो स्थिर हुँदैन, त्यसैले सही conversion का लागि year-specific
+      month data उपयोगी हुन्छ।
+    </p>
+
+    <h2>Related Nepali Calendar Tools</h2>
+    <div class="related-tools">
+      <a href="index.html">नेपाली पात्रो / Nepali Calendar</a>
+      <a href="nepalsambat.html">नेपाल संवत्</a>
+      <a href="date-difference.html">Date Difference Calculator</a>
+      <a href="age-calculator.html">Age Calculator</a>
+      <a href="nepali-festivals.html">नेपाली चाडपर्वहरू</a>
+      <a href="nepali-holidays.html">नेपाली बिदाहरू</a>
+      <a href="unicode.html">Nepali Unicode Tool</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>What is a BS to AD converter?</h3>
+      <p>
+        A BS to AD converter changes a date from the Bikram Sambat (BS) calendar
+        into its corresponding Gregorian (AD) date.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What is an AD to BS converter?</h3>
+      <p>
+        An AD to BS converter changes a Gregorian calendar date into a
+        corresponding Bikram Sambat date.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Which Nepali calendar months are supported?</h3>
+      <p>
+        The converter provides all 12 BS months: बैशाख, जेठ, असार, साउन, भदौ,
+        असोज, कार्तिक, मंसिर, पौष, माघ, फागुन and चैत्र.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I convert today's date?</h3>
+      <p>
+        Yes. Use the “आजको मिति (AD)” or “आजको मिति (BS)” quick action to populate
+        today's date and run the corresponding conversion.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a BS to AD converter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A BS to AD converter changes a date from the Bikram Sambat (BS) calendar into its corresponding Gregorian (AD) date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an AD to BS converter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AD to BS converter changes a Gregorian calendar date into a corresponding Bikram Sambat date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Nepali calendar months are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter provides all 12 BS months: Baishakh, Jestha, Ashadh, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun and Chaitra."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert today's date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the today's AD or today's BS quick action to populate today's date and run the corresponding conversion."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer">
+    <div>
+      <strong>नेपाली पात्रो</strong><br>
+      Nepali Calendar &amp; Date Tools
+    </div>
+    <div>
+      <a href="index.html">Calendar</a> ·
+      <a href="dateconverter.html">Date Converter</a> ·
+      <a href="date-difference.html">Date Difference</a> ·
+      <a href="age-calculator.html">Age Calculator</a> ·
+      <a href="nepali-holidays.html">Holidays</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // ============================================================
+    //  BS <-> AD CONVERSION ENGINE
+    //  Uses Nepal's real, officially-published month lengths
+    //  (irregular per year) instead of a generic leap-year formula,
+    //  so it matches the actual Nepali Patro (verified against
+    //  known reference dates, e.g. 2083 Bhadra 10 = 2026 Aug 26).
+    // ============================================================
+var Config = {
+    maxBSYear: 2100,
+    minBSYear: 1970,
+    outputSeparator: "-",
+    bsMonthTotalDaysCount: [
+        [30, 31],
+        [31, 32],
+        [31, 32],
+        [31, 32],
+        [31, 32],
+        [30, 31],
+        [29, 30],
+        [29, 30],
+        [29, 30],
+        [29, 30],
+        [29, 30],
+        [30, 31],
+    ],
+    monthReferences: [
+        [0, 1, 1, 22, 1, 3, 1, 1, 1, 3, 1, 22, 1, 3, 1, 3, 1, 22, 1, 3, 1, 19, 1, 3, 1, 1, 3, 1, 2, 2, 1, 3, 1],
+        [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            1,
+            2,
+        ],
+        [
+            0,
+            1,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            1,
+            2,
+        ],
+        [
+            1,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+        ],
+        [59, 1, 26, 1, 28, 1, 2, 1, 12],
+        [
+            0,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            5,
+            1,
+            1,
+            2,
+            2,
+            1,
+            3,
+            1,
+            2,
+            1,
+            2,
+        ],
+        [0, 12, 1, 3, 1, 3, 1, 5, 1, 11, 1, 3, 1, 3, 1, 18, 1, 3, 1, 3, 1, 18, 1, 3, 1, 3, 1, 27, 1, 2],
+        [
+            1,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            1,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            15,
+            2,
+            4,
+        ],
+        [
+            0,
+            1,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            15,
+            2,
+            4,
+        ],
+        [
+            1,
+            1,
+            3,
+            1,
+            3,
+            1,
+            14,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            14,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            18,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            14,
+            1,
+            3,
+            15,
+            1,
+            2,
+            1,
+            1,
+        ],
+        [
+            0,
+            1,
+            1,
+            3,
+            1,
+            3,
+            1,
+            10,
+            1,
+            3,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            3,
+            1,
+            10,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            14,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            10,
+            1,
+            20,
+            1,
+            1,
+            1,
+        ],
+        [
+            1,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            3,
+            1,
+            3,
+            1,
+            20,
+            3,
+        ],
+    ],
+    referenceDate: {
+        AD: "1913-03-13",
+        BS: "1970-01-01",
+    },
+};
+
+var Validator = /** @class */ (function () {
+    function Validator() {
+    }
+    Validator.dateType = function (type) {
+        if (!["BS", "AD"].includes(type)) {
+            throw new TypeError("Invalid date type. Only 'AD' or 'BS' type supported.");
+        }
+        return true;
+    };
+    Validator.adYear = function (year) {
+        var minAdYear = Config.minBSYear - 57;
+        var maxAdYear = Config.maxBSYear - 57;
+        if (year < minAdYear || year > maxAdYear) {
+            throw new RangeError("AD year should be in range of " + minAdYear + " to " + maxAdYear);
+        }
+    };
+    Validator.adMonth = function (month) {
+        if (month < 1 || month > 12) {
+            throw new RangeError("AD month should be in range of 1 to 12");
+        }
+    };
+    Validator.adDay = function (day) {
+        if (day < 1 || day > 31) {
+            throw new RangeError("AD day should be in range of 1 to 31");
+        }
+    };
+    Validator.bsYear = function (year) {
+        var midBsYear = Config.minBSYear;
+        var maxBsYear = Config.maxBSYear;
+        if (year < midBsYear || year > maxBsYear) {
+            throw new RangeError("BS year should be in range of " + midBsYear + " to " + maxBsYear);
+        }
+    };
+    Validator.bsMonth = function (month) {
+        if (month < 1 || month > 12) {
+            throw new RangeError("BS month should be in range of 1 to 12");
+        }
+    };
+    Validator.bsDay = function (day) {
+        if (day < 1 || day > 32) {
+            throw new RangeError("BS day should be in range of 1 to 32");
+        }
+    };
+    return Validator;
+}());
+
+var BikramSambat = /** @class */ (function () {
+    function BikramSambat(date, type) {
+        if (type === void 0) { type = "AD"; }
+        this.dateType = "AD";
+        this.date = { year: 0, month: 0, day: 0 };
+        if (date) {
+            this.setDate(date, type);
+        }
+        else {
+            this.setDate(new Date());
+        }
+    }
+    BikramSambat.prototype.setDate = function (date, type) {
+        if (type === void 0) { type = "AD"; }
+        Validator.dateType(type);
+        if (type === "BS") {
+            if (typeof date !== "string") {
+                throw new TypeError("BS date should be 'string' type.");
+            }
+            this.dateType = "BS";
+            this.date = this.splitBsDate(date);
+            return this;
+        }
+        this.dateType = "AD";
+        this.date = this.splitAdDate(date);
+        return this;
+    };
+    BikramSambat.prototype.toAD = function () {
+        if (this.dateType === "AD") {
+            return this.format(this.date);
+        }
+        var totalDaysSince = this.totalDaysSince();
+        var _a = this.splitDate(Config.referenceDate.AD), year = _a.year, month = _a.month, day = _a.day;
+        var adDate = new Date(year, month, day - 1);
+        adDate.setDate(adDate.getDate() + totalDaysSince);
+        return this.format(this.splitAdDate(adDate));
+    };
+    BikramSambat.prototype.toBS = function () {
+        if (this.dateType === "BS") {
+            return this.format(this.date);
+        }
+        var _a = this.date, adYear = _a.year, adMonth = _a.month, adDay = _a.day;
+        var bsYear = adYear + 57;
+        var bsMonth = (adMonth + 9) % 12 || 12;
+        var bsDay = 1;
+        if (adMonth < 4) {
+            bsYear -= 1;
+        }
+        else if (adMonth === 4) {
+            var bsNewYearAdDate = new BikramSambat(this.format({ year: bsYear, month: 1, day: 1 }), "BS").toAD();
+            if (adDay < new Date(bsNewYearAdDate).getDate()) {
+                bsYear -= 1;
+            }
+        }
+        var bsFirstDayOfMonthAdDate = new Date(new BikramSambat(this.format({ year: bsYear, month: bsMonth, day: 1 }), "BS").toAD());
+        if (adDay >= 1 && adDay < bsFirstDayOfMonthAdDate.getDate()) {
+            bsMonth = bsMonth !== 1 ? bsMonth - 1 : 12;
+            var daysInBSMonth = this.daysInBsMonth(bsYear, bsMonth);
+            bsDay = daysInBSMonth - (bsFirstDayOfMonthAdDate.getDate() - adDay) + 1;
+        }
+        else {
+            bsDay = adDay - bsFirstDayOfMonthAdDate.getDate() + 1;
+        }
+        return this.format({ year: bsYear, month: bsMonth, day: bsDay });
+    };
+    /**
+     * Calculate total number of days since minimum reference date
+     */
+    BikramSambat.prototype.totalDaysSince = function () {
+        var _a = this.date, bsYear = _a.year, bsMonth = _a.month, bsDay = _a.day;
+        var extraMonthDays2082 = new Set([2, 4, 7, 8, 10]);
+        var totalDays = 0;
+        var diffInYears = bsYear - Config.minBSYear;
+        for (var i = 1; i <= 12; i++) {
+            totalDays += this.totalMonthDaysSince(i, i < bsMonth ? diffInYears + 1 : diffInYears);
+        }
+        if (bsYear > 2085 && bsYear < 2088) {
+            totalDays += bsDay - 2;
+        }
+        else if (bsYear === 2085 && bsMonth > 5) {
+            totalDays += bsDay - 2;
+        }
+        else if (bsYear === 2081 && bsMonth === 3) {
+            totalDays += bsDay + 1;
+        }
+        else if (bsYear === 2081 && bsMonth === 12) {
+            totalDays += bsDay - 1;
+        }
+        else if (bsYear > 2088) {
+            totalDays += bsDay - 4;
+        }
+        else if (bsYear === 2088 && bsMonth > 5) {
+            totalDays += bsDay - 4;
+        }
+        else if (bsYear === 2082 && extraMonthDays2082.has(bsMonth)) {
+            totalDays += bsDay + 1;
+        }
+        else {
+            totalDays += bsDay;
+        }
+        return totalDays;
+    };
+    /**
+     * Total number of bsMonth days since minimum reference date
+     * @param bsMonth
+     * @param diffInYear
+     */
+    BikramSambat.prototype.totalMonthDaysSince = function (bsMonth, diffInYear) {
+        if (diffInYear === 0) {
+            return 0;
+        }
+        var monthData = Config.monthReferences[bsMonth - 1];
+        var calculated = monthData.slice(0).reduce(function (total, monthDataItem, monthIndex, arr) {
+            if (monthDataItem === 0) {
+                return total;
+            }
+            var monthTotalDaysCountIndex = monthIndex % 2;
+            if (diffInYear > total.year + monthDataItem) {
+                total.year += monthDataItem;
+                total.month += Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex] * monthDataItem;
+            }
+            else {
+                total.month +=
+                    Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex] * (diffInYear - total.year);
+                total.year = diffInYear - total.year;
+                arr.splice(1); // break; dont forget slice(0) before reducing https://stackoverflow.com/questions/36144406/how-to-break-on-reduce-method
+            }
+            return total;
+        }, { month: 0, year: 0 });
+        return calculated.month;
+    };
+    // noinspection JSMethodCanBeStatic
+    /**
+     * Returns total number of days in bsMonth for bsYear
+     * @param bsYear
+     * @param bsMonth
+     */
+    BikramSambat.prototype.daysInBsMonth = function (bsYear, bsMonth) {
+        var totalYears = bsYear + 1 - Config.minBSYear;
+        var monthData = Config.monthReferences[bsMonth - 1];
+        var yearCount = 0;
+        for (var i = 0; i < monthData.length; i++) {
+            if (monthData[i] === 0) {
+                continue;
+            }
+            var monthTotalDaysCountIndex = i % 2;
+            yearCount += monthData[i];
+            if (totalYears <= yearCount) {
+                if ((bsYear === 2085 && bsMonth === 5) || (bsYear === 2088 && bsMonth === 5)) {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex] - 2;
+                }
+                else if (bsYear === 2081 && bsMonth === 2) {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex + 1];
+                }
+                else if (bsYear === 2081 && bsMonth === 3) {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex - 1];
+                }
+                else if (bsYear === 2081 && bsMonth === 11) {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex] - 1;
+                }
+                else if (bsYear === 2081 && bsMonth === 12) {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex] + 1;
+                }
+                else {
+                    return Config.bsMonthTotalDaysCount[bsMonth - 1][monthTotalDaysCountIndex];
+                }
+            }
+        }
+        return 0;
+    };
+    BikramSambat.prototype.splitDate = function (date) {
+        // tslint:disable-next-line:radix
+        var _a = date
+            .replace(/\//g, "-")
+            .split("-")
+            .map(function (d) { return Math.floor(Number(d)); }), year = _a[0], month = _a[1], day = _a[2];
+        return { year: year, month: month, day: day };
+    };
+    // noinspection JSMethodCanBeStatic
+    BikramSambat.prototype.splitAdDate = function (date) {
+        if (typeof date === "string") {
+            date = new Date(date);
+        }
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        Validator.adYear(year);
+        Validator.adMonth(month);
+        Validator.adDay(day);
+        return { year: year, month: month, day: day };
+    };
+    BikramSambat.prototype.splitBsDate = function (date) {
+        var _a = this.splitDate(date), year = _a.year, month = _a.month, day = _a.day;
+        Validator.bsYear(year);
+        Validator.bsMonth(month);
+        Validator.bsDay(day);
+        return { year: year, month: month, day: day };
+    };
+    BikramSambat.prototype.format = function (date) {
+        var separator = Config.outputSeparator;
+        var year = date.year, month = date.month, day = date.day;
+        return "" + year + separator + this.zeroPad(month) + separator + this.zeroPad(day);
+    };
+    // noinspection JSMethodCanBeStatic
+    BikramSambat.prototype.zeroPad = function (x) {
+        return x > 9 ? "" + x : "0" + x;
+    };
+    return BikramSambat;
+}());
+
+    // ---- Adapter to keep the rest of this file's interface unchanged ----
+    // (bsToAd/adToBs still use 0-indexed BS months, like the rest of the code)
+    function bsToAd(bsYear, bsMonth0, bsDay) {
+      var bsStr = bsYear + '-' + String(bsMonth0 + 1).padStart(2, '0') + '-' + String(bsDay).padStart(2, '0');
+      var adStr = new BikramSambat().setDate(bsStr, 'BS').toAD(); // "YYYY-MM-DD"
+      var parts = adStr.split('-').map(Number);
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function adToBs(adDate) {
+      var adStr = adDate.getFullYear() + '-' + String(adDate.getMonth() + 1).padStart(2, '0') + '-' + String(adDate.getDate()).padStart(2, '0');
+      var bsStr = new BikramSambat().setDate(adStr, 'AD').toBS(); // "YYYY-MM-DD"
+      var parts = bsStr.split('-').map(Number);
+      return { year: parts[0], month: parts[1] - 1, day: parts[2] };
+    }
+
+    // number of days in a given BS month (0-indexed month), using the real
+    // per-year data above instead of a fixed 12-value table
+    function getBsMonthDays(bsYear, bsMonth0) {
+      return new BikramSambat().daysInBsMonth(bsYear, bsMonth0 + 1);
+    }
+
+
+    // ============================================================
+    //  DOM REFS
+    // ============================================================
+    const bsYearInput = document.getElementById('bsYear');
+    const bsMonthSelect = document.getElementById('bsMonth');
+    const bsDayInput = document.getElementById('bsDay');
+    const bsToAdOutput = document.getElementById('bsToAdOutput');
+
+    const adYearInput = document.getElementById('adYear');
+    const adMonthSelect = document.getElementById('adMonth');
+    const adDayInput = document.getElementById('adDay');
+    const adToBsOutput = document.getElementById('adToBsOutput');
+
+    // ============================================================
+    //  UTILITY: toNepaliDigit
+    // ============================================================
+    function toNepaliDigit(num) {
+      const digits = '०१२३४५६७८९';
+      return String(num).split('').map(d => digits[parseInt(d)] || d).join('');
+    }
+
+    const monthNamesNe = {
+      0: "बैशाख", 1: "जेठ", 2: "असार", 3: "साउन", 4: "भदौ", 5: "असोज",
+      6: "कार्तिक", 7: "मंसिर", 8: "पौष", 9: "माघ", 10: "फागुन", 11: "चैत्र"
+    };
+
+    // ============================================================
+    //  BS → AD
+    // ============================================================
+    document.getElementById('bsToAdBtn').addEventListener('click', function() {
+      const year = parseInt(bsYearInput.value, 10);
+      const month = parseInt(bsMonthSelect.value, 10);
+      const day = parseInt(bsDayInput.value, 10);
+
+      if (isNaN(year) || isNaN(month) || isNaN(day) || year < 1975 || year > 2100) {
+        bsToAdOutput.textContent = 'कृपया मान्य मिति प्रविष्ट गर्नुहोस् (१९७५–२१००)';
+        return;
+      }
+
+      try {
+        const maxDay = getBsMonthDays(year, month);
+        if (month < 0 || month > 11 || day < 1 || day > maxDay) {
+          bsToAdOutput.textContent = 'मान्य मिति होइन (दिन/महिना मिलेन)';
+          return;
+        }
+        const adDate = bsToAd(year, month, day);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        bsToAdOutput.textContent = `${adDate.getFullYear()} ${months[adDate.getMonth()]} ${adDate.getDate()}`;
+      } catch(e) {
+        bsToAdOutput.textContent = 'रुपान्तरण गर्न सकिएन';
+      }
+    });
+
+    // ============================================================
+    //  AD → BS
+    // ============================================================
+    document.getElementById('adToBsBtn').addEventListener('click', function() {
+      const year = parseInt(adYearInput.value, 10);
+      const month = parseInt(adMonthSelect.value, 10);
+      const day = parseInt(adDayInput.value, 10);
+
+      if (isNaN(year) || isNaN(month) || isNaN(day)) {
+        adToBsOutput.textContent = 'कृपया मान्य मिति प्रविष्ट गर्नुहोस्';
+        return;
+      }
+
+      try {
+        const adDate = new Date(year, month, day);
+        if (adDate.getFullYear() !== year || adDate.getMonth() !== month || adDate.getDate() !== day) {
+          adToBsOutput.textContent = 'मान्य मिति होइन';
+          return;
+        }
+        const bs = adToBs(adDate);
+        const monthName = monthNamesNe[bs.month] || `महिना ${bs.month + 1}`;
+        adToBsOutput.textContent = `${toNepaliDigit(bs.year)} ${monthName} ${toNepaliDigit(bs.day)}`;
+      } catch(e) {
+        adToBsOutput.textContent = 'रुपान्तरण गर्न सकिएन';
+      }
+    });
+
+    // ============================================================
+    //  QUICK ACTIONS
+    // ============================================================
+    window.setTodayAD = function() {
+      const today = new Date();
+      adYearInput.value = today.getFullYear();
+      adMonthSelect.value = today.getMonth();
+      adDayInput.value = today.getDate();
+      // Auto-convert
+      document.getElementById('adToBsBtn').click();
+    };
+
+    window.setTodayBS = function() {
+      const today = new Date();
+      const bs = adToBs(today);
+      bsYearInput.value = bs.year;
+      bsMonthSelect.value = bs.month;
+      bsDayInput.value = bs.day;
+      document.getElementById('bsToAdBtn').click();
+    };
+
+    window.resetConverters = function() {
+      bsYearInput.value = 2083;
+      bsMonthSelect.value = 0;
+      bsDayInput.value = 1;
+      bsToAdOutput.textContent = '-';
+      adYearInput.value = 2026;
+      adMonthSelect.value = 0;
+      adDayInput.value = 1;
+      adToBsOutput.textContent = '-';
+    };
+
+    // ============================================================
+    //  NAVBAR: HAMBURGER TOGGLE
+    // ============================================================
+    const hamburger = document.getElementById('hamburgerBtn');
+    const menuWrapper = document.getElementById('menuWrapper');
+    hamburger.addEventListener('click', function() {
+      menuWrapper.classList.toggle('open');
+    });
+
+    // ============================================================
+    //  DOWNLOAD JSON (sample)
+    // ============================================================
+
+    // ============================================================
+    //  INIT: set default AD to today
+    // ============================================================
+    const today = new Date();
+    adYearInput.value = today.getFullYear();
+    adMonthSelect.value = today.getMonth();
+    adDayInput.value = today.getDate();
+
+    // Auto-convert AD → BS on load
+    document.getElementById('adToBsBtn').click();
+
+  })();
+</script>
+<!-- PWA Installation Script -->
+<script src="/pwa-install.js"></script>
+
+
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

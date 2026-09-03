@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Reminder Deck">
+    <meta name="theme-color" content="#123b6d">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Reminder Deck · Event Reminder &amp; Alert System | Nepali Patro Tools</title>
+    <meta name="description" content="A departures-board style event reminder system with sound alerts, vibration, and popup notifications. All data stays on your device — no sign-up required." />
+    <meta name="keywords" content="event reminder, alert system, notification tool, local storage reminder, sound alerts, vibration alerts, Nepali Patro tool" />
+
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://nepalipatro.app/event-remainder.html" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Reminder Deck · Event Reminder &amp; Alert System" />
+    <meta property="og:description" content="A departures-board style event reminder system with sound alerts, vibration, and popup notifications. All data stays on your device." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.nepalipatro.app/event-remainder.html" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           NAVBAR STYLES — now matches index.html (light, clean)
+           ============================================================ */
+        * {
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e4e9f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav {
+            max-width: 1280px;
+            margin: auto;
+            min-height: 72px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 4px 10px 4px 4px;
+            transition: background 0.15s;
+        }
+        .brand:hover {
+            background: #eef4fb;
+        }
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: #f4aa2a;
+            color: #123b6d;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 22px;
+            box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+            transition: transform 0.2s;
+        }
+        .brand:hover .brand-icon {
+            transform: scale(1.05);
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .brand-nepali {
+            font-size: 20px;
+            font-weight: 800;
+            color: #123b6d;
+            letter-spacing: 0.3px;
+        }
+        .brand-english {
+            font-size: 12px;
+            font-weight: 600;
+            color: #627083;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        .brand-english span {
+            color: #c62828;
+            font-weight: 700;
+        }
+
+        /* --- HAMBURGER --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            padding: 8px 6px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .hamburger:hover {
+            background: #eef4fb;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3.5px;
+            background: #172033;
+            border-radius: 4px;
+            transition: 0.25s ease;
+        }
+
+        /* --- MENU --- */
+        .menu-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #172033;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .menu a:hover {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        .menu a.active {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        .menu a.calendar-link {
+            cursor: pointer;
+        }
+        .menu a.calendar-link:hover {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+        .dropdown>a:after {
+            content: "▾";
+            font-size: 11px;
+            margin-left: 6px;
+            opacity: 0.6;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 210px;
+            padding: 8px;
+            margin: 6px 0 0;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 8px;
+            color: #172033;
+        }
+        .dropdown-menu a:hover {
+            background: #f0f4fa;
+        }
+
+        /* --- Year selector (hidden on this page) --- */
+        .year-selector {
+            display: none;
+        }
+
+        /* --- RESPONSIVE: mobile hamburger --- */
+        @media (max-width: 820px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .menu-wrapper {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                background: #fff;
+                padding: 16px 0 20px;
+                border-top: 1px solid #e4e9f0;
+                margin-top: 4px;
+            }
+            .menu-wrapper.open {
+              display: flex;
+              max-height: calc(100vh - 72px);
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
+            }
+
+            .menu {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 2px;
+            }
+            .menu a {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 10px;
+                white-space: normal;
+            }
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: 0;
+                padding-left: 20px;
+                display: none;
+                background: transparent;
+            }
+            .dropdown:hover .dropdown-menu,
+            .dropdown:focus-within .dropdown-menu,
+            .dropdown.open .dropdown-menu {
+                display: block;
+            }
+            .dropdown>a:after {
+                content: "▾";
+                transition: transform 0.2s;
+            }
+            .dropdown.open>a:after {
+                transform: rotate(180deg);
+            }
+            .year-selector {
+                display: none;
+            }
+        }
+
+        /* ============================================================
+           CLOCK BAR (sub-header) – stays dark to match reminder theme
+           ============================================================ */
+        .clock-bar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+            padding: 10px 28px;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e4e9f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            flex-wrap: wrap;
+        }
+        .clock-bar .clock {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 18px;
+            letter-spacing: 0.06em;
+            color: #123b6d;
+            background: #f5f7fb;
+            border: 1px solid #e4e9f0;
+            padding: 5px 14px;
+            border-radius: 6px;
+        }
+        .clock-bar .clock .date {
+            color: #627083;
+            font-size: 10px;
+            display: block;
+            letter-spacing: 0.1em;
+            margin-top: 1px;
+        }
+        .clock-bar .notif-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #f5f7fb;
+            color: #172033;
+            border: 1px solid #e4e9f0;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .clock-bar .notif-btn:hover {
+            border-color: #f4aa2a;
+            color: #a8670a;
+        }
+        .clock-bar .notif-btn.on {
+            border-color: #2e7d32;
+            color: #2e7d32;
+        }
+        .clock-bar .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #627083;
+        }
+        .clock-bar .notif-btn.on .dot {
+            background: #2e7d32;
+            box-shadow: 0 0 6px rgba(46, 125, 50, 0.5);
+        }
+
+        /* ============================================================
+           EXISTING EVENT-REMAINDER STYLES (dark theme, unchanged)
+           ============================================================ */
+        :root {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --panel-alt: #f5f7fb;
+            --panel-raised: #ffffff;
+            --amber: #a8670a;
+            --amber-dim: #e8c98a;
+            --flame: #c62828;
+            --green: #2e7d32;
+            --text: #172033;
+            --muted: #627083;
+            --border: #e4e9f0;
+            --radius: 10px;
+            --display: 'Big Shoulders Display', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'IBM Plex Sans', sans-serif;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: radial-gradient(1200px 600px at 15% -10%, rgba(244, 170, 42, 0.08), transparent 60%), var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- Layout ---------- */
+        .layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 22px;
+            padding: 26px 28px 60px;
+            max-width: 1280px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        @media (max-width: 880px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .panel h2 {
+            font-family: var(--display);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--amber);
+            margin: 0 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel h2::before {
+            content: "";
+            width: 16px;
+            height: 2px;
+            background: var(--amber);
+            display: inline-block;
+        }
+
+        /* ---------- Form ---------- */
+        label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 14px 0 6px;
+        }
+        label:first-of-type {
+            margin-top: 0;
+        }
+        input[type=text],
+        input[type=date],
+        input[type=time],
+        select {
+            width: 100%;
+            background: var(--panel-alt);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 14px;
+            padding: 10px 11px;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        input:focus,
+        select:focus {
+            border-color: var(--amber);
+        }
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+        .chip {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: 0.03em;
+            padding: 7px 11px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--panel-alt);
+            color: var(--muted);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.12s;
+        }
+        .chip:hover {
+            border-color: var(--amber-dim);
+            color: var(--text);
+        }
+        .chip.selected {
+            background: rgba(242, 169, 59, 0.14);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+        .chip.cat.selected {
+            background: rgba(95, 191, 143, 0.12);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .add-btn {
+            margin-top: 20px;
+            width: 100%;
+            background: #f4aa2a;
+            color: #123b6d;
+            font-family: var(--display);
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 15px;
+            border: none;
+            padding: 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.15s;
+        }
+        .add-btn:hover {
+            box-shadow: 0 4px 18px rgba(242, 169, 59, 0.35);
+        }
+        .add-btn:active {
+            transform: translateY(1px);
+        }
+        .form-hint {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--muted);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* ---------- Next up hero ---------- */
+        .hero {
+            background: linear-gradient(135deg, rgba(242, 169, 59, 0.10), rgba(242, 169, 59, 0.02));
+            border: 1px solid var(--amber-dim);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .hero .eyebrow {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .hero .title {
+            font-family: var(--display);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+        .hero .meta {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        .hero .countdown {
+            font-family: var(--mono);
+            font-size: 34px;
+            font-weight: 600;
+            color: var(--amber);
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+        .hero.empty {
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 13px;
+            justify-content: flex-start;
+        }
+
+        /* ---------- Board ---------- */
+        .board-head {
+            display: grid;
+            grid-template-columns: 90px 1fr 110px 200px 90px 34px;
+            gap: 10px;
+            padding: 0 14px 8px;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+        @media (max-width: 700px) {
+            .board-head {
+                display: none;
+            }
+        }
+
+        .board-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 90px 1fr 110px 200px 90px 34px;
+            gap: 10px;
+            align-items: center;
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+            animation: flap 0.35s ease;
+        }
+        @media (max-width: 700px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                background: var(--panel-alt);
+                border-radius: 8px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+
+        @keyframes flap {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.4);
+                transform-origin: top;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+
+        .row .time {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--text);
+        }
+        .row .time .day {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .row .title-cell {
+            font-family: var(--sans);
+            font-size: 14.5px;
+            font-weight: 500;
+        }
+        .row .title-cell .repeat-tag {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            color: var(--muted);
+            margin-left: 8px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .row .cat-tag {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .row .leads {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .row .leads span {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 2px 7px;
+            border-radius: 10px;
+        }
+        .row .countdown-small {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--amber);
+            text-align: right;
+        }
+        .row .countdown-small.soon {
+            color: var(--flame);
+        }
+        .row .del {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 16px;
+            cursor: pointer;
+            justify-self: end;
+            transition: color 0.12s;
+        }
+        .row .del:hover {
+            color: var(--flame);
+        }
+
+        .empty-board {
+            padding: 50px 14px;
+            text-align: center;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 12.5px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: #092746;
+            margin-top: 30px;
+            max-width: none;
+            padding: 24px 28px;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: #dbe5ef;
+            letter-spacing: 0.04em;
+        }
+        footer .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Toast ---------- */
+        .toast-stack {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 340px;
+        }
+        @media (max-width: 600px) {
+            .toast-stack {
+                left: 14px;
+                right: 14px;
+                max-width: none;
+            }
+        }
+        .toast {
+            background: var(--panel-raised);
+            border: 1px solid var(--amber);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            box-shadow: 0 10px 30px rgba(18, 59, 109, 0.15);
+            animation: toastIn 0.25s ease;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .toast .t-title {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .toast .t-body {
+            font-family: var(--sans);
+            font-size: 13px;
+            color: var(--text);
+            margin-top: 4px;
+        }
+        .toast .t-close {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+        }
+        .toast .t-close:hover {
+            color: var(--flame);
+        }
+
+        .sound-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .sound-row select {
+            flex: 1;
+        }
+        .test-sound-btn {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: var(--panel-alt);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .test-sound-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* ============================================================
+           RESPONSIVE TWEAKS
+           ============================================================ */
+        @media (max-width: 700px) {
+            .clock-bar {
+                padding: 8px 16px;
+                justify-content: center;
+            }
+            .clock-bar .clock {
+                font-size: 15px;
+                padding: 4px 10px;
+            }
+            .clock-bar .notif-btn {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+            .layout {
+                padding: 16px 12px 40px;
+            }
+            .hero .title {
+                font-size: 22px;
+            }
+            .hero .countdown {
+                font-size: 26px;
+            }
+        }
+    </style>
+
+    <!-- OneSignal notification (optional) -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer>
+    </script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "2c9734e3-2be8-4bab-bd92-fcdeb7f4c10b",
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+    TOAST STACK
+    ============================================================ -->
+    <div class="toast-stack" id="toastStack"></div>
+
+    <!-- ============================================================
+    NAVBAR — now matches index.html (light background, dark text)
+    ============================================================ -->
+    <header class="navbar">
+        <nav class="nav">
+            <a class="brand" id="brandLink" href="index.html">
+                <span class="brand-icon">वि</span>
+                <span class="brand-text">
+                    <span class="brand-nepali">नेपाली पात्रो</span>
+                    <span class="brand-english">Nepali Patro · <span>Reminder</span></span>
+                </span>
+            </a>
+
+            <!-- Hamburger -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Menu wrapper -->
+            <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+        <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="#">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="unicode.html">Nepali Unicode</a></li>
+            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="date-difference.html">Date Difference</a></li>
+            <li><a href="age-calculator.html">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href=" nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="rashifal.html">राशिफल</a></li>
+        <li><a href="weather.html">मौसम</a></li>
+        <li><a href="goldsilver.html">सुनचादी</a></li>
+        <li class="dropdown">
+          <a href="#">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+            <li><a href="event-remainder.html">Event Remainder</a></li>
+              <li><a href="quiz-scheduler.html" class="active">Quiz Scheduler</a></li>
+            <li><a href="exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>   
+      </ul>
+
+                <!-- year-selector hidden on this page -->
+                <div class="year-selector">
+                    <label for="yearSelect">वर्ष:</label>
+                    <select id="yearSelect"></select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+    CLOCK BAR (sub-header with clock + notification button)
+    ============================================================ -->
+    <div class="clock-bar">
+        <div class="clock" id="clock">
+            --:--:--
+            <span class="date" id="clockDate">-</span>
+        </div>
+        <button class="notif-btn" id="notifBtn">
+            <span class="dot"></span>
+            <span id="notifLabel">Enable alerts</span>
+        </button>
+    </div>
+
+    <!-- ============================================================
+    MAIN LAYOUT (event-remainder)
+    ============================================================ -->
+    <div class="layout">
+
+        <!-- LEFT: Form -->
+        <div class="panel">
+            <h2>New Entry</h2>
+            <form id="reminderForm">
+                <label for="title">Event title</label>
+                <input type="text" id="title" placeholder="e.g. Dentist appointment" required maxlength="80" />
+
+                <div class="row2">
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required />
+                    </div>
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="time" id="time" required />
+                    </div>
+                </div>
+
+                <label>Category</label>
+                <div class="chips" id="catChips">
+                    <div class="chip cat selected" data-cat="Work">Work</div>
+                    <div class="chip cat" data-cat="Personal">Personal</div>
+                    <div class="chip cat" data-cat="Health">Health</div>
+                    <div class="chip cat" data-cat="Social">Social</div>
+                    <div class="chip cat" data-cat="Other">Other</div>
+                </div>
+
+                <label>Remind me (choose any)</label>
+                <div class="chips" id="leadChips">
+                    <div class="chip lead" data-min="0">At time</div>
+                    <div class="chip lead" data-min="5">5 min before</div>
+                    <div class="chip lead selected" data-min="10">10 min before</div>
+                    <div class="chip lead" data-min="15">15 min before</div>
+                    <div class="chip lead" data-min="30">30 min before</div>
+                    <div class="chip lead" data-min="60">1 hour before</div>
+                    <div class="chip lead" data-min="1440">1 day before</div>
+                    <div class="chip lead" data-min="10080">1 week before</div>
+                </div>
+
+                <label for="repeat">Repeats</label>
+                <select id="repeat">
+                    <option value="none">Never</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+
+                <label for="sound">Ringtone</label>
+                <div class="sound-row">
+                    <select id="sound">
+                        <option value="classic">Classic Beep</option>
+                        <option value="chime">Digital Chime</option>
+                        <option value="bell">Soft Bell</option>
+                        <option value="alarm">Alarm Buzz</option>
+                        <option value="marimba">Marimba</option>
+                        <option value="silent">Silent (vibrate/popup only)</option>
+                    </select>
+                    <button type="button" class="test-sound-btn" id="testSoundBtn">▶ Test</button>
+                </div>
+
+                <button type="submit" class="add-btn">Add to board</button>
+                <div class="form-hint">
+                    Everything is stored in this browser's local storage — nothing leaves your device.
+                    Alerts fire while this tab is open, and will vibrate + pop up a notification with your chosen ringtone.
+                </div>
+            </form>
+        </div>
+
+        <!-- RIGHT: Hero + Board -->
+        <div>
+            <div class="hero empty" id="hero">
+                No upcoming reminders — add one on the left to see it here.
+            </div>
+
+            <div class="panel" style="padding:0;">
+                <div style="padding:20px 20px 0;">
+                    <h2>Board</h2>
+                </div>
+                <div class="board-head">
+                    <span>Time</span><span>Event</span><span>Category</span><span>Alerts</span><span style="text-align:right;">Countdown</span><span></span>
+                </div>
+                <div class="board-list" id="boardList"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <div class="footer-inner">
+            Reminder Deck · static site, deploy anywhere (GitHub Pages / Cloudflare Pages) · data lives only in this browser's
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noopener">localStorage</a>
+            · vibration is supported on Android browsers, not iOS Safari (Apple does not expose the Vibration API)
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- hamburger toggle ----------
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const menuWrapper = document.getElementById('menuWrapper');
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            if (hamburgerBtn && menuWrapper) {
+                hamburgerBtn.addEventListener('click', function() {
+                    menuWrapper.classList.toggle('open');
+                    // collapse any open submenus whenever the main menu toggles
+                    dropdowns.forEach(function(dd) { dd.classList.remove('open'); });
+                });
+
+                // ---------- dropdown toggles (tap to open/close on mobile) ----------
+                dropdowns.forEach(function(dd) {
+                    const toggle = dd.querySelector(':scope > a');
+                    if (!toggle) return;
+                    toggle.addEventListener('click', function(e) {
+                        // Only intercept on mobile (hamburger visible); on desktop, hover handles it
+                        if (window.getComputedStyle(hamburgerBtn).display !== 'none') {
+                            e.preventDefault();
+                            const isOpen = dd.classList.contains('open');
+                            dropdowns.forEach(function(other) { other.classList.remove('open'); });
+                            if (!isOpen) dd.classList.add('open');
+                        }
+                    });
+                });
+
+                // close whole menu when a REAL navigation link is tapped
+                // (submenu items + top-level links that aren't dropdown toggles)
+                menuWrapper.querySelectorAll('a').forEach(function(link) {
+                    const isDropdownToggle = link.parentElement.classList.contains('dropdown') &&
+                        link === link.parentElement.querySelector(':scope > a');
+                    if (isDropdownToggle) return;
+                    link.addEventListener('click', function() {
+                        menuWrapper.classList.remove('open');
+                        dropdowns.forEach(function(dd) { dd.classList.remove('open'); });
+                    });
+                });
+            }
+
+            // ---------- brand link ----------
+            const brandLink = document.getElementById('brandLink');
+            if (brandLink) {
+                brandLink.addEventListener('click', function(e) {
+                    // already points to index.html
+                });
+            }
+
+        })();
+    </script>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const STORAGE_KEY = "reminder_deck_events_v1";
+            const DAY = 24 * 60 * 60 * 1000;
+
+            let selectedCat = "Work";
+            let selectedLeads = new Set([10]);
+            let selectedSound = "classic";
+
+            const $ = (sel) => document.querySelector(sel);
+            const boardList = $("#boardList");
+            const hero = $("#hero");
+
+            // ---------- storage ----------
+            function loadEvents() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    return raw ? JSON.parse(raw) : [];
+                } catch (e) {
+                    console.error("Could not read saved reminders:", e);
+                    return [];
+                }
+            }
+
+            function saveEvents(events) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+                } catch (e) {
+                    console.error("Could not save reminders:", e);
+                    alert("Could not save to local storage. Your browser may be blocking storage for this page.");
+                }
+            }
+
+            let events = loadEvents();
+
+            // ---------- chip selection ----------
+            document.querySelectorAll(".chip.cat").forEach(chip => {
+                chip.addEventListener("click", () => {
+                    document.querySelectorAll(".chip.cat").forEach(c => c.classList.remove("selected"));
+                    chip.classList.add("selected");
+                    selectedCat = chip.dataset.cat;
+                });
+            });
+
+            document.querySelectorAll(".chip.lead").forEach(chip => {
+                chip.addEventListener("click", () => {
+                    const min = Number(chip.dataset.min);
+                    if (selectedLeads.has(min)) {
+                        selectedLeads.delete(min);
+                        chip.classList.remove("selected");
+                    } else {
+                        selectedLeads.add(min);
+                        chip.classList.add("selected");
+                    }
+                });
+            });
+
+            // ---------- next occurrence calc ----------
+            function nextOccurrence(ev, fromTime) {
+                const base = new Date(ev.date + "T" + ev.time);
+                if (isNaN(base.getTime())) return null;
+                if (ev.repeat === "none") {
+                    return base.getTime() >= fromTime ? base : null;
+                }
+                let d = new Date(base.getTime());
+                let guard = 0;
+                while (d.getTime() < fromTime && guard < 5000) {
+                    if (ev.repeat === "daily") d = new Date(d.getTime() + DAY);
+                    else if (ev.repeat === "weekly") d = new Date(d.getTime() + 7 * DAY);
+                    else if (ev.repeat === "monthly") d.setMonth(d.getMonth() + 1);
+                    else break;
+                    guard++;
+                }
+                return d;
+            }
+
+            function fmtDayLabel(d, now) {
+                const startOfDay = (x) => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+                const diffDays = Math.round((startOfDay(d) - startOfDay(now)) / DAY);
+                if (diffDays === 0) return "TODAY";
+                if (diffDays === 1) return "TOMORROW";
+                return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }).toUpperCase();
+            }
+
+            function fmtTime(d) {
+                return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+            }
+
+            function fmtCountdown(ms) {
+                if (ms <= 0) return "now";
+                const totalSec = Math.floor(ms / 1000);
+                const d = Math.floor(totalSec / 86400);
+                const h = Math.floor((totalSec % 86400) / 3600);
+                const m = Math.floor((totalSec % 3600) / 60);
+                const s = totalSec % 60;
+                if (d > 0) return `${d}d ${h}h ${m}m`;
+                if (h > 0) return `${h}h ${m}m ${s}s`;
+                if (m > 0) return `${m}m ${s}s`;
+                return `${s}s`;
+            }
+
+            function leadLabel(min) {
+                if (min === 0) return "at time";
+                if (min < 60) return min + "m";
+                if (min < 1440) return (min / 60) + "h";
+                if (min < 10080) return (min / 1440) + "d";
+                return (min / 10080) + "w";
+            }
+
+            // ---------- render ----------
+            function render() {
+                const now = new Date();
+                const enriched = events.map(ev => {
+                    const occ = nextOccurrence(ev, now.getTime());
+                    return { ev, occ };
+                }).filter(x => x.occ !== null)
+                .sort((a, b) => a.occ.getTime() - b.occ.getTime());
+
+                // hero
+                if (enriched.length === 0) {
+                    hero.className = "hero empty";
+                    hero.innerHTML = "No upcoming reminders — add one on the left to see it here.";
+                } else {
+                    const top = enriched[0];
+                    hero.className = "hero";
+                    hero.innerHTML = `
+                <div>
+                  <div class="eyebrow">Next up</div>
+                  <div class="title">${escapeHtml(top.ev.title)}</div>
+                  <div class="meta">${fmtDayLabel(top.occ, now)} · ${fmtTime(top.occ)} · ${escapeHtml(top.ev.category)}</div>
+                </div>
+                <div class="countdown">${fmtCountdown(top.occ.getTime()-now.getTime())}</div>
+              `;
+                }
+
+                // board
+                if (enriched.length === 0) {
+                    boardList.innerHTML =
+                    `<div class="empty-board">Board is empty.<br>Every reminder you add will flap into place here.</div>`;
+                    return;
+                }
+
+                boardList.innerHTML = "";
+                enriched.forEach(({ ev, occ }) => {
+                    const diff = occ.getTime() - now.getTime();
+                    const row = document.createElement("div");
+                    row.className = "row";
+                    const soon = diff < 60 * 60 * 1000;
+                    row.innerHTML = `
+                <div class="time">${fmtTime(occ)}<span class="day">${fmtDayLabel(occ, now)}</span></div>
+                <div class="title-cell">${escapeHtml(ev.title)}${ev.repeat!=="none" ? `<span class="repeat-tag">${ev.repeat}</span>` : ""}</div>
+                <div class="cat-tag">${escapeHtml(ev.category)}</div>
+                <div class="leads">${(ev.leadTimes||[]).map(m=>`<span>${leadLabel(m)}</span>`).join("") || "<span>none</span>"}</div>
+                <div class="countdown-small ${soon?'soon':''}">${fmtCountdown(diff)}</div>
+                <button class="del" title="Delete" data-id="${ev.id}">✕</button>
+              `;
+                    boardList.appendChild(row);
+                });
+
+                boardList.querySelectorAll(".del").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const id = btn.dataset.id;
+                        events = events.filter(e => e.id !== id);
+                        saveEvents(events);
+                        render();
+                    });
+                });
+            }
+
+            function escapeHtml(str) {
+                const d = document.createElement("div");
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            // ---------- form submit ----------
+            $("#reminderForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const title = $("#title").value.trim();
+                const date = $("#date").value;
+                const time = $("#time").value;
+                const repeat = $("#repeat").value;
+                if (!title || !date || !time) { return; }
+
+                const newEvent = {
+                    id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random())),
+                    title,
+                    date,
+                    time,
+                    category: selectedCat,
+                    leadTimes: Array.from(selectedLeads).sort((a, b) => a - b),
+                    repeat,
+                    sound: $("#sound").value || "classic",
+                    firedFor: []
+                };
+                events.push(newEvent);
+                saveEvents(events);
+                e.target.reset();
+                // restore chip defaults visually
+                document.querySelectorAll(".chip.cat").forEach(c => c.classList.remove("selected"));
+                document.querySelector('.chip.cat[data-cat="Work"]').classList.add("selected");
+                selectedCat = "Work";
+                document.querySelectorAll(".chip.lead").forEach(c => c.classList.remove("selected"));
+                document.querySelector('.chip.lead[data-min="10"]').classList.add("selected");
+                selectedLeads = new Set([10]);
+                $("#sound").value = "classic";
+                selectedSound = "classic";
+                render();
+            });
+
+            // ---------- clock ----------
+            function tickClock() {
+                const now = new Date();
+                const clockEl = document.getElementById("clock");
+                if (clockEl) {
+                    const timeStr = now.toLocaleTimeString(undefined, { hour12: false });
+                    const dateStr = now.toLocaleDateString(undefined, { weekday: "short", month: "short",
+                    day: "numeric" }).toUpperCase();
+                    clockEl.innerHTML = `${timeStr}<span class="date">${dateStr}</span>`;
+                }
+            }
+            setInterval(tickClock, 1000);
+            tickClock();
+
+            // ---------- render loop (countdowns) ----------
+            setInterval(render, 1000);
+            render();
+
+            // ---------- vibration ----------
+            function vibrateDevice() {
+                if ("vibrate" in navigator) {
+                    try { navigator.vibrate([300, 120, 300, 120, 300]); } catch (e) { /* ignore */ }
+                }
+            }
+
+            // ---------- ringtone synth ----------
+            let audioCtx = null;
+
+            function getAudioCtx() {
+                if (!audioCtx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (!AC) return null;
+                    audioCtx = new AC();
+                }
+                if (audioCtx.state === "suspended") audioCtx.resume();
+                return audioCtx;
+            }
+
+            function beep(ctx, { freq = 880, start = 0, dur = 0.18, type = "sine", gain = 0.22 }) {
+                const osc = ctx.createOscillator();
+                const g = ctx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                const t0 = ctx.currentTime + start;
+                g.gain.setValueAtTime(0.0001, t0);
+                g.gain.exponentialRampToValueAtTime(gain, t0 + 0.015);
+                g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+                osc.connect(g).connect(ctx.destination);
+                osc.start(t0);
+                osc.stop(t0 + dur + 0.02);
+            }
+
+            const RINGTONES = {
+                classic: (ctx) => {
+                    beep(ctx, { freq: 880, start: 0, dur: 0.15, type: "square" });
+                    beep(ctx, { freq: 880, start: 0.22, dur: 0.15, type: "square" });
+                },
+                chime: (ctx) => {
+                    beep(ctx, { freq: 1046.5, start: 0, dur: 0.25, type: "sine" });
+                    beep(ctx, { freq: 1318.5, start: 0.14, dur: 0.3, type: "sine" });
+                    beep(ctx, { freq: 1568.0, start: 0.30, dur: 0.4, type: "sine" });
+                },
+                bell: (ctx) => {
+                    beep(ctx, { freq: 1200, start: 0, dur: 0.6, type: "sine", gain: 0.18 });
+                    beep(ctx, { freq: 1800, start: 0, dur: 0.5, type: "sine", gain: 0.08 });
+                },
+                alarm: (ctx) => {
+                    for (let i = 0; i < 4; i++) {
+                        beep(ctx, { freq: 660, start: i * 0.24, dur: 0.14, type: "sawtooth", gain: 0.25 });
+                        beep(ctx, { freq: 990, start: i * 0.24 + 0.12, dur: 0.1, type: "sawtooth", gain: 0.2 });
+                    }
+                },
+                marimba: (ctx) => {
+                    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+                        beep(ctx, { freq: f, start: i * 0.13, dur: 0.35, type: "triangle", gain: 0.2 });
+                    });
+                },
+                silent: () => {}
+            };
+
+            function playRingtone(name) {
+                const ctx = getAudioCtx();
+                if (!ctx) return;
+                const fn = RINGTONES[name] || RINGTONES.classic;
+                fn(ctx);
+            }
+
+            // ---------- in-app popup (toast) ----------
+            const toastStack = $("#toastStack");
+
+            function showToast(title, body) {
+                const el = document.createElement("div");
+                el.className = "toast";
+                el.innerHTML = `
+              <div class="t-title"><span>🔔 ${escapeHtml(title)}</span><button class="t-close">✕</button></div>
+              <div class="t-body">${escapeHtml(body)}</div>
+            `;
+                el.querySelector(".t-close").addEventListener("click", () => el.remove());
+                toastStack.appendChild(el);
+                setTimeout(() => { if (el.parentNode) el.remove(); }, 15000);
+            }
+
+            // ---------- fire an alert ----------
+            function fireAlert(ev, occ, min) {
+                const body = min === 0 ? "Starting now" : `Starts in ${leadLabel(min)} — ${fmtTime(occ)}`;
+                playRingtone(ev.sound || "classic");
+                vibrateDevice();
+                showToast(ev.title, body);
+                if (("Notification" in window) && Notification.permission === "granted") {
+                    new Notification(ev.title, { body, tag: ev.id + ":" + occ.toISOString() + ":" + min });
+                }
+            }
+
+            // unlock audio on first user gesture
+            function unlockAudioOnce() {
+                getAudioCtx();
+                document.removeEventListener("click", unlockAudioOnce);
+                document.removeEventListener("touchstart", unlockAudioOnce);
+            }
+            document.addEventListener("click", unlockAudioOnce, { once: true });
+            document.addEventListener("touchstart", unlockAudioOnce, { once: true });
+
+            $("#testSoundBtn").addEventListener("click", () => {
+                playRingtone($("#sound").value);
+                vibrateDevice();
+                showToast("Test alert", "This is what your reminder will look and sound like.");
+            });
+
+            // ---------- notifications ----------
+            const notifBtn = $("#notifBtn");
+            const notifLabel = $("#notifLabel");
+
+            function updateNotifBtn() {
+                if (!("Notification" in window)) {
+                    notifLabel.textContent = "Alerts unsupported";
+                    notifBtn.disabled = true;
+                    return;
+                }
+                if (Notification.permission === "granted") {
+                    notifBtn.classList.add("on");
+                    notifLabel.textContent = "Alerts on";
+                } else {
+                    notifBtn.classList.remove("on");
+                    notifLabel.textContent = "Enable alerts";
+                }
+            }
+
+            notifBtn.addEventListener("click", async () => {
+                if (!("Notification" in window)) return;
+                if (Notification.permission !== "granted") {
+                    await Notification.requestPermission();
+                    updateNotifBtn();
+                }
+            });
+            updateNotifBtn();
+
+            function checkAlerts() {
+                const now = Date.now();
+                let changed = false;
+                events.forEach(ev => {
+                    const occ = nextOccurrence(ev, now - 5 * 60 * 1000);
+                    if (!occ) return;
+                    const occKey = occ.toISOString();
+                    (ev.leadTimes || []).forEach(min => {
+                        const fireAt = occ.getTime() - min * 60 * 1000;
+                        const key = occKey + ":" + min;
+                        if (now >= fireAt && now < fireAt + 60 * 1000) {
+                            if (!ev.firedFor) ev.firedFor = [];
+                            if (!ev.firedFor.includes(key)) {
+                                fireAlert(ev, occ, min);
+                                ev.firedFor.push(key);
+                                changed = true;
+                            }
+                        }
+                    });
+                });
+                if (changed) saveEvents(events);
+            }
+            setInterval(checkAlerts, 15000);
+
+            // default date/time convenience
+            const today = new Date();
+            $("#date").value = today.toISOString().slice(0, 10);
+
+        })();
+    </script>
+
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

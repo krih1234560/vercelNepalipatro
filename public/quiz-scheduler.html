@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Scheduler Dashboard - Live Group Quiz Timer & Scoring Tool</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Free quiz scheduler dashboard to run live group quizzes: manage groups and rounds, set per-round marks and pass/normal question timers, and track live scores and totals in one screen.">
+<meta name="focus-keyword" content="quiz scheduler dashboard">
+<meta name="keywords" content="quiz scheduler dashboard, quiz timer, live quiz scoring, group quiz manager, quiz round timer, pass question timer, quiz scoreboard tool">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical Tag -->
+<link rel="canonical" href="https://nepalipatro.app/quiz-scheduler.html">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="Quiz Scheduler Dashboard - Live Group Quiz Timer & Scoring Tool">
+<meta property="og:description" content="Free quiz scheduler dashboard to run live group quizzes: manage groups and rounds, set per-round marks and pass/normal question timers, and track live scores and totals in one screen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nepalipatro.app/quiz-scheduler.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --qs-paper:#FBF9F4;
+    --qs-ink:#1F2A3C;
+    --qs-ink-soft:#57627A;
+    --qs-line:#DEDACD;
+    --qs-card:#FFFFFF;
+    --qs-amber:#E8A33D;
+    --qs-amber-dark:#C7852A;
+    --qs-green:#3E7B5C;
+    --qs-red:#B4463F;
+    --qs-radius:10px;
+    --qs-shadow: 0 1px 2px rgba(31,42,60,.06), 0 6px 16px rgba(31,42,60,.05);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--qs-paper);
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 39px, rgba(31,42,60,.035) 40px);
+    color: var(--qs-ink);
+  }
+  a{ text-decoration:none; color:inherit; }
+
+  /* --- SITE NAVBAR --- */
+  .navbar{
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e4e9f0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .nav{
+    max-width: 1240px; margin: auto; min-height: 72px; padding: 0 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px; flex-shrink:0; cursor:pointer;
+    border-radius:12px; padding:4px 8px 4px 4px; transition: background .15s;
+  }
+  .brand:hover{ background:#eef4fb; }
+  .brand-icon{
+    width:44px; height:44px; background: var(--qs-amber); color:#123b6d;
+    border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:20px; box-shadow: 0 6px 14px rgba(232,163,61,0.25);
+    transition: transform .2s;
+  }
+  .brand:hover .brand-icon{ transform: scale(1.05); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+  .brand-nepali{ font-size:18px; font-weight:800; color:#123b6d; letter-spacing:.3px; font-family:'Space Grotesk', sans-serif; }
+  .brand-english{ font-size:11px; font-weight:600; color:#627083; letter-spacing:.3px; text-transform:uppercase; opacity:.8; }
+
+  .hamburger{
+    display:none; flex-direction:column; gap:5px; background:transparent; border:none;
+    padding:8px 6px; cursor:pointer; border-radius:8px; transition: background .2s;
+  }
+  .hamburger:hover{ background:#eef4fb; }
+  .hamburger span{ display:block; width:26px; height:3px; background:#172033; border-radius:4px; transition:.25s ease; }
+
+  .menu-wrapper{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .menu{ display:flex; align-items:center; gap:4px; list-style:none; margin:0; padding:0; flex-wrap:wrap; }
+  .menu a{
+    display:block; padding:10px 14px; border-radius:8px; font-size:14.5px; font-weight:600;
+    color:#172033; transition: background .15s, color .15s; white-space:nowrap; cursor:pointer;
+  }
+  .menu a:hover{ background:#eef4fb; color:#123b6d; }
+  .menu a.active{ background:#eef4fb; color:#123b6d; }
+
+  .dropdown{ position:relative; }
+  .dropdown > a:after{ content:"▾"; font-size:11px; margin-left:6px; opacity:.6; }
+  .dropdown-menu{
+    position:absolute; top:100%; left:0; min-width:210px; padding:8px; margin:6px 0 0;
+    list-style:none; background:#fff; border:1px solid #e4e9f0; border-radius:12px;
+    box-shadow: 0 16px 40px rgba(18,59,109,.10);
+    opacity:0; visibility:hidden; transform: translateY(-6px);
+    transition: .2s cubic-bezier(.22,1,.36,1);
+  }
+  .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu{
+    opacity:1; visibility:visible; transform: translateY(0);
+  }
+  .dropdown-menu a{ padding:10px 14px; font-size:13.5px; border-radius:8px; }
+  .dropdown-menu a:hover{ background:#f0f4fa; }
+
+  @media (max-width: 820px){
+    .hamburger{ display:flex; }
+    .menu-wrapper{
+      display:none; width:100%; flex-direction:column; align-items:stretch;
+      background:#fff; padding:16px 0 20px; border-top:1px solid #e4e9f0; margin-top:4px;
+    }
+    .menu-wrapper.open{ display:flex; max-height:calc(100vh - 72px); overflow-y:auto; -webkit-overflow-scrolling:touch; }
+    .menu{ flex-direction:column; align-items:stretch; width:100%; gap:2px; }
+    .menu a{ padding:14px 16px; font-size:16px; border-radius:10px; white-space:normal; }
+    .dropdown-menu{
+      position:static; opacity:1; visibility:visible; transform:none; box-shadow:none;
+      border:0; padding-left:20px; display:none; background:transparent;
+    }
+    .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu{ display:block; }
+  }
+  /* --- END SITE NAVBAR --- */
+
+  .qs-page-body{ padding: 32px 20px 60px; }
+  .qs-shell{ max-width: 1180px; margin: 0 auto; position: relative; }
+
+  .qs-header{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+    border-bottom: 2px solid var(--qs-ink);
+    padding-bottom: 14px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .qs-header h1{ font-family:'Space Grotesk', sans-serif; font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .qs-header p{ margin:0; color: var(--qs-ink-soft); font-size: 13.5px; }
+
+  /* live clock, top-right */
+  .qs-clock{
+    font-family:'IBM Plex Mono', monospace;
+    background: var(--qs-ink);
+    color: var(--qs-paper);
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-align:center;
+    line-height: 1.2;
+    min-width: 130px;
+  }
+  .qs-clock .qs-clock-time{ font-size: 20px; font-weight: 700; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+  .qs-clock .qs-clock-date{ font-size: 10px; color: var(--qs-amber); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+
+  .qs-card{
+    background: var(--qs-card);
+    border: 1px solid var(--qs-line);
+    border-radius: var(--qs-radius);
+    box-shadow: var(--qs-shadow);
+    padding: 18px 20px 20px;
+    margin-bottom: 18px;
+  }
+  .qs-card h2{
+    font-family:'Space Grotesk', sans-serif; font-size: 15px; margin: 0 0 4px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .qs-card h2 .qs-num{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--qs-amber-dark);
+    border: 1px solid var(--qs-amber); border-radius: 4px; padding: 1px 6px;
+  }
+  .qs-sub{ color: var(--qs-ink-soft); font-size: 12.5px; margin: 0 0 12px; }
+
+  .qs-manage-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .qs-manage-col{ flex: 1 1 260px; }
+
+  .qs-tag-list{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 10px; min-height: 20px; }
+  .qs-tag{
+    background: #F3F0E6; border: 1px solid var(--qs-line); border-radius: 20px;
+    padding: 5px 8px 5px 12px; font-size: 12.5px; display:inline-flex; align-items:center; gap:6px;
+  }
+  .qs-tag button{ background:transparent; border:none; cursor:pointer; color: var(--qs-red); font-size: 14px; line-height:1; padding: 0 2px; }
+
+  .qs-inline-form{ display:flex; gap:8px; }
+  .qs-inline-form input{ flex:1; }
+
+  input[type="text"], input[type="number"], select{
+    font-family:'Inter', sans-serif; font-size: 13.5px; padding: 7px 9px;
+    border: 1px solid var(--qs-line); border-radius: 6px; background: #fff; color: var(--qs-ink); width: 100%;
+  }
+  input:focus, select:focus{ outline: 2px solid var(--qs-amber); outline-offset: 1px; border-color: var(--qs-amber); }
+
+  .qs-btn{
+    font-family:'Inter', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 8px 14px; border-radius: 7px; border: 1px solid var(--qs-ink);
+    background: var(--qs-ink); color: #fff; cursor: pointer; white-space: nowrap;
+  }
+  .qs-btn:hover{ background:#33415a; }
+  .qs-btn.qs-btn-ghost{ background: transparent; color: var(--qs-ink); border-color: var(--qs-line); }
+  .qs-btn.qs-btn-ghost:hover{ border-color: var(--qs-ink); }
+  .qs-btn.qs-btn-small{ padding: 4px 9px; font-size: 11.5px; border-radius: 5px; }
+  .qs-btn.qs-btn-danger{ border-color: var(--qs-red); color: var(--qs-red); background: transparent; }
+  .qs-btn.qs-btn-danger:hover{ background: var(--qs-red); color: #fff; }
+  .qs-btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+  /* Round tabs */
+  .qs-round-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 4px; }
+  .qs-round-tab{
+    font-family:'IBM Plex Mono', monospace; font-size: 12.5px;
+    padding: 7px 14px; border-radius: 20px; border: 1px solid var(--qs-line);
+    background: #fff; color: var(--qs-ink-soft); cursor:pointer; position:relative;
+  }
+  .qs-round-tab.qs-active{ background: var(--qs-ink); color:#fff; border-color: var(--qs-ink); }
+  .qs-round-tab .qs-tab-remove{ margin-left:8px; color:inherit; opacity:.6; background:none; border:none; cursor:pointer; }
+  .qs-round-tab .qs-tab-remove:hover{ opacity:1; }
+  .qs-round-tab-add{
+    font-size: 16px; padding: 6px 12px; border-radius: 20px; border: 1px dashed var(--qs-ink-soft);
+    background: transparent; color: var(--qs-ink-soft); cursor:pointer;
+  }
+  .qs-round-tab-add:hover{ border-color: var(--qs-ink); color: var(--qs-ink); }
+
+  /* Timer panel */
+  .qs-timer-layout{ display:grid; grid-template-columns: 220px 1fr; gap: 24px; align-items:center; }
+  @media (max-width: 720px){ .qs-timer-layout{ grid-template-columns: 1fr; } }
+
+  .qs-timer-config .qs-field{ margin-bottom: 12px; }
+  .qs-timer-config label{
+    display:block; font-size: 11.5px; font-weight: 600; color: var(--qs-ink-soft);
+    margin-bottom: 4px; text-transform: uppercase; letter-spacing: .03em;
+  }
+  .qs-timer-checkbox{ display:flex; align-items:center; gap:8px; font-size: 13px; margin-top: 10px; }
+  .qs-timer-checkbox input{ width:auto; }
+
+  .qs-timer-display{ text-align:center; }
+  .qs-timer-phase{
+    font-family:'IBM Plex Mono', monospace; font-size: 12px; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--qs-ink-soft); margin-bottom: 6px;
+  }
+  .qs-timer-phase.qs-phase-normal{ color: var(--qs-green); }
+  .qs-timer-phase.qs-phase-pass{ color: var(--qs-amber-dark); }
+  .qs-timer-phase.qs-phase-done{ color: var(--qs-red); }
+
+  .qs-timer-clock{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 64px; font-weight: 700; letter-spacing: .03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--qs-ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .qs-timer-clock.qs-warning{ color: var(--qs-red); animation: qs-pulse 1s infinite; }
+  @keyframes qs-pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+
+  .qs-timer-progress{
+    width:100%; max-width: 420px; margin: 0 auto 16px;
+    height: 8px; border-radius: 6px; background: #EFEBDD; overflow:hidden;
+  }
+  .qs-timer-progress-bar{ height:100%; background: var(--qs-green); transition: width 1s linear, background .3s; width: 100%; }
+  .qs-timer-progress-bar.qs-phase-pass{ background: var(--qs-amber); }
+  .qs-timer-progress-bar.qs-phase-done{ background: var(--qs-red); }
+
+  .qs-timer-controls{ display:flex; gap:10px; justify-content:center; flex-wrap: wrap; }
+  .qs-timer-status{ text-align:center; font-size: 12.5px; color: var(--qs-ink-soft); margin-top: 10px; min-height: 16px; }
+
+  /* Dashboard grid table */
+  .qs-grid-wrap{ overflow-x:auto; }
+  table.qs-grid{ width:100%; border-collapse: collapse; min-width: 560px; }
+  table.qs-grid th, table.qs-grid td{ padding: 10px 12px; border-bottom: 1px solid var(--qs-line); text-align:center; white-space: nowrap; }
+  table.qs-grid th.qs-row-label, table.qs-grid td.qs-row-label{
+    text-align:left; white-space: normal; min-width: 190px; font-size: 12px; font-weight: 600;
+    color: var(--qs-ink-soft); text-transform: uppercase; letter-spacing: .02em;
+  }
+  table.qs-grid thead tr.qs-group-header th{
+    font-family:'Space Grotesk', sans-serif; font-size: 15px; color: var(--qs-ink);
+    background: #F3F0E6; border-bottom: 2px solid var(--qs-ink); position: relative;
+  }
+  table.qs-grid thead tr.qs-group-header th .qs-remove-group{
+    position:absolute; top:4px; right:6px; background:none; border:none; color: var(--qs-red); cursor:pointer; font-size: 13px; opacity:.7;
+  }
+  table.qs-grid thead tr.qs-group-header th .qs-remove-group:hover{ opacity:1; }
+  table.qs-grid tbody tr.qs-section-divider td{
+    border-bottom: none; padding: 14px 12px 4px; font-family:'IBM Plex Mono', monospace; font-size: 10.5px;
+    color: var(--qs-amber-dark); text-transform: uppercase; letter-spacing: .06em; text-align:left;
+  }
+  table.qs-grid td input[type="number"], table.qs-grid td select{ text-align:center; max-width: 110px; margin: 0 auto; }
+  table.qs-grid td select.qs-time-select{ max-width: 150px; }
+  tr.qs-total-row td{
+    font-family:'IBM Plex Mono', monospace; font-weight: 700; font-size: 16px; color: var(--qs-amber-dark);
+    background: #FAF3E4; border-top: 2px solid var(--qs-amber); border-bottom: 2px solid var(--qs-amber);
+  }
+  tr.qs-total-row td.qs-row-label{ color: var(--qs-ink); text-transform: none; font-size: 13px; }
+
+  .qs-empty{ color: var(--qs-ink-soft); font-style: italic; padding: 16px 4px; }
+
+  .qs-toast{
+    position: fixed; bottom: 20px; right: 20px; background: var(--qs-ink); color:#fff;
+    padding: 10px 16px; border-radius: 8px; font-size: 13.5px; box-shadow: var(--qs-shadow);
+    opacity:0; transform: translateY(6px); transition: all .25s ease; pointer-events:none; z-index: 999;
+  }
+  .qs-toast.qs-show{ opacity:1; transform: translateY(0); }
+
+  @media (max-width: 700px){ .qs-manage-row{ flex-direction:column; } }
+</style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">वि</span>
+      <span class="brand-text">
+        <span class="brand-nepali">नेपाली पात्रो</span>
+        <span class="brand-english">Nepali Patro</span>
+      </span>
+    </a>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="index.html">Calendar</a></li>
+        <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="#">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="unicode.html">Nepali Unicode</a></li>
+            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="date-difference.html">Date Difference</a></li>
+            <li><a href="age-calculator.html">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href=" nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="rashifal.html">राशिफल</a></li>
+        <li><a href="weather.html">मौसम</a></li>
+        <li><a href="goldsilver.html">सुनचादी</a></li>
+        <li class="dropdown">
+          <a href="#">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+            <li><a href="event-remainder.html">Event Remainder</a></li>
+            <li><a href="quiz-scheduler.html" class="active">Quiz Scheduler</a></li>
+            <li><a href="exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="qs-page-body">
+<div class="qs-shell">
+
+  <div class="qs-header">
+    <div>
+      <h1>Quiz Scheduler Dashboard</h1>
+      <p>Groups run across the top. Set marks and timing per group, per round — totals and timers run live.</p>
+    </div>
+    <div class="qs-clock" id="qs-clock">
+      <div class="qs-clock-time" id="qs-clock-time">--:--:--</div>
+      <div class="qs-clock-date" id="qs-clock-date">-- --- ----</div>
+    </div>
+  </div>
+
+  <!-- Manage groups & rounds -->
+  <div class="qs-card">
+    <div class="qs-manage-row">
+      <div class="qs-manage-col">
+        <h2><span class="qs-num">01</span> Groups</h2>
+        <p class="qs-sub">These become the columns of the dashboard below.</p>
+        <div class="qs-tag-list" id="qs-group-tags"></div>
+        <div class="qs-inline-form">
+          <input type="text" id="qs-new-group" placeholder="e.g. Group C">
+          <button class="qs-btn" id="qs-add-group">Add Group</button>
+        </div>
+      </div>
+      <div class="qs-manage-col">
+        <h2><span class="qs-num">02</span> Rounds</h2>
+        <p class="qs-sub">Each round gets its own dashboard tab below.</p>
+        <div class="qs-round-tabs" id="qs-round-tabs"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timer -->
+  <div class="qs-card">
+    <h2><span class="qs-num">03</span> Question Timer</h2>
+    <p class="qs-sub">Pick a group. The timer pulls its Normal / Pass question minutes straight from the dashboard below, and can auto-switch from Normal to Pass questions when time runs out.</p>
+
+    <div class="qs-timer-layout">
+      <div class="qs-timer-config">
+        <div class="qs-field">
+          <label for="qs-timer-group">Group</label>
+          <select id="qs-timer-group"></select>
+        </div>
+        <div class="qs-field">
+          <label for="qs-timer-phase-select">Start Phase</label>
+          <select id="qs-timer-phase-select">
+            <option value="normal">Normal Questions</option>
+            <option value="pass">Pass Questions</option>
+          </select>
+        </div>
+        <div class="qs-timer-checkbox">
+          <input type="checkbox" id="qs-auto-advance" checked>
+          <label for="qs-auto-advance" style="margin:0; text-transform:none; font-weight:500; color:var(--qs-ink);">Auto-start Pass Questions when Normal time ends</label>
+        </div>
+      </div>
+
+      <div class="qs-timer-display">
+        <div class="qs-timer-phase qs-phase-normal" id="qs-timer-phase-label">Normal Questions</div>
+        <div class="qs-timer-clock" id="qs-timer-clock">00:00</div>
+        <div class="qs-timer-progress"><div class="qs-timer-progress-bar" id="qs-timer-progress-bar"></div></div>
+        <div class="qs-timer-controls">
+          <button class="qs-btn" id="qs-timer-start">Start</button>
+          <button class="qs-btn qs-btn-ghost" id="qs-timer-pause" disabled>Pause</button>
+          <button class="qs-btn qs-btn-danger" id="qs-timer-reset">Reset</button>
+        </div>
+        <div class="qs-timer-status" id="qs-timer-status">Select a group and press Start.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="qs-card">
+    <h2><span class="qs-num">04</span> <span id="qs-current-round-label">Round</span> Dashboard</h2>
+    <p class="qs-sub">Edit any cell — the Total Marks row recalculates automatically and saves as you go.</p>
+    <div id="qs-dashboard-area"></div>
+  </div>
+
+</div>
+</div>
+
+<div class="qs-toast" id="qs-toast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  var GROUPS_KEY = 'qsd_groups_v1';
+  var ROUNDS_KEY = 'qsd_rounds_v1';
+  var DATA_KEY   = 'qsd_data_v1';
+  var MARKS_OPTIONS = [1,2,3,4,5,10,15,20,25,50];
+  var TIME_OPTIONS  = [0.25,0.5,0.75,1,1.5,2,2.5,3,4,5,7,10,15,20,25,30,45,60];
+
+  function formatTimeOptionLabel(minutes){
+    if(minutes < 1){
+      return minutes + ' min (' + Math.round(minutes * 60) + ' sec)';
+    }
+    return minutes + ' min';
+  }
+
+  var FIELDS = [
+    { key: 'normalTime',  label: 'Normal Question Time (min)', type: 'time',   section: 'Timing' },
+    { key: 'normalCount', label: 'Number of Questions',        type: 'number', section: 'Timing' },
+    { key: 'normalMarks', label: 'Marks per Question',         type: 'marks',  section: 'Scoring' },
+    { key: 'passTime',    label: 'Pass Question Time (min)',   type: 'time',   section: 'Pass Questions' },
+    { key: 'passCount',   label: 'Number of Pass Questions',   type: 'number', section: 'Pass Questions' },
+    { key: 'passMarks',   label: 'Marks per Pass Question',    type: 'marks',  section: 'Pass Questions' }
+  ];
+
+  function loadJSON(key, fallback){
+    try{ var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+    catch(e){ return fallback; }
+  }
+  function saveJSON(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+
+  var groups = loadJSON(GROUPS_KEY, ['Group A', 'Group B', 'Group C']);
+  var rounds = loadJSON(ROUNDS_KEY, ['Round 1', 'Round 2']);
+  var data   = loadJSON(DATA_KEY, {});
+  var currentRound = rounds[0] || '';
+
+  var $ = function(id){ return document.getElementById(id); };
+  var groupTags   = $('qs-group-tags');
+  var roundTabs   = $('qs-round-tabs');
+  var dashArea    = $('qs-dashboard-area');
+  var roundLabel  = $('qs-current-round-label');
+  var toast       = $('qs-toast');
+
+  var toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('qs-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('qs-show'); }, 2200);
+  }
+
+  function emptyGroupData(){
+    return { normalTime:0, normalCount:0, normalMarks:MARKS_OPTIONS[0], passTime:0, passCount:0, passMarks:MARKS_OPTIONS[0] };
+  }
+
+  function ensureData(){
+    rounds.forEach(function(r){
+      if(!data[r]) data[r] = {};
+      groups.forEach(function(g){
+        if(!data[r][g]) data[r][g] = emptyGroupData();
+      });
+    });
+  }
+  function persist(){ saveJSON(GROUPS_KEY, groups); saveJSON(ROUNDS_KEY, rounds); saveJSON(DATA_KEY, data); }
+
+  /* ===================== LIVE CLOCK ===================== */
+  var clockTimeEl = $('qs-clock-time');
+  var clockDateEl = $('qs-clock-date');
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function tickClock(){
+    var now = new Date();
+    clockTimeEl.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+    clockDateEl.textContent = DAYS[now.getDay()] + ' ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  /* ===================== GROUPS ===================== */
+  function renderGroupTags(){
+    groupTags.innerHTML = '';
+    groups.forEach(function(g){
+      var span = document.createElement('span');
+      span.className = 'qs-tag';
+      span.textContent = g + ' ';
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.innerHTML = '&times;'; btn.title = 'Remove group';
+      btn.addEventListener('click', function(){
+        if(!confirm('Remove "' + g + '"? Its data in every round will be deleted.')) return;
+        groups = groups.filter(function(x){ return x !== g; });
+        rounds.forEach(function(r){ if(data[r]) delete data[r][g]; });
+        if(timerState.group === g) resetTimer();
+        persist();
+        renderAll();
+      });
+      span.appendChild(btn);
+      groupTags.appendChild(span);
+    });
+  }
+
+  $('qs-add-group').addEventListener('click', function(){
+    var input = $('qs-new-group');
+    var name = input.value.trim();
+    if(!name) return;
+    if(groups.indexOf(name) === -1){
+      groups.push(name); ensureData(); persist(); renderAll();
+      showToast('Group added.');
+    }
+    input.value = '';
+  });
+
+  /* ===================== ROUNDS ===================== */
+  function renderRoundTabs(){
+    roundTabs.innerHTML = '';
+    rounds.forEach(function(r){
+      var tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'qs-round-tab' + (r === currentRound ? ' qs-active' : '');
+      tab.textContent = r;
+
+      var removeBtn = document.createElement('button');
+      removeBtn.type = 'button'; removeBtn.className = 'qs-tab-remove'; removeBtn.innerHTML = '&times;';
+      removeBtn.title = 'Remove round';
+      removeBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(!confirm('Remove "' + r + '"? Its dashboard data will be deleted.')) return;
+        rounds = rounds.filter(function(x){ return x !== r; });
+        delete data[r];
+        if(currentRound === r){ currentRound = rounds[0] || ''; resetTimer(); }
+        persist();
+        renderAll();
+      });
+      tab.appendChild(removeBtn);
+
+      tab.addEventListener('click', function(){
+        currentRound = r;
+        persist();
+        resetTimer();
+        renderAll();
+      });
+      roundTabs.appendChild(tab);
+    });
+
+    var addBtn = document.createElement('button');
+    addBtn.type = 'button'; addBtn.className = 'qs-round-tab-add'; addBtn.textContent = '+ Round';
+    addBtn.addEventListener('click', function(){
+      var name = prompt('New round name (e.g. Round 3):');
+      if(!name) return;
+      name = name.trim();
+      if(!name) return;
+      if(rounds.indexOf(name) === -1){
+        rounds.push(name); ensureData(); currentRound = name; persist(); renderAll();
+        showToast('Round added.');
+      }
+    });
+    roundTabs.appendChild(addBtn);
+  }
+
+  /* ===================== DASHBOARD GRID ===================== */
+  function calcTotal(cell){
+    var total = (parseFloat(cell.normalCount)||0) * (parseFloat(cell.normalMarks)||0);
+    total += (parseFloat(cell.passCount)||0) * (parseFloat(cell.passMarks)||0);
+    return Math.round(total * 100) / 100;
+  }
+
+  function makeNumberInput(round, group, field){
+    var input = document.createElement('input');
+    input.type = 'number'; input.min = '0';
+    input.value = data[round][group][field.key];
+    input.addEventListener('input', function(){
+      data[round][group][field.key] = parseFloat(input.value) || 0;
+      persist();
+      updateTotalsRow();
+      refreshTimerConfigLabel();
+    });
+    return input;
+  }
+
+  function makeTimeSelect(round, group, field){
+    var select = document.createElement('select');
+    select.className = 'qs-time-select';
+    var currentVal = parseFloat(data[round][group][field.key]) || 0;
+    var options = TIME_OPTIONS.slice();
+
+    // If a previously-saved value (e.g. from free typing) isn't one of the presets, keep it selectable.
+    if(currentVal > 0 && options.indexOf(currentVal) === -1){
+      options.push(currentVal);
+      options.sort(function(a,b){ return a - b; });
+    }
+
+    var zeroOpt = document.createElement('option');
+    zeroOpt.value = 0; zeroOpt.textContent = '0 min (off)';
+    if(currentVal === 0) zeroOpt.selected = true;
+    select.appendChild(zeroOpt);
+
+    options.forEach(function(m){
+      var opt = document.createElement('option');
+      opt.value = m; opt.textContent = formatTimeOptionLabel(m);
+      if(currentVal === m) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.addEventListener('change', function(){
+      data[round][group][field.key] = parseFloat(select.value) || 0;
+      persist();
+      updateTotalsRow();
+      refreshTimerConfigLabel();
+    });
+    return select;
+  }
+
+  function makeMarksSelect(round, group, field){
+    var select = document.createElement('select');
+    MARKS_OPTIONS.forEach(function(m){
+      var opt = document.createElement('option');
+      opt.value = m; opt.textContent = m;
+      if(parseFloat(data[round][group][field.key]) === m) opt.selected = true;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', function(){
+      data[round][group][field.key] = parseFloat(select.value);
+      persist();
+      updateTotalsRow();
+    });
+    return select;
+  }
+
+  var totalCellRefs = {};
+  function updateTotalsRow(){
+    groups.forEach(function(g){
+      if(data[currentRound] && data[currentRound][g] && totalCellRefs[g]){
+        totalCellRefs[g].textContent = calcTotal(data[currentRound][g]);
+      }
+    });
+  }
+
+  function renderDashboard(){
+    dashArea.innerHTML = '';
+    totalCellRefs = {};
+    roundLabel.textContent = currentRound || 'No round selected';
+
+    if(!currentRound){
+      dashArea.innerHTML = '<div class="qs-empty">Add a round above to start building its dashboard.</div>';
+      return;
+    }
+    if(groups.length === 0){
+      dashArea.innerHTML = '<div class="qs-empty">Add at least one group above to build this round\u2019s dashboard.</div>';
+      return;
+    }
+
+    var wrap = document.createElement('div');
+    wrap.className = 'qs-grid-wrap';
+    var table = document.createElement('table');
+    table.className = 'qs-grid';
+
+    var thead = document.createElement('thead');
+    var headerRow = document.createElement('tr');
+    headerRow.className = 'qs-group-header';
+    var blankTh = document.createElement('th');
+    blankTh.className = 'qs-row-label'; blankTh.textContent = 'Setting';
+    headerRow.appendChild(blankTh);
+
+    groups.forEach(function(g){
+      var th = document.createElement('th');
+      th.textContent = g;
+      var rm = document.createElement('button');
+      rm.type = 'button'; rm.className = 'qs-remove-group'; rm.innerHTML = '&times;'; rm.title = 'Remove ' + g;
+      rm.addEventListener('click', function(){
+        if(!confirm('Remove "' + g + '"? Its data in every round will be deleted.')) return;
+        groups = groups.filter(function(x){ return x !== g; });
+        rounds.forEach(function(r){ if(data[r]) delete data[r][g]; });
+        if(timerState.group === g) resetTimer();
+        persist();
+        renderAll();
+      });
+      th.appendChild(rm);
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var lastSection = null;
+    FIELDS.forEach(function(field){
+      if(field.section !== lastSection){
+        var dividerRow = document.createElement('tr');
+        dividerRow.className = 'qs-section-divider';
+        var dTd = document.createElement('td');
+        dTd.colSpan = groups.length + 1; dTd.textContent = field.section;
+        dividerRow.appendChild(dTd);
+        tbody.appendChild(dividerRow);
+        lastSection = field.section;
+      }
+      var row = document.createElement('tr');
+      var labelTd = document.createElement('td');
+      labelTd.className = 'qs-row-label'; labelTd.textContent = field.label;
+      row.appendChild(labelTd);
+      groups.forEach(function(g){
+        var td = document.createElement('td');
+        var control = field.type === 'marks' ? makeMarksSelect(currentRound, g, field)
+          : field.type === 'time' ? makeTimeSelect(currentRound, g, field)
+          : makeNumberInput(currentRound, g, field);
+        td.appendChild(control);
+        row.appendChild(td);
+      });
+      tbody.appendChild(row);
+    });
+
+    var totalRow = document.createElement('tr');
+    totalRow.className = 'qs-total-row';
+    var totalLabelTd = document.createElement('td');
+    totalLabelTd.className = 'qs-row-label'; totalLabelTd.textContent = 'Total Marks';
+    totalRow.appendChild(totalLabelTd);
+    groups.forEach(function(g){
+      var td = document.createElement('td');
+      td.textContent = calcTotal(data[currentRound][g]);
+      totalCellRefs[g] = td;
+      totalRow.appendChild(td);
+    });
+    tbody.appendChild(totalRow);
+
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    dashArea.appendChild(wrap);
+  }
+
+  /* ===================== TIMER ===================== */
+  var timerGroupSelect  = $('qs-timer-group');
+  var timerPhaseSelect  = $('qs-timer-phase-select');
+  var autoAdvanceBox    = $('qs-auto-advance');
+  var timerPhaseLabel   = $('qs-timer-phase-label');
+  var timerClockEl      = $('qs-timer-clock');
+  var timerProgressBar  = $('qs-timer-progress-bar');
+  var timerStartBtn     = $('qs-timer-start');
+  var timerPauseBtn     = $('qs-timer-pause');
+  var timerResetBtn     = $('qs-timer-reset');
+  var timerStatusEl     = $('qs-timer-status');
+
+  var timerState = {
+    group: null,
+    phase: 'normal',      // 'normal' | 'pass' | 'done'
+    remaining: 0,         // seconds left
+    totalForPhase: 0,     // seconds, for progress bar
+    running: false,
+    intervalId: null
+  };
+
+  function renderTimerGroupOptions(){
+    var current = timerGroupSelect.value;
+    timerGroupSelect.innerHTML = '<option value="">— choose —</option>';
+    groups.forEach(function(g){
+      var opt = document.createElement('option');
+      opt.value = g; opt.textContent = g;
+      timerGroupSelect.appendChild(opt);
+    });
+    if(groups.indexOf(current) !== -1) timerGroupSelect.value = current;
+  }
+
+  function getPhaseSeconds(group, phase){
+    if(!currentRound || !data[currentRound] || !data[currentRound][group]) return 0;
+    var cell = data[currentRound][group];
+    var minutes = phase === 'pass' ? (parseFloat(cell.passTime) || 0) : (parseFloat(cell.normalTime) || 0);
+    return Math.round(minutes * 60);
+  }
+
+  function formatTime(totalSeconds){
+    var m = Math.floor(totalSeconds / 60);
+    var s = totalSeconds % 60;
+    return pad(m) + ':' + pad(s);
+  }
+
+  function refreshTimerConfigLabel(){
+    // if the currently loaded group/phase's minutes changed in the dashboard while idle, refresh the shown time
+    if(!timerState.running && timerState.group){
+      var secs = getPhaseSeconds(timerState.group, timerState.phase);
+      timerState.remaining = secs;
+      timerState.totalForPhase = secs;
+      renderTimerFace();
+    }
+  }
+
+  function setPhaseVisuals(phase){
+    timerPhaseLabel.className = 'qs-timer-phase qs-phase-' + phase;
+    timerPhaseLabel.textContent = phase === 'normal' ? 'Normal Questions' : (phase === 'pass' ? 'Pass Questions' : 'Finished');
+    timerProgressBar.className = 'qs-timer-progress-bar qs-phase-' + phase;
+  }
+
+  function renderTimerFace(){
+    timerClockEl.textContent = formatTime(Math.max(timerState.remaining, 0));
+    timerClockEl.classList.toggle('qs-warning', timerState.running && timerState.remaining <= 10 && timerState.remaining > 0);
+    setPhaseVisuals(timerState.phase);
+    var pct = timerState.totalForPhase > 0 ? (timerState.remaining / timerState.totalForPhase) * 100 : 0;
+    timerProgressBar.style.width = Math.max(0, Math.min(100, pct)) + '%';
+  }
+
+  function beep(){
+    try{
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + 0.5);
+    }catch(e){ /* audio unsupported, ignore */ }
+  }
+
+  function stopInterval(){
+    if(timerState.intervalId){ clearInterval(timerState.intervalId); timerState.intervalId = null; }
+  }
+
+  function loadPhase(group, phase, autoStart){
+    timerState.group = group;
+    timerState.phase = phase;
+    var secs = getPhaseSeconds(group, phase);
+    timerState.remaining = secs;
+    timerState.totalForPhase = secs;
+    renderTimerFace();
+    if(secs === 0){
+      timerStatusEl.textContent = 'No time configured for ' + (phase === 'normal' ? 'Normal' : 'Pass') + ' Questions for ' + group + ' — set it in the dashboard below.';
+    }else{
+      timerStatusEl.textContent = autoStart ? 'Running: ' + group + ' — ' + (phase === 'normal' ? 'Normal' : 'Pass') + ' Questions.' : 'Ready. Press Start.';
+    }
+    if(autoStart && secs > 0){ startCountdown(); }
+  }
+
+  function startCountdown(){
+    if(timerState.remaining <= 0){
+      showToast('Set a time greater than 0 minutes first.');
+      return;
+    }
+    timerState.running = true;
+    timerStartBtn.disabled = true;
+    timerPauseBtn.disabled = false;
+    timerGroupSelect.disabled = true;
+    timerPhaseSelect.disabled = true;
+    timerStatusEl.textContent = 'Running: ' + timerState.group + ' — ' + (timerState.phase === 'normal' ? 'Normal' : 'Pass') + ' Questions.';
+
+    stopInterval();
+    timerState.intervalId = setInterval(function(){
+      timerState.remaining -= 1;
+      if(timerState.remaining <= 0){
+        timerState.remaining = 0;
+        renderTimerFace();
+        stopInterval();
+        timerState.running = false;
+        beep();
+        handlePhaseComplete();
+        return;
+      }
+      renderTimerFace();
+    }, 1000);
+  }
+
+  function pauseCountdown(){
+    timerState.running = false;
+    stopInterval();
+    timerStartBtn.disabled = false;
+    timerStartBtn.textContent = 'Resume';
+    timerPauseBtn.disabled = true;
+    timerStatusEl.textContent = 'Paused.';
+  }
+
+  function resetTimer(){
+    stopInterval();
+    timerState.running = false;
+    timerState.phase = timerPhaseSelect.value || 'normal';
+    var group = timerGroupSelect.value || null;
+    timerState.group = group;
+    var secs = group ? getPhaseSeconds(group, timerState.phase) : 0;
+    timerState.remaining = secs;
+    timerState.totalForPhase = secs;
+    renderTimerFace();
+    timerStartBtn.disabled = false;
+    timerStartBtn.textContent = 'Start';
+    timerPauseBtn.disabled = true;
+    timerGroupSelect.disabled = false;
+    timerPhaseSelect.disabled = false;
+    timerStatusEl.textContent = group ? 'Ready. Press Start.' : 'Select a group and press Start.';
+  }
+
+  function handlePhaseComplete(){
+    timerGroupSelect.disabled = false;
+    timerPhaseSelect.disabled = false;
+    timerStartBtn.disabled = false;
+    timerStartBtn.textContent = 'Start';
+    timerPauseBtn.disabled = true;
+
+    if(timerState.phase === 'normal' && autoAdvanceBox.checked){
+      var passSecs = getPhaseSeconds(timerState.group, 'pass');
+      if(passSecs > 0){
+        showToast('Normal Questions time is up — starting Pass Questions.');
+        timerPhaseSelect.value = 'pass';
+        setTimeout(function(){ loadPhase(timerState.group, 'pass', true); }, 1200);
+        return;
+      }
+    }
+    timerState.phase = 'done';
+    setPhaseVisuals('done');
+    timerStatusEl.textContent = 'Time is up for ' + timerState.group + '.';
+    showToast('Time is up for ' + timerState.group + '.');
+  }
+
+  timerGroupSelect.addEventListener('change', function(){
+    resetTimer();
+  });
+  timerPhaseSelect.addEventListener('change', function(){
+    resetTimer();
+  });
+
+  timerStartBtn.addEventListener('click', function(){
+    var group = timerGroupSelect.value;
+    if(!group){ showToast('Please choose a group first.'); return; }
+    if(timerState.remaining > 0 && timerState.group === group && timerState.phase === (timerPhaseSelect.value)){
+      startCountdown();
+    }else{
+      loadPhase(group, timerPhaseSelect.value, true);
+    }
+  });
+  timerPauseBtn.addEventListener('click', pauseCountdown);
+  timerResetBtn.addEventListener('click', resetTimer);
+
+  /* ===================== MASTER RENDER ===================== */
+  function renderAll(){
+    ensureData();
+    renderGroupTags();
+    renderRoundTabs();
+    renderDashboard();
+    renderTimerGroupOptions();
+  }
+
+  renderAll();
+  resetTimer();
+})();
+</script>
+
+<script>
+  (function(){
+    var hamburger = document.getElementById('hamburgerBtn');
+    var menuWrapper = document.getElementById('menuWrapper');
+    if(hamburger && menuWrapper){
+      hamburger.addEventListener('click', function(){
+        menuWrapper.classList.toggle('open');
+      });
+    }
+  })();
+</script>
+
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>

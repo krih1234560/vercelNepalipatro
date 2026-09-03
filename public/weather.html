@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+
+<!--Google Analytics Tag-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+<!-- Google Analytics Tag-->
+
+    
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nepali Patro">
+<meta name="theme-color" content="#123b6d">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- PWA Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================
+         TITLE (Enhanced with keywords)
+    ============================================================ -->
+    <title>मौसम · Nepal Weather Forecast - Sunrise, Sunset, Temperature</title>
+
+    <!-- ============================================================
+         META DESCRIPTION (Rich, keyword-focused)
+    ============================================================ -->
+    <meta name="description" content="नेपालको काठमाडौं, पोखरा, विराटनगर लगायतका शहरहरूको मौसम, सूर्योदय र सूर्यास्त। Nepal weather forecast, temperature, humidity, wind speed with real-time API. आजको मौसम पूर्वानुमान हेर्नुहोस्।" />
+
+    <!-- ============================================================
+         ROBOTS (Allow indexing)
+    ============================================================ -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+    <!-- ============================================================
+         CANONICAL URL (Replace with your actual domain)
+    ============================================================ -->
+    <link rel="canonical" href="https://nepalipatro.app/weather.html" />
+
+    <!-- ============================================================
+         OPEN GRAPH / SOCIAL MEDIA
+    ============================================================ -->
+    <meta property="og:title" content="मौसम · Nepal Weather Forecast - Sunrise, Sunset, Temperature" />
+    <meta property="og:description" content="नेपालको काठमाडौं, पोखरा, विराटनगर लगायतका शहरहरूको मौसम, सूर्योदय र सूर्यास्त। Nepal weather forecast, temperature, humidity, wind speed with real-time API." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nepalipatro.app/weather.html" />
+    <meta property="og:image" content="https://nepalipatro.app/images/weather-og.jpg" />
+    <meta property="og:locale" content="ne_NP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="मौसम · Nepal Weather Forecast" />
+    <meta name="twitter:description" content="नेपालको शहरहरूको मौसम, सूर्योदय र सूर्यास्त। Real-time weather forecast." />
+
+    <!-- ============================================================
+         SCHEMA.ORG STRUCTURED DATA
+    ============================================================ -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Nepal Weather - मौसम",
+            "alternateName": "Nepali Weather Forecast",
+            "applicationCategory": "WeatherApplication",
+            "operatingSystem": "Web",
+            "url": "https://nepalipatro.app/weather.html",
+            "description": "Get real-time weather, sunrise, sunset, temperature, humidity and wind speed for cities in Nepal using Open-Meteo API.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "inLanguage": ["ne", "en"],
+            "about": {
+                "@type": "Thing",
+                "name": "Nepal Weather",
+                "description": "Weather information for Nepali cities including sunrise, sunset, temperature, humidity and wind speed."
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "नेपाली पात्रो",
+                "item": "https://nepalipatro.app/index.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "मौसम",
+                "item": "https://nepalipatro.app/weather.html"
+            }
+        ]
+    }
+    </script>
+
+    <!-- ============================================================
+         EXISTING STYLES (unchanged)
+    ============================================================ -->
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f0f4fa;
+            color: #172033;
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans Devanagari', system-ui, sans-serif;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e4e9f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .nav {
+            max-width: 1240px;
+            margin: auto;
+            min-height: 72px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 4px 8px 4px 4px;
+            transition: background 0.15s;
+        }
+        .brand:hover {
+            background: #eef4fb;
+        }
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: #f4aa2a;
+            color: #123b6d;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 22px;
+            box-shadow: 0 6px 14px rgba(244, 170, 42, 0.25);
+            transition: transform 0.2s;
+        }
+        .brand:hover .brand-icon {
+            transform: scale(1.05);
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .brand-nepali {
+            font-size: 20px;
+            font-weight: 800;
+            color: #123b6d;
+            letter-spacing: 0.3px;
+        }
+        .brand-english {
+            font-size: 12px;
+            font-weight: 600;
+            color: #627083;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        .brand-english span {
+            color: #c62828;
+            font-weight: 700;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            padding: 8px 6px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .hamburger:hover {
+            background: #eef4fb;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3.5px;
+            background: #172033;
+            border-radius: 4px;
+            transition: 0.25s ease;
+        }
+
+        .menu-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #172033;
+            transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .menu a:hover {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        .menu a.active {
+            background: #eef4fb;
+            color: #123b6d;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown>a:after {
+            content: "▾";
+            font-size: 11px;
+            margin-left: 6px;
+            opacity: 0.6;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 210px;
+            padding: 8px;
+            margin: 6px 0 0;
+            list-style: none;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(18, 59, 109, 0.10);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+        .dropdown-menu a:hover {
+            background: #f0f4fa;
+        }
+
+        .year-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 4px;
+        }
+        .year-selector label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #172033;
+        }
+        .year-selector select {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #d0d7e2;
+            font-size: 14px;
+            font-weight: 600;
+            background: #fff;
+            cursor: pointer;
+            color: #123b6d;
+            transition: border 0.2s;
+        }
+        .year-selector select:focus {
+            outline: none;
+            border-color: #f4aa2a;
+            box-shadow: 0 0 0 3px rgba(244, 170, 42, 0.2);
+        }
+
+        @media (max-width: 820px) {
+            .hamburger {
+                display: flex;
+            }
+            .menu-wrapper {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                background: #fff;
+                padding: 16px 0 20px;
+                border-top: 1px solid #e4e9f0;
+                margin-top: 4px;
+            }
+            .menu-wrapper.open {
+              display: flex;
+              max-height: calc(100vh - 72px);
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
+            }
+            .menu {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                gap: 2px;
+            }
+            .menu a {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 10px;
+                white-space: normal;
+            }
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: 0;
+                padding-left: 20px;
+                display: none;
+                background: transparent;
+            }
+            .dropdown:hover .dropdown-menu,
+            .dropdown:focus-within .dropdown-menu {
+                display: block;
+            }
+            .dropdown>a:after {
+                content: "▾";
+            }
+            .year-selector {
+                margin-left: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 8px 0 4px;
+                border-top: 1px solid #eee;
+                margin-top: 8px;
+                gap: 10px;
+            }
+            .year-selector select {
+                padding: 8px 14px;
+                font-size: 15px;
+                flex: 1;
+                min-width: 100px;
+            }
+        }
+
+        /* ----- MAIN CONTENT ----- */
+        .wrap {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .page-header h1 {
+            color: #c62828;
+            font-size: 2.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .page-header h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #627083;
+        }
+        .page-header .sub-title {
+            color: #627083;
+            font-size: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        /* ----- CONTROLS ----- */
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem 2rem;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px #00000006;
+        }
+        .controls-row .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .controls-row .control-group label {
+            font-weight: 600;
+            color: #172033;
+            font-size: 0.95rem;
+        }
+        .controls-row .control-group select,
+        .controls-row .control-group input {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d0d7e2;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            background: #f8faff;
+            color: #172033;
+            transition: border 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .controls-row .control-group select:focus,
+        .controls-row .control-group input:focus {
+            outline: none;
+            border-color: #f4aa2a;
+            box-shadow: 0 0 0 3px rgba(244, 170, 42, 0.15);
+        }
+        .controls-row .control-group select {
+            min-width: 140px;
+        }
+        .controls-row .control-group input[type="date"] {
+            min-width: 160px;
+        }
+
+        /* ----- WEATHER DISPLAY ----- */
+        .weather-card {
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 24px;
+            box-shadow: 0 7px 30px #0000000a;
+            padding: 2rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .weather-card:hover {
+            box-shadow: 0 12px 40px #00000012;
+        }
+
+        .weather-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem 0 1.5rem;
+            border-bottom: 2px solid #f0f4fa;
+        }
+        .weather-main .weather-icon {
+            font-size: 5rem;
+            line-height: 1;
+        }
+        .weather-main .weather-temp {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #123b6d;
+        }
+        .weather-main .weather-temp .degree {
+            font-size: 2rem;
+            color: #627083;
+        }
+        .weather-main .weather-desc {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #172033;
+        }
+        .weather-main .weather-city {
+            font-size: 1rem;
+            color: #627083;
+        }
+        .weather-main .sun-times {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+            color: #627083;
+        }
+        .weather-main .sun-times span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .weather-main .sun-times .sun-icon {
+            font-size: 1.2rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem 0 0.5rem;
+        }
+        .weather-detail-item {
+            text-align: center;
+            padding: 0.8rem;
+            background: #f8faff;
+            border-radius: 16px;
+            border: 1px solid #eef2f7;
+            transition: transform 0.2s;
+        }
+        .weather-detail-item:hover {
+            transform: translateY(-2px);
+        }
+        .weather-detail-item .detail-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .weather-detail-item .detail-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #627083;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .weather-detail-item .detail-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #172033;
+            margin-top: 0.1rem;
+        }
+
+        /* ----- 7-DAY FORECAST ----- */
+        .forecast-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f4fa;
+        }
+        .forecast-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #123b6d;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.8rem;
+        }
+        .forecast-day {
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 0.8rem 0.4rem;
+            text-align: center;
+            border: 1px solid #eef2f7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .forecast-day:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .forecast-day .day-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #627083;
+            text-transform: uppercase;
+        }
+        .forecast-day .day-icon {
+            font-size: 2rem;
+            display: block;
+            margin: 0.2rem 0;
+        }
+        .forecast-day .day-temp {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #172033;
+        }
+        .forecast-day .day-temp .hi {
+            color: #c62828;
+        }
+        .forecast-day .day-temp .lo {
+            color: #1976d2;
+        }
+        .forecast-day .day-sun {
+            font-size: 0.65rem;
+            color: #627083;
+            margin-top: 0.2rem;
+        }
+
+        /* ----- LOADER ----- */
+        .loader {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        .loader .spinner {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            border: 4px solid #e4e9f0;
+            border-top: 4px solid #c62828;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ----- STATUS ----- */
+        .status-msg {
+            color: #627083;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        .status-msg .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #e4e9f0;
+            border-top: 3px solid #c62828;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .status-msg .pulse-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4caf50;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+        .status-msg .error-text {
+            color: #c62828;
+        }
+
+        .refresh-btn {
+            background: #c62828;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 0.6rem 1.8rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
+        }
+        .refresh-btn:hover {
+            background: #a11f1f;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(198, 40, 40, 0.3);
+        }
+        .refresh-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .refresh-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 0;
+        }
+
+        .source-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .source-badge.demo {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .source-badge.fallback {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: #092746;
+            color: #dbe5ef;
+            padding: 35px 20px;
+            margin-top: 30px;
+        }
+        .footer {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer a {
+            color: #fff;
+        }
+
+        /* ----- SEO CONTENT (for better indexing) ----- */
+        .seo-content {
+            margin-top: 40px;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px #00000006;
+        }
+        .seo-content h2 {
+            color: #123b6d;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        .seo-content h3 {
+            color: #c62828;
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .seo-content p {
+            color: #3d4e66;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+        .seo-content ul {
+            padding-left: 1.5rem;
+            color: #3d4e66;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+        .seo-content .highlight-box {
+            background: #f5f9ff;
+            border-left: 4px solid #f4aa2a;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* ----- SEO NAVIGATION / INTERNAL LINKS ----- */
+        .breadcrumbs {
+            margin: 0 0 1.25rem;
+            font-size: 0.9rem;
+            color: #627083;
+        }
+
+        .breadcrumbs a {
+            color: #123b6d;
+            font-weight: 600;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .related-links {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px #00000006;
+        }
+
+        .related-links h2 {
+            color: #123b6d;
+            font-size: 1.35rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .related-links p {
+            color: #627083;
+            margin-bottom: 1rem;
+        }
+
+        .related-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 0.7rem;
+        }
+
+        .related-links-grid a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: #f8faff;
+            border: 1px solid #eef2f7;
+            border-radius: 10px;
+            color: #123b6d;
+            font-weight: 650;
+        }
+
+        .related-links-grid a:hover {
+            background: #eef4fb;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem;
+            }
+            .controls-row .control-group {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .controls-row .control-group select,
+            .controls-row .control-group input {
+                width: 100%;
+                min-width: unset;
+            }
+            .weather-main .weather-temp {
+                font-size: 2.5rem;
+            }
+            .weather-main .weather-icon {
+                font-size: 3.5rem;
+            }
+            .weather-main .sun-times {
+                flex-direction: column;
+                gap: 0.3rem;
+                align-items: center;
+            }
+            .weather-details {
+                grid-template-columns: 1fr 1fr;
+            }
+            .forecast-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .weather-card {
+                padding: 1.2rem;
+            }
+            .refresh-area {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .seo-content {
+                padding: 20px;
+            }
+            .seo-content h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="dark-mode.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+        <nav class="nav">
+            <a class="brand" id="brandLink" href="index.html" aria-label="नेपाली पात्रो मुख्य पृष्ठ">
+                <span class="brand-icon">म</span>
+                <span class="brand-text">
+                    <span class="brand-nepali">नेपाली पात्रो</span>
+                    <span class="brand-english">Nepali Patro · <span>Weather</span></span>
+                </span>
+            </a>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="menu-wrapper" id="menuWrapper">
+                <ul class="menu">
+                    <li><a href="index.html" class="calendar-link" id="calendarLink">Calendar</a></li>
+                    <li><a href="nepalsambat.html">नेपाल संवत</a></li>
+                    <li class="dropdown">
+                        <a href="#">Converter</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="unicode.html">Nepali Unicode</a></li>
+                            <li><a href="dateconverter.html">BS-AD Converter</a></li>
+                            <li><a href="date-difference.html">Date Difference</a></li>
+                            <li><a href="age-calculator.html">Age Calculator</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=" nepali-festivals.html">चाडपर्वहरु</a></li>
+                    <li><a href="nepali-holidays.html">बिदाहरु</a></li>
+                    <li><a href="rashifal.html">राशिफल</a></li>
+                    <li><a href="weather.html" class="active" aria-current="page">मौसम</a></li>
+                    <li><a href="goldsilver.html">सुनचादी</a></li>
+                    <li class="dropdown">
+                        <a href="#">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="kundali-generator.html">जन्म कुण्डली</a></li>
+                             <li><a href="event-remainder.html">Event Remainder</a></li>
+                            <li><a href="quiz-scheduler.html">Quiz Scheduler</a></li>
+                            <li><a href="exchange-rate.html">Currency Exchange Rate</a></li>
+                            <li><a href="nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="year-selector">
+                    <label for="yearSelect">वर्ष:</label>
+                    <select id="yearSelect">
+                        <option value="2083" selected>२०८३</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html">नेपाली पात्रो</a>
+            <span aria-hidden="true"> › </span>
+            <span>मौसम</span>
+        </nav>
+
+        <div class="page-header">
+            <h1>
+                🌤️ मौसम
+                <small>· Weather</small>
+            </h1>
+            <p class="sub-title">नेपालको कुनै पनि शहरको मौसम, सूर्योदय र सूर्यास्त हेर्नुहोस्</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-row">
+            <div class="control-group">
+                <label for="citySelect">🏙️ शहर:</label>
+                <select id="citySelect"></select>
+            </div>
+            <div class="control-group">
+                <label for="datePicker">📅 मिति:</label>
+                <input type="date" id="datePicker" />
+            </div>
+            <div class="control-group">
+                <button class="refresh-btn" id="refreshBtn">🔄 हेर्नुहोस्</button>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="refresh-area">
+            <span class="status-msg" id="statusMsg">
+                <span class="pulse-dot"></span> तयार
+            </span>
+        </div>
+
+        <!-- Weather Display -->
+        <div class="weather-card" id="weatherCard">
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                <p style="margin-top:1rem;color:#627083;">मौसम डाटा लोड हुँदै...</p>
+            </div>
+            <div id="weatherContent" style="display:none;">
+                <div class="weather-main" id="weatherMain"></div>
+                <div class="weather-details" id="weatherDetails"></div>
+                <div class="forecast-section" id="forecastSection">
+                    <h3>📆 ७-दिनको पूर्वानुमान · 7-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecastGrid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             SEO CONTENT SECTION (Helps with indexing & keyword density)
+        ============================================================ -->
+        <section class="seo-content" id="seoContent">
+            <h2>नेपालको मौसम · Nepal Weather Forecast</h2>
+            <p>
+                यस पृष्ठमा <strong><a href="weather.html">नेपालको मौसम (Nepal weather)</a></strong> को वास्तविक डाटा प्रस्तुत गरिएको छ।
+                <strong>काठमाडौं, पोखरा, विराटनगर, ललितपुर, भक्तपुर, भरतपुर, वीरगञ्ज, धरान, बुटवल, नेपालगञ्ज</strong>
+                लगायतका प्रमुख शहरहरूको <strong>तापक्रम (temperature), आर्द्रता (humidity), हावाको गति (wind speed),
+                सूर्योदय (sunrise) र सूर्यास्त (sunset)</strong> समय हेर्न सक्नुहुन्छ।
+            </p>
+
+            <div class="highlight-box">
+                <strong>🌡️ आजको मौसम:</strong> शहर र मिति चयन गर्नुहोस्, र <strong>Open-Meteo API</strong> बाट
+                प्रत्यक्ष डाटा ल्याएर मौसमको पूर्वानुमान देखाइन्छ। ७-दिनको पूर्वानुमान पनि उपलब्ध छ।
+            </div>
+
+            <h3>नेपालको मौसम किन महत्वपूर्ण छ?</h3>
+            <p>
+                <strong>मौसम (weather)</strong> को जानकारी नेपाली जीवनको अभिन्न अंग हो। <a href="nepali-holidays.html">बिदा र छुट्टी</a>, यात्रा, पर्यटन, निर्माण,
+                दैनिक योजनाहरू सबै मौसममा निर्भर हुन्छन्। यस पृष्ठले <strong>वास्तविक मौसम API</strong> मार्फत
+                सही र अद्यावधिक डाटा प्रदान गर्दछ, जसले गर्दा तपाईंले आफ्नो योजना बनाउन सजिलो हुन्छ।
+            </p>
+
+            <h3>मौसमका मुख्य तत्वहरू</h3>
+            <ul>
+                <li><strong>तापक्रम (Temperature):</strong> हालको, उच्चतम र न्यूनतम तापक्रम डिग्री सेल्सियसमा</li>
+                <li><strong>आर्द्रता (Humidity):</strong> हावामा रहेको नमीको मात्रा प्रतिशतमा</li>
+                <li><strong>हावाको गति (Wind Speed):</strong> किलोमिटर प्रति घण्टामा</li>
+                <li><strong>सूर्योदय र सूर्यास्त (Sunrise & Sunset):</strong> दिनको प्रकाशको समय</li>
+                <li><strong>मौसम अवस्था (Weather Condition):</strong> सफा, बदली, वर्षा, हिउँ, आँधी आदि</li>
+            </ul>
+
+            <h3>कसरी प्रयोग गर्ने?</h3>
+            <p>
+                १. <strong>शहर चयन</strong> गर्नुहोस् — काठमाडौं, पोखरा, विराटनगर आदि।<br />
+                २. <strong>मिति चयन</strong> गर्नुहोस् — आजको, भोलिको वा विगतको कुनै पनि मिति (पछिल्लो ३० दिन देखि अगाडि १६ दिन सम्म)।<br />
+                ३. <strong>"हेर्नुहोस्"</strong> बटन थिच्नुहोस् वा स्वत: परिवर्तन हुन्छ।<br />
+                ४. <strong>मौसम विवरण</strong> हेर्नुहोस् — तापक्रम, आर्द्रता, हावा, सूर्योदय/अस्त र ७-दिनको पूर्वानुमान।
+            </p>
+
+            <div class="highlight-box">
+                <strong>📌 लोकप्रिय खोजहरू:</strong>
+                काठमाडौंको मौसम, पोखराको मौसम, आजको मौसम, Nepal weather today, temperature in Kathmandu,
+                sunrise time Nepal, humidity Nepal, wind speed Nepal, weather forecast Nepal
+            </div>
+
+            <h3>API स्रोत</h3>
+            <p>
+                यस पृष्ठले <strong>Open-Meteo API</strong> को प्रयोग गर्दछ, जसले नि:शुल्क र भरपर्दो मौसम डाटा प्रदान गर्दछ।
+                डाटा प्रत्यक्ष API अनुरोधमार्फत ल्याइन्छ, जसले गर्दा कुनै पनि नमुना वा नक्कली डाटा देखाइँदैन।
+                API उपलब्ध नभएमा प्रयोगकर्तालाई स्पष्ट त्रुटि सन्देश देखाइन्छ।
+            </p>
+        </section>
+
+
+        <!-- ===== RELATED INTERNAL LINKS ===== -->
+        <section class="related-links" aria-labelledby="related-pages-title">
+            <h2 id="related-pages-title">नेपाली पात्रोका उपयोगी पृष्ठहरू</h2>
+            <p>मौसमसँगै पात्रो, पर्व, बिदा र अन्य दैनिक उपयोगी सेवाहरू हेर्नुहोस्।</p>
+            <div class="related-links-grid">
+                <a href="index.html">आजको नेपाली पात्रो</a>
+                <a href=" nepali-festivals.html">चाडपर्व र पर्वहरू</a>
+                <a href="nepali-holidays.html">नेपालका बिदाहरू</a>
+                <a href="nepalsambat.html">नेपाल संवत</a>
+                <a href="dateconverter.html">BS–AD मिति रूपान्तरण</a>
+                <a href="date-difference.html">मिति अन्तर गणना</a>
+                <a href="rashifal.html">आजको राशिफल</a>
+                <a href="goldsilver.html">सुनचाँदीको मूल्य</a>
+                <a href="exchange-rate.html">मुद्रा विनिमय दर</a>
+                <a href="nepali_fuel_rates.html">इन्धनको मूल्य</a>
+            </div>
+        </section>
+
+        <div class="disclaimer">
+            * मौसम डाटा Open-Meteo API बाट प्रत्यक्ष API अनुरोधमार्फत लिइएको हो। API उपलब्ध नभएमा नमुना डाटा देखाइँदैन।
+            Weather data is fetched directly from the Open-Meteo API. Demo/fake weather data is never shown.
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer">
+            <div><strong>नेपाली पात्रो</strong><br>Nepali Calendar &amp; Weather</div>
+            <div><a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener noreferrer">Open-Meteo API</a> · <a href="index.html">नेपाली पात्रो</a></div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ─── CITY DATA ──────────────────────────────────────────────
+            const cities = [
+                { name: 'काठमाडौं', nameEn: 'Kathmandu', lat: 27.7172, lon: 85.3240 },
+                { name: 'पोखरा', nameEn: 'Pokhara', lat: 28.2096, lon: 83.9856 },
+                { name: 'विराटनगर', nameEn: 'Biratnagar', lat: 26.4525, lon: 87.2718 },
+                { name: 'ललितपुर', nameEn: 'Lalitpur', lat: 27.6644, lon: 85.3188 },
+                { name: 'भक्तपुर', nameEn: 'Bhaktapur', lat: 27.6722, lon: 85.4278 },
+                { name: 'भरतपुर', nameEn: 'Bharatpur', lat: 27.6769, lon: 84.4357 },
+                { name: 'वीरगञ्ज', nameEn: 'Birgunj', lat: 27.0104, lon: 84.8677 },
+                { name: 'धरान', nameEn: 'Dharan', lat: 26.8123, lon: 87.2833 },
+                { name: 'बुटवल', nameEn: 'Butwal', lat: 27.6956, lon: 83.4530 },
+                { name: 'नेपालगञ्ज', nameEn: 'Nepalgunj', lat: 28.0500, lon: 81.6167 },
+                { name: 'जनकपुर', nameEn: 'Janakpur', lat: 26.7288, lon: 85.9263 },
+                { name: 'हेटौँडा', nameEn: 'Hetauda', lat: 27.4283, lon: 85.0322 },
+                { name: 'तानसेन', nameEn: 'Tansen', lat: 27.8740, lon: 83.5580 },
+                { name: 'इलाम', nameEn: 'Ilam', lat: 26.9080, lon: 87.9245 },
+                { name: 'धनगढी', nameEn: 'Dhangadhi', lat: 28.7004, lon: 80.5898 },
+                { name: 'दमक', nameEn: 'Damak', lat: 26.6570, lon: 87.6960 },
+                { name: 'कालैया', nameEn: 'Kalaiya', lat: 27.0360, lon: 85.0130 },
+                { name: 'जलेश्वर', nameEn: 'Jaleshwar', lat: 26.6510, lon: 85.8000 },
+                { name: 'बागलुङ', nameEn: 'Baglung', lat: 28.2710, lon: 83.5900 },
+                { name: 'दिपायल', nameEn: 'Dipayal', lat: 29.2600, lon: 80.9400 }
+            ];
+
+            // ─── WEATHER CODE MAPPING ──────────────────────────────────
+            const weatherCodes = {
+                0: { label: 'सफा', labelEn: 'Clear', icon: '☀️' },
+                1: { label: 'आंशिक बदली', labelEn: 'Partly cloudy', icon: '🌤️' },
+                2: { label: 'बदली', labelEn: 'Cloudy', icon: '⛅' },
+                3: { label: 'पूर्ण बदली', labelEn: 'Overcast', icon: '☁️' },
+                45: { label: 'कुहिरो', labelEn: 'Fog', icon: '🌫️' },
+                48: { label: 'कुहिरो', labelEn: 'Fog', icon: '🌫️' },
+                51: { label: 'हल्का पानी', labelEn: 'Drizzle', icon: '🌦️' },
+                53: { label: 'पानी', labelEn: 'Drizzle', icon: '🌧️' },
+                55: { label: 'पानी', labelEn: 'Drizzle', icon: '🌧️' },
+                61: { label: 'पानी', labelEn: 'Rain', icon: '🌧️' },
+                63: { label: 'पानी', labelEn: 'Rain', icon: '🌧️' },
+                65: { label: 'पानी', labelEn: 'Rain', icon: '🌧️' },
+                71: { label: 'हिउँ', labelEn: 'Snow', icon: '❄️' },
+                73: { label: 'हिउँ', labelEn: 'Snow', icon: '❄️' },
+                75: { label: 'हिउँ', labelEn: 'Snow', icon: '❄️' },
+                80: { label: 'पानी', labelEn: 'Rain showers', icon: '🌧️' },
+                81: { label: 'पानी', labelEn: 'Rain showers', icon: '🌧️' },
+                82: { label: 'पानी', labelEn: 'Rain showers', icon: '🌧️' },
+                95: { label: 'आँधी', labelEn: 'Thunderstorm', icon: '⛈️' },
+                96: { label: 'आँधी', labelEn: 'Thunderstorm', icon: '⛈️' },
+                99: { label: 'आँधी', labelEn: 'Thunderstorm', icon: '⛈️' }
+            };
+
+            function getWeatherInfo(code) {
+                return weatherCodes[code] || { label: 'अज्ञात', labelEn: 'Unknown', icon: '❓' };
+            }
+
+            // ─── DOM REFS ──────────────────────────────────────────────
+            const citySelect = document.getElementById('citySelect');
+            const datePicker = document.getElementById('datePicker');
+            const refreshBtn = document.getElementById('refreshBtn');
+            const statusMsg = document.getElementById('statusMsg');
+            const loader = document.getElementById('loader');
+            const weatherContent = document.getElementById('weatherContent');
+            const weatherMain = document.getElementById('weatherMain');
+            const weatherDetails = document.getElementById('weatherDetails');
+            const forecastGrid = document.getElementById('forecastGrid');
+
+            // ─── POPULATE CITY SELECT ──────────────────────────────────
+            cities.forEach((city, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.textContent = `${city.name} (${city.nameEn})`;
+                if (idx === 0) opt.selected = true;
+                citySelect.appendChild(opt);
+            });
+
+            // ─── SET DEFAULT DATE ──────────────────────────────────────
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            datePicker.value = `${year}-${month}-${day}`;
+
+            // ─── HELPER: format date ──────────────────────────────────
+            function formatDate(dateStr) {
+                try {
+                    const d = new Date(dateStr + 'T00:00:00');
+                    if (isNaN(d.getTime())) return dateStr;
+                    return d.toLocaleDateString('ne-NP', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                } catch (_) {
+                    return dateStr;
+                }
+            }
+
+            function getDayName(dateStr) {
+                try {
+                    const d = new Date(dateStr + 'T00:00:00');
+                    if (isNaN(d.getTime())) return dateStr;
+                    return d.toLocaleDateString('ne-NP', { weekday: 'short' });
+                } catch (_) {
+                    return dateStr;
+                }
+            }
+
+            // ─── HELPER: format time (HH:MM AM/PM) from ISO string ───
+            function formatTime(timeStr) {
+                if (!timeStr) return '--:--';
+                try {
+                    const d = new Date(timeStr);
+                    if (isNaN(d.getTime())) return timeStr;
+                    return d.toLocaleTimeString('ne-NP', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+                } catch (_) {
+                    return timeStr;
+                }
+            }
+
+            // ─── HELPER: format number ─────────────────────────────────
+            function formatNum(n) {
+                if (n === undefined || n === null || isNaN(n)) return '—';
+                return n.toFixed(1);
+            }
+
+            // ─── FETCH WEATHER ──────────────────────────────────────────
+            async function fetchWeather(cityIdx, dateStr, showStatus = true) {
+                if (showStatus) {
+                    statusMsg.innerHTML = '<span class="spinner"></span> लोड हुँदै...';
+                    refreshBtn.disabled = true;
+                    loader.style.display = 'block';
+                    weatherContent.style.display = 'none';
+                }
+
+                const city = cities[cityIdx];
+                if (!city) {
+                    statusMsg.innerHTML = '<span class="error-text">❌ शहर फेला परेन</span>';
+                    refreshBtn.disabled = false;
+                    return;
+                }
+
+                const selectedDate = new Date(dateStr + 'T00:00:00');
+                const todayDate = new Date();
+                todayDate.setHours(0, 0, 0, 0);
+
+                const diffDays = Math.round((selectedDate - todayDate) / (1000 * 60 * 60 * 24));
+
+                let apiUrl = '';
+                let isForecast = false;
+
+                // If date is today or in the future (up to 16 days), use forecast API
+                if (diffDays >= 0 && diffDays <= 16) {
+                    const forecastDays = Math.min(diffDays + 7, 16);
+                    apiUrl =
+                        `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}` +
+                        `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m` +
+                        `&daily=weather_code,temperature_2m_max,temperature_2m_min,temperature_2m_mean,relative_humidity_2m_max,wind_speed_10m_max,sunrise,sunset` +
+                        `&timezone=Asia/Kathmandu&forecast_days=${forecastDays}`;
+                    isForecast = true;
+                } else if (diffDays < 0 && diffDays >= -30) {
+                    // Past date (up to 30 days back) - use archive API
+                    const startDate = dateStr;
+                    const endDate = dateStr;
+                    apiUrl =
+                        `https://archive-api.open-meteo.com/v1/archive?latitude=${city.lat}&longitude=${city.lon}&start_date=${startDate}&end_date=${endDate}&daily=weather_code,temperature_2m_max,temperature_2m_min,temperature_2m_mean,relative_humidity_2m_max,wind_speed_10m_max,sunrise,sunset&timezone=Asia/Kathmandu`;
+                    isForecast = false;
+                } else {
+                    // Out of range - show error
+                    statusMsg.innerHTML =
+                        `<span class="error-text">⚠️ मिति सीमा बाहिर (पछिल्लो ३० दिन देखि अगाडि १६ दिन सम्म)</span>`;
+                    refreshBtn.disabled = false;
+                    loader.style.display = 'none';
+                    weatherContent.style.display = 'none';
+                    return;
+                }
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+
+                    // Process data
+                    const daily = data.daily || {};
+
+                    // Find the index for the selected date
+                    let idx = 0;
+                    if (daily.time && daily.time.length > 0) {
+                        const targetDate = new Date(dateStr + 'T00:00:00');
+                        let closestIdx = 0;
+                        let closestDiff = Infinity;
+                        daily.time.forEach((t, i) => {
+                            const d = new Date(t + 'T00:00:00');
+                            const diff = Math.abs(d - targetDate);
+                            if (diff < closestDiff) {
+                                closestDiff = diff;
+                                closestIdx = i;
+                            }
+                        });
+                        idx = closestIdx;
+                    }
+
+                    const weatherCode = daily.weather_code ? daily.weather_code[idx] : null;
+                    const tempMax = daily.temperature_2m_max ? daily.temperature_2m_max[idx] : null;
+                    const tempMin = daily.temperature_2m_min ? daily.temperature_2m_min[idx] : null;
+                    const tempMean = daily.temperature_2m_mean ? daily.temperature_2m_mean[idx] : null;
+                    const humidity = daily.relative_humidity_2m_max ? daily.relative_humidity_2m_max[idx] : null;
+                    const windSpeed = daily.wind_speed_10m_max ? daily.wind_speed_10m_max[idx] : null;
+                    const sunrise = daily.sunrise ? daily.sunrise[idx] : null;
+                    const sunset = daily.sunset ? daily.sunset[idx] : null;
+
+                    // Current conditions are used only when the selected date is today.
+                    // For past/future dates, use that selected day's daily API values.
+                    const current = data.current || {};
+                    const isToday = dateStr === new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kathmandu' });
+                    const currentTemp = current.temperature_2m;
+                    const currentHumidity = current.relative_humidity_2m;
+                    const currentWind = current.wind_speed_10m;
+                    const currentCode = current.weather_code;
+
+                    const displayCode = isToday && currentCode !== undefined && currentCode !== null
+                        ? currentCode
+                        : weatherCode;
+                    const weatherInfo = getWeatherInfo(displayCode);
+
+                    // Build display data from real API values only.
+                    const displayData = {
+                        city: city,
+                        date: dateStr,
+                        temp: isToday && currentTemp !== undefined && currentTemp !== null ? currentTemp : tempMean,
+                        tempMax: tempMax,
+                        tempMin: tempMin,
+                        weatherCode: displayCode,
+                        weatherIcon: weatherInfo.icon,
+                        weatherLabel: weatherInfo.label,
+                        weatherLabelEn: weatherInfo.labelEn,
+                        humidity: isToday && currentHumidity !== undefined && currentHumidity !== null ? currentHumidity : humidity,
+                        windSpeed: isToday && currentWind !== undefined && currentWind !== null ? currentWind : windSpeed,
+                        sunrise: sunrise,
+                        sunset: sunset,
+                        forecast: [],
+                        apiTime: data.current && data.current.time ? data.current.time : null,
+                        isLive: isToday
+                    };
+
+                    // Build forecast (next 7 days)
+                    if (daily.time && daily.time.length > 0) {
+                        const forecastDays = 7;
+                        const startIdx = Math.min(idx, daily.time.length - forecastDays);
+                        for (let i = startIdx; i < Math.min(startIdx + forecastDays, daily.time.length); i++) {
+                            const fCode = daily.weather_code ? daily.weather_code[i] : 0;
+                            const fInfo = getWeatherInfo(fCode);
+                            const fSunrise = daily.sunrise ? daily.sunrise[i] : null;
+                            const fSunset = daily.sunset ? daily.sunset[i] : null;
+                            displayData.forecast.push({
+                                date: daily.time[i],
+                                tempMax: daily.temperature_2m_max ? daily.temperature_2m_max[i] : null,
+                                tempMin: daily.temperature_2m_min ? daily.temperature_2m_min[i] : null,
+                                tempMean: daily.temperature_2m_mean ? daily.temperature_2m_mean[i] : null,
+                                icon: fInfo.icon,
+                                label: fInfo.label,
+                                sunrise: fSunrise,
+                                sunset: fSunset
+                            });
+                        }
+                    }
+
+                    renderWeather(displayData);
+                    statusMsg.innerHTML = '<span class="pulse-dot"></span> ✅ सफलतापूर्वक लोड भयो';
+                    refreshBtn.disabled = false;
+
+                } catch (err) {
+                    console.error('Weather fetch error:', err);
+                    loader.style.display = 'none';
+                    weatherContent.style.display = 'none';
+                    statusMsg.innerHTML =
+                        '<span class="error-text">❌ वास्तविक मौसम API बाट डाटा ल्याउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।</span>';
+                    refreshBtn.disabled = false;
+                }
+            }
+
+            // ─── RENDER WEATHER ────────────────────────────────────────
+            function renderWeather(data) {
+                const city = data.city;
+                const date = data.date;
+                const temp = data.temp;
+                const tempMax = data.tempMax;
+                const tempMin = data.tempMin;
+                const icon = data.weatherIcon;
+                const label = data.weatherLabel;
+                const humidity = data.humidity;
+                const windSpeed = data.windSpeed;
+                const sunrise = data.sunrise;
+                const sunset = data.sunset;
+
+                // Main weather with sunrise/sunset
+                weatherMain.innerHTML = `
+                    <div>
+                        <div class="weather-icon">${icon}</div>
+                    </div>
+                    <div>
+                        <div class="weather-temp">
+                            ${temp !== null && temp !== undefined ? formatNum(temp) : '--'}<span class="degree">°C</span>
+                        </div>
+                        <div class="weather-desc">${label}</div>
+                        <div class="weather-city">
+                            ${city.name} (${city.nameEn}) · ${formatDate(date)}
+                            ${data.isLive ? '<span class="source-badge" style="margin-left:0.5rem;">● LIVE API</span>' : '<span class="source-badge" style="margin-left:0.5rem;">API DATA</span>'}
+                        </div>
+                        <div class="sun-times">
+                            <span><span class="sun-icon">🌅</span> सूर्योदय: ${sunrise ? formatTime(sunrise) : '--:--'}</span>
+                            <span><span class="sun-icon">🌇</span> सूर्यास्त: ${sunset ? formatTime(sunset) : '--:--'}</span>
+                        </div>
+                        <div style="font-size:0.75rem;color:#627083;margin-top:0.45rem;">
+                            ${data.apiTime ? `API time: ${formatTime(data.apiTime)}` : 'Daily API data'}
+                        </div>
+                    </div>
+                `;
+
+                // Details (add sunrise/sunset as separate items)
+                weatherDetails.innerHTML = `
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">🌡️</span>
+                        <div class="detail-label">उच्चतम · High</div>
+                        <div class="detail-value">${tempMax !== null && tempMax !== undefined ? formatNum(tempMax) : '--'}°C</div>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">🥶</span>
+                        <div class="detail-label">न्यूनतम · Low</div>
+                        <div class="detail-value">${tempMin !== null && tempMin !== undefined ? formatNum(tempMin) : '--'}°C</div>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">💧</span>
+                        <div class="detail-label">आर्द्रता · Humidity</div>
+                        <div class="detail-value">${humidity !== null && humidity !== undefined ? formatNum(humidity) : '--'}%</div>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">💨</span>
+                        <div class="detail-label">हावा · Wind</div>
+                        <div class="detail-value">${windSpeed !== null && windSpeed !== undefined ? formatNum(windSpeed) : '--'} km/h</div>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">🌅</span>
+                        <div class="detail-label">सूर्योदय · Sunrise</div>
+                        <div class="detail-value">${sunrise ? formatTime(sunrise) : '--:--'}</div>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span class="detail-icon">🌇</span>
+                        <div class="detail-label">सूर्यास्त · Sunset</div>
+                        <div class="detail-value">${sunset ? formatTime(sunset) : '--:--'}</div>
+                    </div>
+                `;
+
+                // Forecast
+                let forecastHtml = '';
+                if (data.forecast && data.forecast.length > 0) {
+                    data.forecast.forEach((f, i) => {
+                        const dayName = i === 0 ? 'आज' : getDayName(f.date);
+                        forecastHtml += `
+                            <div class="forecast-day">
+                                <div class="day-name">${dayName}</div>
+                                <span class="day-icon">${f.icon}</span>
+                                <div class="day-temp">
+                                    <span class="hi">${f.tempMax !== null ? formatNum(f.tempMax) : '--'}°</span>
+                                    <span class="lo">${f.tempMin !== null ? formatNum(f.tempMin) : '--'}°</span>
+                                </div>
+                                <div style="font-size:0.65rem;color:#627083;">${f.label}</div>
+                                <div class="day-sun">🌅 ${f.sunrise ? formatTime(f.sunrise) : '--'} 🌇 ${f.sunset ? formatTime(f.sunset) : '--'}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    forecastHtml = '<p style="color:#627083;grid-column:1/-1;text-align:center;">पूर्वानुमान उपलब्ध छैन</p>';
+                }
+                forecastGrid.innerHTML = forecastHtml;
+
+                // Show content
+                loader.style.display = 'none';
+                weatherContent.style.display = 'block';
+
+                // Animation
+                weatherContent.style.animation = 'none';
+                requestAnimationFrame(() => {
+                    weatherContent.style.animation = 'fadeInUp 0.5s ease';
+                });
+            }
+
+            // ─── INJECT ANIMATION ──────────────────────────────────────
+            if (!document.getElementById('fadeInStyle')) {
+                const style = document.createElement('style');
+                style.id = 'fadeInStyle';
+                style.textContent = `
+                    @keyframes fadeInUp {
+                        from { opacity: 0; transform: translateY(20px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // ─── EVENT LISTENERS ──────────────────────────────────────
+            function loadWeather() {
+                const cityIdx = parseInt(citySelect.value, 10);
+                const dateStr = datePicker.value;
+                if (!dateStr) {
+                    statusMsg.innerHTML = '<span class="error-text">⚠️ कृपया मिति चयन गर्नुहोस्</span>';
+                    return;
+                }
+                fetchWeather(cityIdx, dateStr, true);
+            }
+
+            refreshBtn.addEventListener('click', loadWeather);
+
+            // Auto-load on city or date change
+            citySelect.addEventListener('change', loadWeather);
+            datePicker.addEventListener('change', loadWeather);
+
+            // ─── HAMBURGER MENU ──────────────────────────────────────
+            const hamburger = document.getElementById('hamburgerBtn');
+            const menuWrapper = document.getElementById('menuWrapper');
+            hamburger.addEventListener('click', function() {
+                menuWrapper.classList.toggle('open');
+            });
+
+            // ─── INITIAL LOAD ──────────────────────────────────────────
+            // Load weather for the default city and date
+            setTimeout(() => {
+                const cityIdx = parseInt(citySelect.value, 10);
+                const dateStr = datePicker.value;
+                fetchWeather(cityIdx, dateStr, true);
+            }, 300);
+
+            // ─── AUTO-REFRESH EVERY 15 MINUTES ───────────────────────
+            setInterval(() => {
+                const cityIdx = parseInt(citySelect.value, 10);
+                const dateStr = datePicker.value;
+                if (dateStr === new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kathmandu' })) {
+                    fetchWeather(cityIdx, dateStr, false);
+                }
+            }, 900000);
+
+            // ─── REFRESH ON VISIBILITY CHANGE ─────────────────────────
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    const cityIdx = parseInt(citySelect.value, 10);
+                    const dateStr = datePicker.value;
+                    if (dateStr === new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kathmandu' })) {
+                        fetchWeather(cityIdx, dateStr, false);
+                    }
+                }
+            });
+
+        })();
+    </script>
+<!-- PWA Installation Script -->
+<script src="/pwa-install.js"></script>
+    <script src="dark-mode.js" defer></script>
+</body>
+</html>
