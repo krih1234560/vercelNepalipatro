@@ -1,0 +1,43 @@
+/* Shared navbar dark-mode control */
+.global-theme-toggle {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    border: 1px solid #dbe3ee;
+    border-radius: 10px;
+    background: #f4f7fb;
+    color: #172033;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background .2s, border-color .2s, transform .2s;
+    -webkit-tap-highlight-color: transparent;
+}
+.global-theme-toggle:hover { transform: translateY(-1px); background:#eef4fb; }
+.global-theme-toggle:focus-visible { outline:3px solid rgba(244,170,42,.35); outline-offset:2px; }
+.global-theme-toggle svg { width:21px; height:21px; display:block; }
+body.dark-mode .global-theme-toggle { background:#1e3753; border-color:#31516f; color:#f4aa2a; }
+
+/* Generic dark mode for project pages. Gold/Silver has its own native theme. */
+body.dark-mode:not(.native-dark-page) {
+    filter: invert(1) hue-rotate(180deg);
+    transition: filter .25s ease;
+}
+body.dark-mode:not(.native-dark-page) img,
+body.dark-mode:not(.native-dark-page) video,
+body.dark-mode:not(.native-dark-page) picture,
+body.dark-mode:not(.native-dark-page) svg,
+body.dark-mode:not(.native-dark-page) iframe,
+body.dark-mode:not(.native-dark-page) canvas,
+body.dark-mode:not(.native-dark-page) .global-theme-toggle {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+@media (max-width:820px) {
+    .nav { position:relative; }
+    .global-theme-toggle { margin-left:auto; margin-right:2px; width:40px; height:40px; }
+}
+@media (max-width:480px) { .global-theme-toggle { width:38px; height:38px; } }
