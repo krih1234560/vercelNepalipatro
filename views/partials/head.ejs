@@ -1,0 +1,69 @@
+<head>
+
+<!-- Google Analytics Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWNR09X7HN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QWNR09X7HN');
+</script>
+
+<!-- PWA Meta Tags -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nepali Patro">
+<meta name="theme-color" content="#123b6d">
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= pageTitle %></title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="<%= pageDescription %>">
+<meta name="keywords" content="नेपाली पात्रो, Nepali Patro, Calendar 2083, विक्रम संवत २०८३, BS 2083, Nepali calendar, Nepali date today, Nepali festivals, Nepal holidays, तिथि, साइत, दशैं, तिहार, BS to AD converter, nepali calendar 2083, नेपाली क्यालेन्डर, आजको मिति, सार्वजनिक बिदा">
+
+<!-- Canonical Tag -->
+<link rel="canonical" href="<%= canonical %>">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="<%= pageTitle %>">
+<meta property="og:description" content="<%= pageDescription %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= canonical %>">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Nepali Patro">
+<meta property="og:locale" content="ne_NP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="<%= pageTitle %>">
+<meta name="twitter:description" content="<%= pageDescription %>">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "नेपाली पात्रो",
+  "alternateName": "Nepali Patro",
+  "url": "https://nepalipatro.app/",
+  "inLanguage": "ne-NP",
+  "description": "नेपाली पात्रो २०८३: आजको मिति, तिथि, चाडपर्व, बिदा, साइत र नेपाली मिति रूपान्तरण।"
+}
+</script>
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/dark-mode.css">
+
+<!-- OneSignal setting notification -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "2c9734e3-2be8-4bab-bd92-fcdeb7f4c10b",
+    });
+  });
+</script>
+</head>

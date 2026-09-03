@@ -1,0 +1,82 @@
+<header class="navbar">
+  <nav class="nav">
+    <a class="brand" id="brandLink" href="/">
+      <span class="brand-icon">वि</span>
+      <span class="brand-text">
+        <span class="brand-nepali">नेपाली पात्रो</span>
+        <span class="brand-english">Nepali Patro · <span>Calendar 2083</span></span>
+      </span>
+    </a>
+
+    <!-- Hamburger (three lines) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- menu wrapper: collapsible on mobile -->
+    <div class="menu-wrapper" id="menuWrapper">
+      <ul class="menu">
+        <li><a href="/" class="calendar-link" id="calendarLink">Calendar</a></li>
+        <li><a href="/nepalsambat.html">नेपाल संवत</a></li>
+        <li class="dropdown">
+          <a href="#">Converter</a>
+          <ul class="dropdown-menu">
+            <li><a href="/unicode.html">Nepali Unicode</a></li>
+            <li><a href="/dateconverter.html">BS-AD Converter</a></li>
+            <li><a href="/date-difference.html">Date Difference</a></li>
+            <li><a href="/age-calculator.html">Age Calculator</a></li>
+          </ul>
+        </li>
+        <li><a href="/nepali-festivals.html">चाडपर्वहरु</a></li>
+        <li><a href="/nepali-holidays.html">बिदाहरु</a></li>
+        <li><a href="/rashifal.html">राशिफल</a></li>
+        <li><a href="/weather.html">मौसम</a></li>
+        <li><a href="/goldsilver.html">सुनचादी</a></li>
+        <li class="dropdown">
+          <a href="#">Tools</a>
+          <ul class="dropdown-menu">
+            <li><a href="/kundali-generator.html">जन्म कुण्डली</a></li>
+            <li><a href="/kundli-milan.html">कुण्डली मिलन</a></li>
+            <li><a href="/event-remainder.html">Event Remainder</a></li>
+            <li><a href="/quiz-scheduler.html">Quiz Scheduler</a></li>
+            <li><a href="/exchange-rate.html">Currency Exchange Rate</a></li>
+            <li><a href="/nepali_fuel_rates.html">इन्धन मूल्य</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="year-selector">
+        <label for="yearSelect">वर्ष:</label>
+        <select id="yearSelect"></select>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="holiday-summary">
+  🎉 कुल बिदा (यस महिनामा): <span id="totalHolidayBadge">0</span>
+</div>
+
+<!-- SEO INTERNAL LINKS / SITE HUB -->
+<section class="seo-links" aria-label="नेपाली पात्रोका उपयोगी पृष्ठहरू">
+  <div class="seo-links-inner">
+    <h2>नेपाली पात्रोका उपयोगी पृष्ठहरू</h2>
+    <p class="seo-intro">आजको नेपाली मिति हेर्नुहोस् र चाडपर्व, बिदा, राशिफल तथा मिति रूपान्तरणका उपयोगी पृष्ठहरूमा जानुहोस्।</p>
+    <div class="seo-link-grid">
+      <a href="/rashifal.html">आजको राशिफल</a>
+      <a href="/nepali-festivals.html">नेपाली चाडपर्व</a>
+      <a href="/nepali-holidays.html">नेपालका सार्वजनिक बिदा</a>
+      <a href="/nepalsambat.html">नेपाल संवत</a>
+      <a href="/weather.html">नेपाल मौसम</a>
+      <a href="/goldsilver.html">सुनचाँदीको मूल्य</a>
+      <a href="/dateconverter.html">BS-AD मिति रूपान्तरण</a>
+      <a href="/date-difference.html">मिति अन्तर गणना</a>
+      <a href="/age-calculator.html">उमेर गणक</a>
+      <a href="/unicode.html">नेपाली युनिकोड</a>
+      <a href="/kundali-generator.html">जन्म कुण्डली</a>
+      <a href="/event-remainder.html">कार्यक्रम रिमाइन्डर</a>
+      <a href="/exchange-rate.html">मुद्रा विनिमय दर</a>
+      <a href="/nepali_fuel_rates.html">इन्धन मूल्य</a>
+    </div>
+  </div>
+</section>
